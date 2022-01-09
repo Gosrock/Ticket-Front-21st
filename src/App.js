@@ -2,7 +2,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>고스락 gnl론트</p>
+        <p>고스락 gn휘휘휘l론트</p>
       </header>
     </div>
   );

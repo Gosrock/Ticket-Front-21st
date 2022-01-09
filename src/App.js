@@ -1,13 +1,13 @@
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
 
-        <p>고스락 후론트</p>
+    return (
+        <div className="App">
+            <header className="App-header">
+                <p>고스락 짱 한규진 짱</p>
+            </header>
+        </div>
+    );
 
-      </header>
-    </div>
-  );
 }
 
 export default App;

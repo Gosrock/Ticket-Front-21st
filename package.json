@@ -31,12 +31,15 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
+      "pre-commit": "lint-staged"
     }
   },
+
   "lint-staged": {
-    "*.js": "prettier --write"
+    "src/**/*.{js,jsx,json,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [

@@ -3,7 +3,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <h1>고스락 짱 (김민준)</h1>
+          <h1>고스락 짱 (김민준) 오류 안나냐?</h1>
       </header>
     </div>
   );

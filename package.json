@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare" : "husky install",
-    "lint-staged" :"lint-staged"
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -31,9 +31,8 @@
       "react-app/jest"
     ]
   },
-
   "lint-staged": {
-    "src/**/*.{js,jsx,json,tsx}": [
+    "**/*.{js,jsx,json,tsx}": [
       "prettier --write"
     ]
   },

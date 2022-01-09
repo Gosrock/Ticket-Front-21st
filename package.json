@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare" : "husky install",
+    "lint-staged" :"lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -29,16 +31,10 @@
       "react-app/jest"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
 
   "lint-staged": {
     "src/**/*.{js,jsx,json,tsx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "browserslist": {

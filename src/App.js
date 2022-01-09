@@ -1,11 +1,13 @@
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
-        <p>고스락 짱!(minjoon)</p>
+          <h1>고스락 짱 (김민준)</h1>
       </header>
     </div>
   );
+
 }
 
 export default App;

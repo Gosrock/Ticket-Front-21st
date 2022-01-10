@@ -4,7 +4,7 @@ function App() {
       <header className="App-header">
         <p>고스락 이찬진 짱짱</p>
         <p>되나?</p>
-        <p>zzzzzzz</p>
+        <p>여기 고침</p>
       </header>
     </div>
   );

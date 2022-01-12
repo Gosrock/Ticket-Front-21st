@@ -11,6 +11,7 @@ import { Route, Routes } from 'react-router-dom';
 // import LoginPage from "./components/views/AuthPage/LoginPage";
 import requireAuth from './hoc/requireAuth';
 import RequireAuthPage from './components/RequireAuthPage/RequireAuthPage';
+import 'antd/dist/antd.min.css';
 
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =

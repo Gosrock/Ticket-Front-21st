@@ -1,7 +1,7 @@
 import { AUTH_USER, AUTH_ERROR } from './types';
 import axios from 'axios';
 
-export const login =
+const auth =
   ({ userId, password }, callback) =>
   async dispatch => {
     try {
@@ -25,3 +25,5 @@ export const login =
       dispatch({ type: AUTH_ERROR, payload: '로그인 실패' });
     }
   };
+
+export default auth;

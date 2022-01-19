@@ -1,5 +1,6 @@
 import { AUTH_USER, AUTH_ERROR } from './types';
 import axios from 'axios';
+import history from '../history';
 
 const auth =
   ({ userId, password }, callback) =>
@@ -19,7 +20,7 @@ const auth =
       axios.defaults.headers.common.Authorization = `Bearer ${response.data.data.accessToken}`;
 
       // 자동으로 피쳐로 넘어가게끔
-      // callback();
+      history.push('./navigate');
     } catch (e) {
       //400 ~
       dispatch({ type: AUTH_ERROR, payload: '로그인 실패' });

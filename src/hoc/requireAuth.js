@@ -14,7 +14,6 @@ const requireAuth =
     useEffect(() => {
       if (authenticated == null) {
         console.log('엔터', authenticated);
-        navigate('/');
       }
     }, [navigate, authenticated]);
 

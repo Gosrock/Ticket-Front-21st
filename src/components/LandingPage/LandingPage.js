@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Input, Button } from 'antd';
+import { Input } from 'antd';
+import { GoBackButton, GoFrontButton } from 'gosrock-storybook';
+import 'gosrock-storybook/dist/gosrockStyle.css';
 
 function LandingPage() {
   const [validationNumber, setValidationNumber] = useState('');
@@ -9,6 +11,9 @@ function LandingPage() {
 
     setValidationNumber(e.target.value);
     if (e.target.value.length >= 4) e.target.blur();
+  };
+  const handleOnclick = () => {
+    console.log('asdlfkj');
   };
 
   // const shouldBlur = (e) => {
@@ -29,9 +34,10 @@ function LandingPage() {
           // onKeyDown={shouldBlur}
           style={{ marginRight: 10, width: '200px' }}
         />
-      </div>
-      <div>
-        <Button style={{ marginTop: '100px' }}>넘어가기</Button>
+        <div style={{ backgroundColor: 'black' }}>
+          <GoBackButton onClick={handleOnclick}></GoBackButton>
+          <GoFrontButton></GoFrontButton>
+        </div>
       </div>
     </div>
   );

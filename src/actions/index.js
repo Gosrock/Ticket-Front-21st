@@ -1,2 +1,3 @@
 import auth from './auth';
-export { auth };
+import navigateActionTest from './navigateActionTest';
+export { auth, navigateActionTest };

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { login } from '../../../actions/auth';
+import { navigateActionTest, auth } from '../../actions';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './loginpage.css';
@@ -25,17 +25,8 @@ function LoginPage(props) {
     console.log(body);
 
     // login 요청
-    dispatch(login(body)).then(res => {
-      console.log(authenticated, errorMessage, pending, res);
-
-      if (!errorMessage) {
-        navigate('/');
-      } else {
-        alert(errorMessage);
-      }
-    });
+    dispatch(navigateActionTest({}));
   };
-
   return (
     <div
       style={{

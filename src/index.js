@@ -17,6 +17,7 @@ import {
 import requireAuth from './hoc/requireAuth';
 import RequireAuthPage from './components/RequireAuthPage/RequireAuthPage';
 import LoginPage from './components/AuthPage/LoginPage';
+import TicketingPage from './components/TicketingPage/TicketingPage';
 
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =
@@ -60,6 +61,7 @@ ReactDOM.render(
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/requireauth" element={<RequireAuthPageHoc />} />
         <Route path="/*" element={<LandingPage />} />
+        <Route path="/ticketing" element={<TicketingPage />} />
       </Routes>
     </Provider>
   </HistoryRouter>,

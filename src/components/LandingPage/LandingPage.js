@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import {
   GoBackButton,
   GoFrontButton,
+  ProgressLayout,
   TicketWrapContainer,
   TicketContainer,
   TicketTop,
@@ -33,22 +34,36 @@ function LandingPage() {
   return (
     <>
       <TicketWrapContainer>
-        <TicketContainer style={{ padding: 0 }}>
-          <TicketTop>
-            <GoBackButton />
-          </TicketTop>
-          <TicketBodyHeader>TicketBodyHeader 비율을 2로</TicketBodyHeader>
-          <TicketBody>
-            <div
+        <TicketContainer
+          TopElement={
+            <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
+              <GoBackButton />
+            </TicketTop>
+          }
+        >
+          <ProgressLayout>
+            <TicketBody
               style={{
-                height: '100%',
-                width: '100%'
+                backgroundColor: 'white'
               }}
             >
-              TicketBody 비율을 2로
-            </div>
-          </TicketBody>
-          <TicketBottom>TicketBottom 비율을 2로</TicketBottom>
+              바디영역
+            </TicketBody>
+            <TicketBodyHeader
+              style={{
+                backgroundColor: 'blue'
+              }}
+            >
+              헤더 영역
+            </TicketBodyHeader>
+            <TicketBottom
+              style={{
+                backgroundColor: 'green'
+              }}
+            >
+              바텀영역
+            </TicketBottom>
+          </ProgressLayout>
         </TicketContainer>
       </TicketWrapContainer>
     </>

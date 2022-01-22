@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.min.css';
+// import 'antd/dist/antd.min.css';
 import history from './history';
 import axios from 'axios';
 import { Provider } from 'react-redux';
@@ -17,6 +17,7 @@ import {
 import requireAuth from './hoc/requireAuth';
 import RequireAuthPage from './components/RequireAuthPage/RequireAuthPage';
 import LoginPage from './components/AuthPage/LoginPage';
+import 'gosrock-storybook/dist/gosrockStyle.css';
 
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =

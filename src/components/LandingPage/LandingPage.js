@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
-import { GoBackButton, GoFrontButton } from 'gosrock-storybook';
-import 'gosrock-storybook/dist/gosrockStyle.css';
+import {
+  GoBackButton,
+  GoFrontButton,
+  TicketWrapContainer,
+  TicketContainer,
+  TicketTop,
+  TicketBodyHeader,
+  TicketBody,
+  TicketBottom
+} from 'gosrock-storybook';
 
 function LandingPage() {
   const [validationNumber, setValidationNumber] = useState('');
@@ -23,23 +31,27 @@ function LandingPage() {
   //   }
   // }
   return (
-    <div className="LandingPage">
-      고스락 페이지
-      <div style={{ marginTop: '200px' }}>
-        <Input
-          placeholder="4글자면 auto unfocus"
-          value={validationNumber}
-          onChange={e => handleValidationNumberChange(e)}
-          // onBlur={handleValidationNumberChange}
-          // onKeyDown={shouldBlur}
-          style={{ marginRight: 10, width: '200px' }}
-        />
-        <div style={{ backgroundColor: 'black' }}>
-          <GoBackButton onClick={handleOnclick}></GoBackButton>
-          <GoFrontButton></GoFrontButton>
-        </div>
-      </div>
-    </div>
+    <>
+      <TicketWrapContainer>
+        <TicketContainer style={{ padding: 0 }}>
+          <TicketTop>
+            <GoBackButton />
+          </TicketTop>
+          <TicketBodyHeader>TicketBodyHeader 비율을 2로</TicketBodyHeader>
+          <TicketBody>
+            <div
+              style={{
+                height: '100%',
+                width: '100%'
+              }}
+            >
+              TicketBody 비율을 2로
+            </div>
+          </TicketBody>
+          <TicketBottom>TicketBottom 비율을 2로</TicketBottom>
+        </TicketContainer>
+      </TicketWrapContainer>
+    </>
   );
 }
 

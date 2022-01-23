@@ -60,7 +60,7 @@ const setScreenSize = () => {
 
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
-window.addEventListener('resize', () => setScreenSize());
+// window.addEventListener('resize', () => setScreenSize());
 setScreenSize();
 
 ReactDOM.render(

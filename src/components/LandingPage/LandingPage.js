@@ -4,12 +4,12 @@ import {
   GoBackButton,
   GoFrontButton,
   ProgressLayout,
-  TicketWrapContainer,
   TicketContainer,
   TicketTop,
   TicketBodyHeader,
   TicketBody,
-  TicketBottom
+  TicketBottom,
+  TicketWrapContainer
 } from 'gosrock-storybook';
 
 function LandingPage() {
@@ -32,41 +32,39 @@ function LandingPage() {
   //   }
   // }
   return (
-    <>
-      <TicketWrapContainer>
-        <TicketContainer
-          TopElement={
-            <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
-              <GoBackButton />
-            </TicketTop>
-          }
-        >
-          <ProgressLayout>
-            <TicketBody
-              style={{
-                backgroundColor: 'white'
-              }}
-            >
-              바디영역
-            </TicketBody>
-            <TicketBodyHeader
-              style={{
-                backgroundColor: 'blue'
-              }}
-            >
-              헤더 영역
-            </TicketBodyHeader>
-            <TicketBottom
-              style={{
-                backgroundColor: 'green'
-              }}
-            >
-              바텀영역
-            </TicketBottom>
-          </ProgressLayout>
-        </TicketContainer>
-      </TicketWrapContainer>
-    </>
+    <TicketWrapContainer>
+      <TicketContainer
+        TopElement={
+          <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
+            <GoBackButton />
+          </TicketTop>
+        }
+      >
+        <ProgressLayout>
+          <TicketBody
+            style={{
+              backgroundColor: 'white'
+            }}
+          >
+            바디영역
+          </TicketBody>
+          <TicketBodyHeader
+            style={{
+              backgroundColor: 'blue'
+            }}
+          >
+            헤더 영역
+          </TicketBodyHeader>
+          <TicketBottom
+            style={{
+              backgroundColor: 'green'
+            }}
+          >
+            바텀영역
+          </TicketBottom>
+        </ProgressLayout>
+      </TicketContainer>
+    </TicketWrapContainer>
   );
 }
 

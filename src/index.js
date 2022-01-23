@@ -18,7 +18,6 @@ import requireAuth from './hoc/requireAuth';
 import RequireAuthPage from './components/RequireAuthPage/RequireAuthPage';
 import LoginPage from './components/AuthPage/LoginPage';
 import 'gosrock-storybook/dist/gosrockStyle.css';
-
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -54,13 +53,24 @@ const RequireAuthPageHoc = requireAuth(RequireAuthPage);
 // 구조가 맘에안듬 컴포넌트단에서 히스토리 처리하는게.
 // 액션에서 처리하는게 맞는것 같음
 
+// 모바일 환경에서 url 상단바 하단바가 뷰포트 크기에 포함되는것을 확인. 실제 화면 크기로 body사이즈를 줄여주기위함.
+
+const setScreenSize = () => {
+  let vh = window.innerHeight * 0.01;
+
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+window.addEventListener('resize', () => setScreenSize());
+setScreenSize();
+
 ReactDOM.render(
   <HistoryRouter history={history}>
     <Provider store={store}>
       <Routes>
+        <Route path="/*" element={<LandingPage />} />
+
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/requireauth" element={<RequireAuthPageHoc />} />
-        <Route path="/*" element={<LandingPage />} />
       </Routes>
     </Provider>
   </HistoryRouter>,

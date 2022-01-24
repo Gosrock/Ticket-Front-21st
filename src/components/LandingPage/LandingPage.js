@@ -41,6 +41,13 @@ function LandingPage() {
         }
       >
         <ProgressLayout>
+          <TicketBottom
+            style={{
+              backgroundColor: 'green'
+            }}
+          >
+            바텀영역
+          </TicketBottom>
           <TicketBody
             style={{
               backgroundColor: 'white'
@@ -55,13 +62,6 @@ function LandingPage() {
           >
             헤더 영역
           </TicketBodyHeader>
-          <TicketBottom
-            style={{
-              backgroundColor: 'green'
-            }}
-          >
-            바텀영역
-          </TicketBottom>
         </ProgressLayout>
       </TicketContainer>
     </TicketWrapContainer>

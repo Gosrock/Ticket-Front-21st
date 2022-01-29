@@ -51,13 +51,14 @@ function SendValidationNumberPage() {
               topLabel="하이픈( - ) 없이"
               bottomLabel="숫자로만 입력해주세요."
             />
+          </TicketBodyHeader>
+          <TicketBody>
             <InputForm
               value={validationNumber}
               onChange={validationNumberInputHandler}
               page="validate"
             />
-          </TicketBodyHeader>
-          <TicketBody></TicketBody>
+          </TicketBody>
 
           <TicketBottom>
             <GoFrontButton

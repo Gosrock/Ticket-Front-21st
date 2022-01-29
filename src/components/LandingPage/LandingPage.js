@@ -37,11 +37,7 @@ function LandingPage() {
         }
       >
         <TicketContainer>
-          <TicketBody
-            style={{
-              backgroundColor: 'white'
-            }}
-          >
+          <TicketBody style={{}}>
             <Ticket payment QRvalue="asdfasdf" />
           </TicketBody>
         </TicketContainer>

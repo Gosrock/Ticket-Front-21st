@@ -50,13 +50,14 @@ function SendMessagePage() {
               topLabel="하이픈( - ) 없이"
               bottomLabel="숫자로만 입력해주세요."
             />
+          </TicketBodyHeader>
+          <TicketBody>
             <InputForm
               value={phoneNumber}
               onChange={phoneNumberInputHandler}
               page="phone"
             />
-          </TicketBodyHeader>
-          <TicketBody></TicketBody>
+          </TicketBody>
 
           <TicketBottom>
             <GoFrontButton

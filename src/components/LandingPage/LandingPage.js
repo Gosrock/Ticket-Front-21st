@@ -5,7 +5,8 @@ import {
   TicketTop,
   TicketBody,
   Ticket,
-  TicketWrapContainer
+  TicketWrapContainer,
+  TicketLayout
 } from 'gosrock-storybook';
 
 function LandingPage() {
@@ -36,11 +37,11 @@ function LandingPage() {
           </TicketTop>
         }
       >
-        <TicketContainer>
+        <TicketLayout>
           <TicketBody style={{}}>
             <Ticket payment QRvalue="asdfasdf" />
           </TicketBody>
-        </TicketContainer>
+        </TicketLayout>
       </TicketContainer>
     </TicketWrapContainer>
   );

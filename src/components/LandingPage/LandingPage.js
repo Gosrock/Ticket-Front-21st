@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
 import {
-  GoBackButton,
-  GoFrontButton,
-  ProgressLayout,
   TicketContainer,
   TicketTop,
-  TicketBodyHeader,
   TicketBody,
-  TicketBottom,
+  Ticket,
   TicketWrapContainer
 } from 'gosrock-storybook';
 
@@ -36,33 +32,19 @@ function LandingPage() {
       <TicketContainer
         TopElement={
           <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
-            <GoBackButton />
+            asdf
           </TicketTop>
         }
       >
-        <ProgressLayout>
+        <TicketContainer>
           <TicketBody
             style={{
               backgroundColor: 'white'
             }}
           >
-            바디영역
+            <Ticket payment QRvalue="asdfasdf" />
           </TicketBody>
-          <TicketBodyHeader
-            style={{
-              backgroundColor: 'blue'
-            }}
-          >
-            헤더 영역
-          </TicketBodyHeader>
-          <TicketBottom
-            style={{
-              backgroundColor: 'green'
-            }}
-          >
-            바텀영역
-          </TicketBottom>
-        </ProgressLayout>
+        </TicketContainer>
       </TicketContainer>
     </TicketWrapContainer>
   );

@@ -1,8 +1,10 @@
-import { AUTH_USER, AUTH_ERROR, AUTH } from '../actions/types';
-
+import {
+  MESSAGE_SEND_SUCCESS,
+  MESSAGE_SEND_PENDING,
+  MESSAGE_SEND_ERROR
+} from '../action-types';
 const INITIAL_STATE = {
-  authenticated: null,
-  userInfo: null,
+  messageToken: null,
   errorMessage: null,
   pending: false
 };
@@ -10,21 +12,24 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case AUTH:
-      console.log(action.type, action.payload);
-      return { ...state, pending: true };
-    case AUTH_USER:
+    case MESSAGE_SEND_PENDING:
       return {
         ...state,
-        authenticated: action.payload.data.accessToken,
-        userInfo: action.payload.data,
+        messageToken: null,
+        errorMessage: null,
+        pending: true
+      };
+    case MESSAGE_SEND_SUCCESS:
+      return {
+        ...state,
+        messageToken: action.payload.messageToken,
         errorMessage: null,
         pending: false
       };
-    case AUTH_ERROR:
+    case MESSAGE_SEND_ERROR:
       return {
         ...state,
-        authenticated: null,
+        messageToken: null,
         errorMessage: action.payload,
         pending: false
       };

@@ -38,7 +38,13 @@ function LandingPage() {
         }
       >
         <TicketLayout>
-          <TicketBody style={{}}>
+          <TicketBody
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
             <Ticket payment QRvalue="asdfasdf" />
           </TicketBody>
         </TicketLayout>

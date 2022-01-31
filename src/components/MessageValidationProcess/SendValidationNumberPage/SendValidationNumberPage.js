@@ -14,7 +14,7 @@ import {
 } from 'gosrock-storybook';
 import { useDispatch, useSelector } from 'react-redux';
 import { messageValidation } from '../../../state/actions-creators';
-function SendValidationNumberPage() {
+function SendValidationNumberPage({ ...props }) {
   const [validationNumber, setValidationNumber] = useState('');
 
   const dispatch = useDispatch();
@@ -37,9 +37,9 @@ function SendValidationNumberPage() {
   };
 
   useEffect(() => {}, [errorMessage, pending]);
-
+  console.log('인증번호 페이지');
   return (
-    <TicketWrapContainer>
+    <TicketWrapContainer {...props}>
       <TicketContainer>
         <ProgressLayout>
           <TicketBodyHeader style={{ flexDirection: 'column' }}>

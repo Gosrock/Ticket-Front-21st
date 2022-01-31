@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import 'antd/dist/antd.min.css';
-import history from './history';
 import { Provider } from 'react-redux';
 import { store } from './state/storeSetting';
+
+import history from './history';
+
 import LandingPage from './components/LandingPage/LandingPage';
 import {
   Routes,
@@ -20,7 +22,7 @@ import 'gosrock-storybook/dist/gosrockStyle.css';
 
 // axios base url , 인증 인터셉터
 import './config/axiosInstance';
-import MessageValidationProcess from './components/MessageValidationProcess/MessageValidationProcess';
+import Pagination from './components/Pagination/Pagination';
 
 // 모바일 환경에서 url 상단바 하단바가 뷰포트 크기에 포함되는것을 확인. 실제 화면 크기로 body사이즈를 줄여주기위함.
 const setScreenSize = () => {
@@ -44,8 +46,8 @@ ReactDOM.render(
   <HistoryRouter history={history}>
     <Provider store={store}>
       <Routes>
-        <Route path="/auth/*" element={<MessageValidationProcess />} />
-        <Route path="/*" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/*" element={<Pagination />} />
       </Routes>
     </Provider>
   </HistoryRouter>,

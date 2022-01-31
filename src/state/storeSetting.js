@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
+import history from '../history';
 
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =
@@ -26,6 +27,9 @@ export const store = createStore(
       authenticated: userAccessToken === 'null' ? false : true,
       userAccessToken: userAccessToken === 'null' ? null : userAccessToken,
       phoneNumber: phoneNumber === 'null' ? null : phoneNumber
+    },
+    routePagination: {
+      currentPage: history.location.pathname
     }
   },
   enhancer

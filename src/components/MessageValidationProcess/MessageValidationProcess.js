@@ -1,21 +1,26 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import messageValidationProcessHOC from '../../hoc/messageValidationProcessHOC';
 import SendMessagePage from './SendMessagePage/SendMessagePage';
 import SendValidationNumberPage from './SendValidationNumberPage/SendValidationNumberPage';
-
-function MessageValidationProcess() {
+function MessageValidationProcess({ location }) {
   const HOCSendValidationNumberPage = messageValidationProcessHOC(
     SendValidationNumberPage
   );
 
   return (
-    <Routes>
-      <Route exact path="message" element={<SendMessagePage />} />
+    <Routes location={location}>
+      <Route
+        exact
+        path="message"
+        element={<SendMessagePage style={{ position: 'absolute' }} />}
+      />
       <Route
         exact
         path="validation"
-        element={<HOCSendValidationNumberPage />}
+        element={
+          <HOCSendValidationNumberPage style={{ position: 'absolute' }} />
+        }
       />
       <Route path="*" element={<Navigate to="/auth/message" />} />
     </Routes>

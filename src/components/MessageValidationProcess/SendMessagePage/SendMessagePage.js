@@ -14,7 +14,7 @@ import {
 } from 'gosrock-storybook';
 import { useDispatch, useSelector } from 'react-redux';
 import { messageSend } from '../../../state/actions-creators';
-function SendMessagePage() {
+function SendMessagePage({ ...props }) {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const dispatch = useDispatch();
@@ -36,9 +36,10 @@ function SendMessagePage() {
       alert('핸드폰 번호를 제대로 입력해 주세요.');
     }
   }, [errorMessage, pending]);
+  console.log('a문자발송 페이지');
 
   return (
-    <TicketWrapContainer>
+    <TicketWrapContainer {...props}>
       <TicketContainer>
         <ProgressLayout>
           <TicketBodyHeader style={{ flexDirection: 'column' }}>

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MessageValidationProcess from '../MessageValidationProcess/MessageValidationProcess';
+import TicketingProcess from '../TicketingProcess/TicketingProcess';
 import TestPage from '../TestPage';
 import './Pagination.css';
 
@@ -19,6 +20,10 @@ function Pagination() {
         timeout={300}
       >
         <Routes location={location}>
+          <Route
+            path="/ticketing/*"
+            element={<TicketingProcess location={location} />}
+          />
           <Route
             path="/auth/*"
             element={<MessageValidationProcess location={location} />}

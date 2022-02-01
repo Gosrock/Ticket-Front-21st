@@ -14,13 +14,16 @@ import {
 } from 'gosrock-storybook';
 import { useDispatch, useSelector } from 'react-redux';
 import { messageValidation } from '../../../state/actions-creators';
-function SendValidationNumberPage() {
+function SendValidationNumberPage({ ...props }) {
   const [validationNumber, setValidationNumber] = useState('');
 
   const dispatch = useDispatch();
 
   const { messageToken, errorMessage, pending } = useSelector(
     state => state.messageSend
+  );
+  const { processForValidationNextPage } = useSelector(
+    state => state.routePagination
   );
   const validationNumberInputHandler = e => {
     setValidationNumber(e.target.value);
@@ -29,17 +32,21 @@ function SendValidationNumberPage() {
   const frontButtonHandler = () => {
     console.log(validationNumber);
     dispatch(
-      messageValidation({
-        messageToken,
-        authenticationNumber: validationNumber
-      })
+      messageValidation(
+        {
+          messageToken,
+          authenticationNumber: validationNumber
+        },
+        // 인증 잘못되게 진행된경우 홈페이지로 강제 이동.
+        processForValidationNextPage ? processForValidationNextPage : '/'
+      )
     );
   };
 
   useEffect(() => {}, [errorMessage, pending]);
-
+  console.log('인증번호 페이지');
   return (
-    <TicketWrapContainer>
+    <TicketWrapContainer {...props}>
       <TicketContainer>
         <ProgressLayout>
           <TicketBodyHeader style={{ flexDirection: 'column' }}>

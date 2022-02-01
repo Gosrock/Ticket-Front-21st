@@ -32,7 +32,7 @@ export const messageValidation =
       axios.defaults.headers.common.Authorization = `Bearer ${response.data.data.userAccessToken}`;
 
       // 자동으로 다음 단계로 넘어가게 끔
-      history.push('/');
+      history.push(nextUrl);
     } catch (e) {
       //400 ~
       console.log(e.response.data);

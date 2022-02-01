@@ -1,4 +1,4 @@
 import { messageSend } from './messageSend';
 import { messageValidation } from './messageValidation';
-
-export { messageSend, messageValidation };
+import { routeChange } from './routeChange';
+export { messageSend, messageValidation, routeChange };

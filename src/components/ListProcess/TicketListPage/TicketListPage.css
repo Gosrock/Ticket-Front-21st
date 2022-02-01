@@ -1,0 +1,21 @@
+.list-container {
+  height: 100%;
+  background-color: #262626;
+  border-radius: 8px;
+  padding: 16px 16px 0px 16px;
+}
+
+.show-account {
+  font-weight: 400;
+  font-size: 18px;
+  color: #bf94e4;
+  line-height: 25px;
+}
+
+.show-account:active {
+  color: #ddbff8;
+}
+
+svg {
+  height: 22px;
+}

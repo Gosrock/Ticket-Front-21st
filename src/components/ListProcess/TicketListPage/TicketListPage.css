@@ -1,8 +1,9 @@
 .list-container {
-  height: 100%;
   background-color: #262626;
   border-radius: 8px;
+  overflow: auto;
   padding: 16px 16px 0px 16px;
+  height: calc(var(--height) - 16px);
 }
 
 .show-account {
@@ -10,12 +11,9 @@
   font-size: 18px;
   color: #bf94e4;
   line-height: 25px;
+  cursor: default;
 }
 
 .show-account:active {
   color: #ddbff8;
-}
-
-svg {
-  height: 22px;
 }

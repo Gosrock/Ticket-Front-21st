@@ -23,7 +23,7 @@ function ListProcess({ location }) {
         exact
         path="mytickets"
         //애니메이션을 위해 absolute로 설정해야함!
-        element={<RATicketListPage style={{ position: 'absolute' }} />}
+        element={<TicketListPage style={{ position: 'absolute' }} />}
       />
       {/*이상한 url로 들어올경우 홈페이지로 이동*/}
       <Route path="*" element={<Navigate to="/" />} />

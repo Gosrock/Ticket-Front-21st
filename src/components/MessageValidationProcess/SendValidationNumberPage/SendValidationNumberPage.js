@@ -22,6 +22,9 @@ function SendValidationNumberPage({ ...props }) {
   const { messageToken, errorMessage, pending } = useSelector(
     state => state.messageSend
   );
+  const { processForValidationNextPage } = useSelector(
+    state => state.routePagination
+  );
   const validationNumberInputHandler = e => {
     setValidationNumber(e.target.value);
   };
@@ -29,10 +32,14 @@ function SendValidationNumberPage({ ...props }) {
   const frontButtonHandler = () => {
     console.log(validationNumber);
     dispatch(
-      messageValidation({
-        messageToken,
-        authenticationNumber: validationNumber
-      })
+      messageValidation(
+        {
+          messageToken,
+          authenticationNumber: validationNumber
+        },
+        // 인증 잘못되게 진행된경우 홈페이지로 강제 이동.
+        processForValidationNextPage ? processForValidationNextPage : '/'
+      )
     );
   };
 

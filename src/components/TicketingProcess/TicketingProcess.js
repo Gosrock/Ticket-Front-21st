@@ -1,29 +1,30 @@
 import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import messageValidationProcessHOC from '../../hoc/messageValidationProcessHOC';
-import SendMessagePage from './SendMessagePage/SendMessagePage';
-import SendValidationNumberPage from './SendValidationNumberPage/SendValidationNumberPage';
-function MessageValidationProcess({ location }) {
-  const HOCSendValidationNumberPage = messageValidationProcessHOC(
-    SendValidationNumberPage
-  );
+import authPassHOC from '../../hoc/authPassHOC';
 
+import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
+
+function MessageValidationProcess({ location }) {
+  const APHTicketingLandingPage = authPassHOC(
+    TicketingLandingPage,
+    '/ticketing/amount'
+  );
   return (
     <Routes location={location}>
       <Route
         exact
-        path="message"
+        path="landing"
         //애니메이션을 위해 absolute로 설정해야함!
-        element={<SendMessagePage style={{ position: 'absolute' }} />}
+        element={<APHTicketingLandingPage style={{ position: 'absolute' }} />}
       />
-      <Route
+      {/* <Route
         exact
         path="validation"
         //애니메이션을 위해 absolute로 설정해야함!
         element={
           <HOCSendValidationNumberPage style={{ position: 'absolute' }} />
         }
-      />
+      /> */}
       {/*이상한 url로 들어올경우 홈페이지로 이동*/}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

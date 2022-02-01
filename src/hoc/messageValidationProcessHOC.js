@@ -10,7 +10,8 @@ const messageValidationProcessHOC =
     useEffect(() => {
       if (messageToken == null) {
         console.log('엔터', messageToken);
-        history.push('/auth/message');
+        /*새로 고침시 홈페이지로 이동*/
+        history.push('/');
       }
     }, [messageToken]);
 

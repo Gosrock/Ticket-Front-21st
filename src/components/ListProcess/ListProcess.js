@@ -4,6 +4,7 @@ import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
 import ListLandingPage from './ListLandingPage/ListLandingPage';
 import TicketListPage from './TicketListPage/TicketListPage';
+import TicketCodePage from './TicketCodePage/TicketCodePage';
 
 function ListProcess({ location }) {
   // 인증되어있으면 랜딩페이지 넘기고 바로 티켓리스트로
@@ -23,7 +24,7 @@ function ListProcess({ location }) {
         exact
         path="mytickets"
         //애니메이션을 위해 absolute로 설정해야함!
-        element={<TicketListPage style={{ position: 'absolute' }} />}
+        element={<RATicketListPage style={{ position: 'absolute' }} />}
       />
       {/*이상한 url로 들어올경우 홈페이지로 이동*/}
       <Route path="*" element={<Navigate to="/" />} />

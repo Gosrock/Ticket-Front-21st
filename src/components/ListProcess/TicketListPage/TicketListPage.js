@@ -96,7 +96,15 @@ function TicketListPage() {
               <div className="list-inner-container">
                 {tickets &&
                   tickets.map(v => {
-                    return <div>{v._id}</div>;
+                    return (
+                      <div
+                        onClick={() => {
+                          history.push(`/tickets/${v._id}`);
+                        }}
+                      >
+                        {v._id}
+                      </div>
+                    );
                   })}
               </div>
             </div>

@@ -17,7 +17,21 @@ import './TicketListPage.css';
 import history from '../../../history';
 import { useSelector } from 'react-redux';
 
-function TicketListPage() {
+const testData = [
+  {
+    _id: '61e0453bb063b6962b939cdc',
+    status: 'pending-deposit',
+    phoneNumber: '01094768640',
+    ticketNumber: 2,
+    adminTicket: false,
+    accountName: '이찬진',
+    createdAt: '2022-01-13T15:28:59.133Z',
+    updatedAt: '2022-01-23T15:28:19.557Z',
+    __v: 0
+  }
+];
+
+function TicketListPage({ ...props }) {
   const { authenticated, phoneNumber, userAccessToken } = useSelector(
     state => state.auth
   );
@@ -30,9 +44,10 @@ function TicketListPage() {
 
   const getMyTickets = async () => {
     try {
-      axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
-      const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-      setTickets(response.data.data);
+      // axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
+      // const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
+      // setTickets(response.data.data);
+      setTickets(testData);
     } catch (e) {
       console.log(e.response.data);
     }
@@ -61,13 +76,13 @@ function TicketListPage() {
   }; */
 
   return (
-    <TicketWrapContainer>
+    <TicketWrapContainer {...props}>
       <TicketContainer
         TopElement={
           <TicketTop>
             <GoBackButton
               onClick={() => {
-                history.back();
+                history.push('/');
               }}
             />
           </TicketTop>

@@ -3,7 +3,6 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import history from '../history';
 import axios from 'axios';
-
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -20,6 +19,11 @@ const phoneNumber = localStorage.getItem('phoneNumber');
 // axios Bearer 토큰에 커먼 헤더로 껴놓기 위함
 axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
 
+let firstPathName = history.location.pathname;
+if (firstPathName.includes('/tickets/')) {
+  firstPathName = '/tickets/:ticketId';
+  // console.log(firstPathName);
+}
 export const store = createStore(
   reducers,
   {
@@ -30,7 +34,7 @@ export const store = createStore(
       phoneNumber: phoneNumber === 'null' ? null : phoneNumber
     },
     routePagination: {
-      currentPage: history.location.pathname
+      currentPage: firstPathName
     }
   },
   enhancer

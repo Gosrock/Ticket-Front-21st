@@ -32,7 +32,7 @@ function Pagination() {
             element={<MessageValidationProcess location={location} />}
           />
           <Route path="/test" element={<TestPage />} />
-          <Route path="/tickets/*" element={<TicketCodePage />} />
+          <Route path="/tickets/:ticketId" element={<TicketCodePage />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

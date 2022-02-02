@@ -6,29 +6,43 @@ import MessageValidationProcess from '../MessageValidationProcess/MessageValidat
 import TicketingProcess from '../TicketingProcess/TicketingProcess';
 import TestPage from '../TestPage';
 import './Pagination.css';
+import ListProcess from '../ListProcess/ListProcess';
+import TicketCodePage from '../ListProcess/TicketCodePage/TicketCodePage';
 
 function Pagination() {
   const location = useLocation();
 
   const { slideFromDirection } = useSelector(state => state.routePagination);
-
   return (
-    <TransitionGroup className="transitions-wrapper">
+    <TransitionGroup
+      className="transitions-wrapper"
+      childFactory={child => {
+        return React.cloneElement(child, {
+          classNames: slideFromDirection
+        });
+      }}
+    >
       <CSSTransition
         key={location.pathname}
         classNames={slideFromDirection}
-        timeout={300}
+        timeout={1000}
       >
         <Routes location={location}>
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/test2" element={<TestPage />} />
+          <Route
+            path="/tickets/:ticketId"
+            element={<TicketCodePage style={{ position: 'absolute' }} />}
+          />
           <Route
             path="/ticketing/*"
             element={<TicketingProcess location={location} />}
           />
+          <Route path="/list/*" element={<ListProcess location={location} />} />
           <Route
             path="/auth/*"
             element={<MessageValidationProcess location={location} />}
           />
-          <Route path="/test" element={<TestPage />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

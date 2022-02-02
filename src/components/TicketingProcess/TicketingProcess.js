@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
 import TicketingAmountPage from './TicketingAmountPage/TicketingAmountPage';

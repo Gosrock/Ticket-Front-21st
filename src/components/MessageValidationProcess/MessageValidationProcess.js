@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import messageValidationProcessHOC from '../../hoc/messageValidationProcessHOC';
 import SendMessagePage from './SendMessagePage/SendMessagePage';
 import SendValidationNumberPage from './SendValidationNumberPage/SendValidationNumberPage';

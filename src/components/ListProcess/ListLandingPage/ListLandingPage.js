@@ -9,8 +9,13 @@ import {
   TicketWrapContainer,
   ProcessTitle
 } from 'gosrock-storybook';
+import history from '../../../history';
 
-function TicketingAmountPage({ ...props }) {
+function ListLandingPage({ ...props }) {
+  //Handler is handle ~
+  const validationClickButtonHandler = () => {
+    history.push('/auth/message');
+  };
   return (
     <TicketWrapContainer {...props}>
       <TicketContainer>
@@ -18,13 +23,18 @@ function TicketingAmountPage({ ...props }) {
           <TicketBodyHeader />
           <TicketBody>
             <ProcessTitle
-              topLabel="안녕하세요"
-              bottomLabel="티켓 수량 입력 페이지 테스트"
+              topLabel="예매한 티켓을"
+              bottomLabel="확인하고 싶어요"
+              textAlign="right"
+              textSize="big"
             />
           </TicketBody>
 
           <TicketBottom>
-            <GoFrontButton label="입금하러 가기" />
+            <GoFrontButton
+              label="휴대폰 인증하러 가기"
+              onClick={validationClickButtonHandler}
+            />
           </TicketBottom>
         </ProgressLayout>
       </TicketContainer>
@@ -32,4 +42,4 @@ function TicketingAmountPage({ ...props }) {
   );
 }
 
-export default TicketingAmountPage;
+export default ListLandingPage;

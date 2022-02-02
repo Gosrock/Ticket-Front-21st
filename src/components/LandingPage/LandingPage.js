@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import { Input } from 'antd';
+import React from 'react';
 import {
   TicketContainer,
   TicketTop,
   TicketBody,
-  Ticket,
   TicketWrapContainer,
   TicketLayout,
-  GoFrontButton
+  GoFrontButton,
+  GoBackButton
 } from 'gosrock-storybook';
 import history from '../../history';
 import { useSelector } from 'react-redux';
 
 function LandingPage() {
-  const [validationNumber, setValidationNumber] = useState('');
-
   const { authenticated } = useSelector(state => state.auth);
 
   const ticketingButtonHandler = () => {
@@ -45,8 +42,8 @@ function LandingPage() {
     <TicketWrapContainer>
       <TicketContainer
         TopElement={
-          <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
-            asdf
+          <TicketTop>
+            <GoBackButton />
           </TicketTop>
         }
       >

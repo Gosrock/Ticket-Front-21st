@@ -13,7 +13,7 @@ const pageOrder = [
   '/ticketing/amount', // 티켓 수량 입력
   '/ticketing/deposit', // 티켓 입금자명, 입금주소 모달창 띄우는 페이지
   '/list/mytickets', // 내 티켓 리스트, 패스이름 바꾸고 싶음 바꿔도됨, 밑에 processForValidationNextPage 도 바꿔주삼 - 2월 1일 11:52 이찬진
-  '/tickets' // 뒤에 파라미터붙으면 pathname이 어떻게 되는지 모르겠음 확인요망 - 2월 1일 11:52 이찬진
+  '/tickets/:ticketId' // 뒤에 파라미터붙으면 pathname이 어떻게 되는지 모르겠음 확인요망 - 2월 1일 11:52 이찬진
 ];
 
 // eslint-disable-next-line import/no-anonymous-default-export

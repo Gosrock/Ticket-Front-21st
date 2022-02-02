@@ -6,6 +6,8 @@ import MessageValidationProcess from '../MessageValidationProcess/MessageValidat
 import TicketingProcess from '../TicketingProcess/TicketingProcess';
 import TestPage from '../TestPage';
 import './Pagination.css';
+import ListProcess from '../ListProcess/ListProcess';
+import TicketCodePage from '../ListProcess/TicketCodePage/TicketCodePage';
 
 function Pagination() {
   const location = useLocation();
@@ -24,11 +26,13 @@ function Pagination() {
             path="/ticketing/*"
             element={<TicketingProcess location={location} />}
           />
+          <Route path="/list/*" element={<ListProcess location={location} />} />
           <Route
             path="/auth/*"
             element={<MessageValidationProcess location={location} />}
           />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/tickets/:ticketId" element={<TicketCodePage />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

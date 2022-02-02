@@ -10,7 +10,8 @@ import {
   GoBackButton,
   ProcessTitle,
   ProcessDescription,
-  TicketList
+  TicketList,
+  StateIcon
 } from 'gosrock-storybook';
 import './TicketListPage.css';
 import history from '../../../history';
@@ -42,10 +43,6 @@ function TicketListPage() {
       getMyTickets();
     }
   }, [phoneNumber]);
-
-  useEffect(() => {
-    console.log(tickets);
-  }, [tickets]);
 
   useEffect(() => {
     console.log(bodyBox.current.parentNode.clientHeight);
@@ -96,14 +93,40 @@ function TicketListPage() {
               <div className="list-inner-container">
                 {tickets &&
                   tickets.map(v => {
+                    let state;
+                    switch (v.status) {
+                      case 'confirm-deposit':
+                        state = (
+                          <StateIcon background="green" label="입금 확인" />
+                        );
+                        break;
+                      case 'pending-deposit':
+                        state = (
+                          <StateIcon background="blue" label="입금 확인중" />
+                        );
+                        break;
+                      case 'enter':
+                        state = (
+                          <StateIcon background="yellow" label="입장 완료" />
+                        );
+                        break;
+                      case 'none-deposit':
+                        state = (
+                          <StateIcon background="red" label="미입금 처리" />
+                        );
+                        break;
+                    }
                     return (
-                      <div
+                      <TicketList
+                        key={v._id}
+                        performdate="22.03.10"
+                        bookdate="22.02.18"
+                        StateIcon={state}
                         onClick={() => {
+                          console.log('click');
                           history.push(`/tickets/${v._id}`);
                         }}
-                      >
-                        {v._id}
-                      </div>
+                      />
                     );
                   })}
               </div>

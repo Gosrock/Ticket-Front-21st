@@ -2,8 +2,20 @@
   background-color: #262626;
   border-radius: 8px;
   overflow: auto;
-  padding: 16px 16px 0px 16px;
+  padding: 16px 8px 0px 8px;
   height: calc(var(--height) - 16px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media screen and (min-width: 600px) {
+  .list-container {
+    padding: 16px 36px 0px 36px;
+  }
+}
+
+.list-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .show-account {
@@ -16,4 +28,12 @@
 
 .show-account:active {
   color: #ddbff8;
+}
+
+.TicketList-item {
+  margin-bottom: 16px;
+}
+
+.TicketList-item:hover {
+  transform: scale(1.02);
 }

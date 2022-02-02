@@ -7,7 +7,8 @@ import {
   Ticket,
   TicketWrapContainer,
   TicketLayout,
-  GoFrontButton
+  GoFrontButton,
+  GoBackButton
 } from 'gosrock-storybook';
 import history from '../../history';
 import { useSelector } from 'react-redux';
@@ -45,8 +46,8 @@ function LandingPage() {
     <TicketWrapContainer>
       <TicketContainer
         TopElement={
-          <TicketTop style={{ backgroundColor: 'red', height: '100%' }}>
-            asdf
+          <TicketTop>
+            <GoBackButton />
           </TicketTop>
         }
       >

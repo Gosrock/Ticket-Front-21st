@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import history from '../history';
-
+import axios from 'axios';
 // 리덕스 데브툴 을 위한 세팅
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -17,7 +17,7 @@ const userAccessToken = localStorage.getItem('userAccessToken');
 const phoneNumber = localStorage.getItem('phoneNumber');
 
 // axios Bearer 토큰에 커먼 헤더로 껴놓기 위함
-// axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
 
 export const store = createStore(
   reducers,

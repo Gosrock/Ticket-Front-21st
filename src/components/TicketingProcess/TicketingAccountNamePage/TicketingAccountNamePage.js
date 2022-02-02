@@ -15,26 +15,28 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
-import { ticketAmount } from '../../../state/actions-creators';
+import { ticketAccountName } from '../../../state/actions-creators';
 
-function TicketingAmountPage({ ...props }) {
-  const phoneNumber = useSelector(store => store.auth.phoneNumber);
+function TicketingAccountNamePage({ ...props }) {
+  const ticketCount = useSelector(state => state.ticketAmount.ticketCount);
+  console.log(ticketCount);
 
-  const [ticketCount, setTicketCount] = useState('');
+  const [accountName, setAccountName] = useState('');
 
   const dispatch = useDispatch();
 
   const gobackButtonHandler = () => {
-    history.push('/');
+    history.push('/ticketing/amount');
   };
 
-  const amountInputHandler = e => {
-    setTicketCount(e.target.value);
+  const accountNameInputHandler = e => {
+    setAccountName(e.target.value);
   };
 
   const frontButtonHandler = () => {
-    if (!ticketCount) alert('티켓 수량을 입력해주세요.');
-    else dispatch(ticketAmount({ ticketCount }));
+    if (accountName.length < 2)
+      alert('입금자명을 두글자 이상으로 입력해주세요.');
+    else dispatch(ticketAccountName({ ticketCount, accountName }));
   };
 
   return (
@@ -48,29 +50,21 @@ function TicketingAmountPage({ ...props }) {
       >
         <ProgressLayout>
           <TicketBodyHeader>
-            <ProcessTitle
-              topLabel="안녕하세요,"
-              bottomLabel={
-                phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`) +
-                ' 님!'
-              }
-            />
-            <ProcessDescription
-              topLabel="티켓 수량을 입력해 주세요."
-              bottomLabel="한번에 최대 9매까지 구매 가능합니다."
-            />
+            <ProcessTitle topLabel="입금자명을" bottomLabel="입력해주세요." />
+            <ProcessDescription topLabel="이름은 4자 이내로 입력해주세요." />
           </TicketBodyHeader>
           <TicketBody>
             <InputForm
-              value={ticketCount}
-              onChange={amountInputHandler}
-              page="count"
+              // value={accountName}
+              onChange={accountNameInputHandler}
+              page="name"
+              ticketCount={parseInt(ticketCount)}
             />
           </TicketBody>
           <TicketBottom>
             <GoFrontButton
               onClick={frontButtonHandler}
-              label="입금하러 가기"
+              label="티켓 발급하기"
             ></GoFrontButton>
           </TicketBottom>
         </ProgressLayout>
@@ -79,4 +73,4 @@ function TicketingAmountPage({ ...props }) {
   );
 }
 
-export default TicketingAmountPage;
+export default TicketingAccountNamePage;

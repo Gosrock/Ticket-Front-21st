@@ -1,34 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MessageValidationProcess from '../MessageValidationProcess/MessageValidationProcess';
 import TicketingProcess from '../TicketingProcess/TicketingProcess';
 import TestPage from '../TestPage';
 import './Pagination.css';
+import ListProcess from '../ListProcess/ListProcess';
+import TicketCodePage from '../ListProcess/TicketCodePage/TicketCodePage';
 
 function Pagination() {
   const location = useLocation();
 
   const { slideFromDirection } = useSelector(state => state.routePagination);
 
+  // useEffect(() => {
+  //   console.log('direction', slideFromDirection);
+  //   console.log('location', location.pathname);
+  // }, [slideFromDirection, location]);
+
   return (
     <TransitionGroup className="transitions-wrapper">
       <CSSTransition
         key={location.pathname}
         classNames={slideFromDirection}
-        timeout={300}
+        onEntering={() => {
+          console.log('enter direction', slideFromDirection);
+        }}
+        timeout={1000}
       >
         <Routes location={location}>
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/test2" element={<TestPage />} />
+          <Route
+            path="/tickets/:ticketId"
+            element={<TicketCodePage style={{ position: 'absolute' }} />}
+          />
           <Route
             path="/ticketing/*"
             element={<TicketingProcess location={location} />}
           />
+          <Route path="/list/*" element={<ListProcess location={location} />} />
           <Route
             path="/auth/*"
             element={<MessageValidationProcess location={location} />}
           />
-          <Route path="/test" element={<TestPage />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
@@ -36,3 +52,14 @@ function Pagination() {
 }
 
 export default Pagination;
+// {
+/* <Route
+            path="/ticketing/*"
+            element={<TicketingProcess location={location} />}
+          />
+          <Route path="/list/*" element={<ListProcess location={location} />} />
+          <Route
+            path="/auth/*"
+            element={<MessageValidationProcess location={location} />}
+          /> */
+// }

@@ -1,0 +1,39 @@
+.list-container {
+  background-color: #262626;
+  border-radius: 8px;
+  overflow: auto;
+  padding: 16px 8px 0px 8px;
+  height: calc(var(--height) - 16px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media screen and (min-width: 600px) {
+  .list-container {
+    padding: 16px 36px 0px 36px;
+  }
+}
+
+.list-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.show-account {
+  font-weight: 400;
+  font-size: 18px;
+  color: #bf94e4;
+  line-height: 25px;
+  cursor: default;
+}
+
+.show-account:active {
+  color: #ddbff8;
+}
+
+.TicketList-item {
+  margin-bottom: 16px;
+}
+
+.TicketList-item:hover {
+  transform: scale(1.02);
+}

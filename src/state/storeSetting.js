@@ -29,7 +29,7 @@ export const store = createStore(
       phoneNumber: phoneNumber === 'null' ? null : phoneNumber
     },
     routePagination: {
-      currentPage: history.location.pathname
+      currentPage: firstPathName
     }
   },
   enhancer

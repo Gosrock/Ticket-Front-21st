@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -13,20 +13,18 @@ function Pagination() {
   const location = useLocation();
 
   const { slideFromDirection } = useSelector(state => state.routePagination);
-
-  // useEffect(() => {
-  //   console.log('direction', slideFromDirection);
-  //   console.log('location', location.pathname);
-  // }, [slideFromDirection, location]);
-
   return (
-    <TransitionGroup className="transitions-wrapper">
+    <TransitionGroup
+      className="transitions-wrapper"
+      childFactory={child => {
+        return React.cloneElement(child, {
+          classNames: slideFromDirection
+        });
+      }}
+    >
       <CSSTransition
         key={location.pathname}
         classNames={slideFromDirection}
-        onEntering={() => {
-          console.log('enter direction', slideFromDirection);
-        }}
         timeout={1000}
       >
         <Routes location={location}>
@@ -52,14 +50,3 @@ function Pagination() {
 }
 
 export default Pagination;
-// {
-/* <Route
-            path="/ticketing/*"
-            element={<TicketingProcess location={location} />}
-          />
-          <Route path="/list/*" element={<ListProcess location={location} />} />
-          <Route
-            path="/auth/*"
-            element={<MessageValidationProcess location={location} />}
-          /> */
-// }

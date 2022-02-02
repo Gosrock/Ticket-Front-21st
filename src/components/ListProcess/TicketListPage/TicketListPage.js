@@ -17,24 +17,8 @@ import './TicketListPage.css';
 import history from '../../../history';
 import { useSelector } from 'react-redux';
 
-const testData = [
-  {
-    _id: '61e0453bb063b6962b939cdc',
-    status: 'pending-deposit',
-    phoneNumber: '01094768640',
-    ticketNumber: 2,
-    adminTicket: false,
-    accountName: '이찬진',
-    createdAt: '2022-01-13T15:28:59.133Z',
-    updatedAt: '2022-01-23T15:28:19.557Z',
-    __v: 0
-  }
-];
-
 function TicketListPage({ ...props }) {
-  const { authenticated, phoneNumber, userAccessToken } = useSelector(
-    state => state.auth
-  );
+  const { authenticated, phoneNumber } = useSelector(state => state.auth);
   const [tickets, setTickets] = useState();
   const bodyBox = useRef();
   const bottomLabel = `${phoneNumber.replace(
@@ -42,26 +26,20 @@ function TicketListPage({ ...props }) {
     `$1-$2-$3`
   )} 님!`;
 
-  const getMyTickets = async () => {
-    try {
-      // axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
-      // const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-      // setTickets(response.data.data);
-      setTickets(testData);
-    } catch (e) {
-      console.log(e.response.data);
-    }
-  };
-
   useEffect(() => {
-    if (authenticated == true && phoneNumber !== null) {
-      getMyTickets();
+    async function fetchData() {
+      // You can await here
+      try {
+        const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
+        setTickets(response.data.data);
+      } catch (e) {
+        console.log(e.response.data);
+      }
     }
-  }, [phoneNumber]);
-
-  useEffect(() => {
-    console.log(tickets);
-  }, [tickets]);
+    if (authenticated === true && phoneNumber !== null) {
+      fetchData();
+    }
+  }, [phoneNumber, authenticated]);
 
   useEffect(() => {
     console.log(bodyBox.current.parentNode.clientHeight);
@@ -133,6 +111,8 @@ function TicketListPage({ ...props }) {
                         state = (
                           <StateIcon background="red" label="미입금 처리" />
                         );
+                        break;
+                      default:
                         break;
                     }
                     return (

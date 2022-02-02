@@ -9,11 +9,11 @@ const requireAuth =
     const { authenticated } = useSelector(state => state.auth);
     let navigate = useNavigate();
 
-    console.log('엔터', authenticated, !authenticated);
+    // console.log('엔터', authenticated, !authenticated);
 
     useEffect(() => {
       if (authenticated == null) {
-        console.log('엔터', authenticated);
+        // console.log('엔터', authenticated);
         navigate('/');
       }
     }, [navigate, authenticated]);

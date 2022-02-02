@@ -1,7 +1,17 @@
+import { GoBackButton } from 'gosrock-storybook';
 import React from 'react';
+import history from '../history';
 
 function TestPage() {
-  return <div>테스트 용 페이지 입니다.</div>;
+  return (
+    <div style={{ position: 'absolute', backgroundColor: 'red' }}>
+      <GoBackButton
+        onClick={() => {
+          history.push('/test');
+        }}
+      />
+    </div>
+  );
 }
 
 export default TestPage;

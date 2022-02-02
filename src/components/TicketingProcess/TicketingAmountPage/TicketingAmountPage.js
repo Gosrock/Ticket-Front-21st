@@ -9,13 +9,8 @@ import {
   TicketWrapContainer,
   ProcessTitle
 } from 'gosrock-storybook';
-import history from '../../../history';
 
 function TicketingAmountPage({ ...props }) {
-  //Handler is handle ~
-  //   const validationClickButtonHandler = () => {
-  //     history.push('/auth/message');
-  //   };
   return (
     <TicketWrapContainer {...props}>
       <TicketContainer>

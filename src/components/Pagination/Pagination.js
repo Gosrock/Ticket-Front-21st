@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import MessageValidationProcess from '../MessageValidationProcess/MessageValidationProcess';
 import TicketingProcess from '../TicketingProcess/TicketingProcess';

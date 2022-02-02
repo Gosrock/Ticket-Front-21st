@@ -19,14 +19,6 @@ const phoneNumber = localStorage.getItem('phoneNumber');
 // axios Bearer 토큰에 커먼 헤더로 껴놓기 위함
 axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
 
-// pathname  QR티켓으로 바로 들어오는 경우 tickets 로 대응하기 위함
-let firstPathName = history.location.pathname;
-console.log(firstPathName.includes('/tickets/'));
-if (firstPathName.includes('/tickets/')) {
-  firstPathName = '/tickets/:ticketId';
-  console.log(firstPathName);
-}
-
 export const store = createStore(
   reducers,
   {

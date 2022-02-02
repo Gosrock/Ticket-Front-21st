@@ -60,6 +60,10 @@ function TicketListPage({ ...props }) {
   }, [phoneNumber]);
 
   useEffect(() => {
+    console.log(tickets);
+  }, [tickets]);
+
+  useEffect(() => {
     console.log(bodyBox.current.parentNode.clientHeight);
     console.log(bodyBox.current.parentNode);
     document.documentElement.style.setProperty(

@@ -60,36 +60,19 @@ function TicketListPage({ ...props }) {
 
   const getMyTickets = async () => {
     try {
-      axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
       const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
       setTickets(response.data.data);
     } catch (e) {
       console.log(e.response.data);
     }
   };
-
   useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      try {
-        const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-        setTickets(response.data.data);
-      } catch (e) {
-        console.log(e.response.data);
-      }
-    }
+    getMyTickets();
   }, [phoneNumber]);
 
   useEffect(() => {
     handleResize();
   }, []);
-
-  /* const ViewTicketHandler = () => {
-    if (authenticated) {
-      return history.push(`/tickets/${ticketId}`);
-    }
-    history.push('/list/landing');
-  }; */
 
   return (
     <TicketWrapContainer {...props}>

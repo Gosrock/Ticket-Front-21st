@@ -9,9 +9,9 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 
-function TicketCodePage() {
+function TicketCodePage({ ...props }) {
   return (
-    <TicketWrapContainer>
+    <TicketWrapContainer {...props}>
       <TicketContainer
         TopElement={
           <TicketTop>
@@ -23,7 +23,9 @@ function TicketCodePage() {
           </TicketTop>
         }
       >
-        <TicketLayout></TicketLayout>
+        <TicketLayout>
+          <div>asdf</div>
+        </TicketLayout>
       </TicketContainer>
     </TicketWrapContainer>
   );

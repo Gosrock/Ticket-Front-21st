@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
 import ListLandingPage from './ListLandingPage/ListLandingPage';
 import TicketListPage from './TicketListPage/TicketListPage';
-import TicketCodePage from './TicketCodePage/TicketCodePage';
+// import TicketCodePage from './TicketCodePage/TicketCodePage';
 
 function ListProcess({ location }) {
   // 인증되어있으면 랜딩페이지 넘기고 바로 티켓리스트로

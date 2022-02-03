@@ -17,7 +17,7 @@ function TicketCodePage({ ...props }) {
           <TicketTop>
             <GoBackButton
               onClick={() => {
-                history.push('/test');
+                history.back();
               }}
             />
           </TicketTop>

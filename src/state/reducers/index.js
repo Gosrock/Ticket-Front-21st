@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import auth from './auth';
 import messageSend from './messageSend';
 import routePagination from './routePagination';
+import getTickets from './getTickets';
 import ticketAmount from './ticketAmount';
 import ticketDeposit from './ticketDeposit';
 
@@ -10,6 +11,7 @@ export default combineReducers({
   auth: auth,
   messageSend: messageSend,
   routePagination: routePagination,
+  getTickets: getTickets,
   ticketAmount: ticketAmount,
   ticketDeposit: ticketDeposit
 });

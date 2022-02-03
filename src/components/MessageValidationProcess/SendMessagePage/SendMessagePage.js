@@ -21,7 +21,7 @@ function SendMessagePage({ ...props }) {
 
   const { errorMessage, pending } = useSelector(state => state.messageSend);
   const phoneNumberInputHandler = e => {
-    setPhoneNumber(e.target.value);
+    setPhoneNumber(e.target.value.replace(/\D/, ''));
   };
 
   const frontButtonHandler = () => {

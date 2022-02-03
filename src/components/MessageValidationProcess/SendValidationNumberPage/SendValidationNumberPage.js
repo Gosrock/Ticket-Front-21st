@@ -19,14 +19,19 @@ function SendValidationNumberPage({ ...props }) {
 
   const dispatch = useDispatch();
 
-  const { messageToken, errorMessage, pending } = useSelector(
-    state => state.messageSend
-  );
+  const {
+    messageToken,
+    errorMessage,
+    pending,
+    validationNumber: reducerValidationNumber
+  } = useSelector(state => state.messageSend);
+
   const { processForValidationNextPage } = useSelector(
     state => state.routePagination
   );
+
   const validationNumberInputHandler = e => {
-    setValidationNumber(e.target.value);
+    setValidationNumber(e.target.value.replace(/\D/, ''));
   };
 
   const frontButtonHandler = () => {
@@ -65,6 +70,9 @@ function SendValidationNumberPage({ ...props }) {
               onChange={validationNumberInputHandler}
               page="validate"
             />
+            <div style={{ color: 'white' }}>
+              테스트용 {reducerValidationNumber}
+            </div>
           </TicketBody>
 
           <TicketBottom>

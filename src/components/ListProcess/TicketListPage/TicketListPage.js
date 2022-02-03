@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import moment from 'moment';
 import axios from 'axios';
 import {
   TicketContainer,
@@ -11,51 +12,67 @@ import {
   ProcessTitle,
   ProcessDescription,
   TicketList,
-  StateIcon
+  StateIcon,
+  Modal
 } from 'gosrock-storybook';
 import './TicketListPage.css';
 import history from '../../../history';
 import { useSelector } from 'react-redux';
 
 function TicketListPage({ ...props }) {
-  const { authenticated, phoneNumber } = useSelector(state => state.auth);
-  const [tickets, setTickets] = useState();
-  const bodyBox = useRef();
+  const { authenticated, phoneNumber, userAccessToken } = useSelector(
+    state => state.auth
+  );
   const bottomLabel = `${phoneNumber.replace(
     /^(\d{2,3})(\d{3,4})(\d{4})$/,
     `$1-$2-$3`
   )} 님!`;
 
-  useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      try {
-        const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-        setTickets(response.data.data);
-      } catch (e) {
-        console.log(e.response.data);
-      }
-    }
-    if (authenticated === true && phoneNumber !== null) {
-      fetchData();
-    }
-  }, [phoneNumber, authenticated]);
+  const [tickets, setTickets] = useState();
+  const bodyBox = useRef();
+  const modalRef = useRef();
 
-  useEffect(() => {
+  const handleResize = () => {
     console.log(bodyBox.current.parentNode.clientHeight);
     console.log(bodyBox.current.parentNode);
     document.documentElement.style.setProperty(
-      '--height',
+      '--listHeight',
       `${bodyBox.current.parentNode.clientHeight}px`
     );
+    const [container] = document.getElementsByClassName('Ticket-Container');
+    document.documentElement.style.setProperty(
+      '--containerHeight',
+      `${container.clientHeight}px`
+    );
+    document.documentElement.style.setProperty(
+      '--containerWidth',
+      `${container.clientWidth}px`
+    );
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      // cleanup
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  /* const ViewTicketHandler = () => {
-    if (authenticated) {
-      return history.push(`/tickets/${ticketId}`);
+  const getMyTickets = async () => {
+    try {
+      const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
+      setTickets(response.data.data);
+    } catch (e) {
+      console.log(e.response.data);
     }
-    history.push('/list/landing');
-  }; */
+  };
+  useEffect(() => {
+    getMyTickets();
+  }, [phoneNumber]);
+
+  useEffect(() => {
+    handleResize();
+  }, []);
 
   return (
     <TicketWrapContainer {...props}>
@@ -78,10 +95,10 @@ function TicketListPage({ ...props }) {
               <span
                 className="show-account"
                 onClick={() => {
-                  console.log('입금계좌보기');
+                  modalRef.current.classList.remove('hidden');
                 }}
               >
-                입금 계좌보기
+                입금계좌 보기
               </span>
             </p>
           </TicketBodyHeader>
@@ -119,7 +136,7 @@ function TicketListPage({ ...props }) {
                       <TicketList
                         key={v._id}
                         performdate="22.03.10"
-                        bookdate="22.02.18"
+                        bookdate={moment(v.createdAt).format('YY.MM.DD')}
                         StateIcon={state}
                         onClick={() => {
                           console.log('click');
@@ -128,6 +145,17 @@ function TicketListPage({ ...props }) {
                       />
                     );
                   })}
+              </div>
+            </div>
+            <div className="modal hidden" ref={modalRef}>
+              <div
+                className="modal-overlay"
+                onClick={() => {
+                  modalRef.current.classList.add('hidden');
+                }}
+              ></div>
+              <div className="modal-content">
+                <Modal />
               </div>
             </div>
           </TicketBody>

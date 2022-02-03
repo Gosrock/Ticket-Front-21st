@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import 'antd/dist/antd.min.css';
 import { Provider } from 'react-redux';
 import { store } from './state/storeSetting';
-
+import './index.css';
 import history from './history';
 
 import LandingPage from './components/LandingPage/LandingPage';

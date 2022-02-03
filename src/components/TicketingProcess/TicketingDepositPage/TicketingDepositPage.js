@@ -146,5 +146,5 @@ const openInNewTab = url => {
 
   setTimeout(() => {
     return newWindow.close();
-  }, 300);
+  }, 3000);
 };

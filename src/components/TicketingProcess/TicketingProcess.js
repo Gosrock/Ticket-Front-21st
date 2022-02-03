@@ -1,18 +1,19 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
 import TicketingAmountPage from './TicketingAmountPage/TicketingAmountPage';
-
+import TicketingDepositPage from './TicketingDepositPage/TicketingDepositPage';
 import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
 
-function MessageValidationProcess({ location }) {
+function TicketingProcess({ location }) {
   const APHTicketingLandingPage = authPassHOC(
     TicketingLandingPage,
-    '/ticketing/amount'
+    '/ticketing/deposit'
   );
 
   const RATicketingAmountPage = requireAuth(TicketingAmountPage);
+  const RATicketingDepositPage = requireAuth(TicketingDepositPage);
   return (
     <Routes location={location}>
       <Route
@@ -26,6 +27,12 @@ function MessageValidationProcess({ location }) {
         path="amount"
         //애니메이션을 위해 absolute로 설정해야함!
         element={<RATicketingAmountPage style={{ position: 'absolute' }} />}
+      />
+      <Route
+        exact
+        path="deposit"
+        //애니메이션을 위해 absolute로 설정해야함!
+        element={<RATicketingDepositPage style={{ position: 'absolute' }} />}
       />
       {/* <Route
         exact
@@ -41,4 +48,4 @@ function MessageValidationProcess({ location }) {
   );
 }
 
-export default MessageValidationProcess;
+export default TicketingProcess;

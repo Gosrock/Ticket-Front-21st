@@ -1,43 +1,36 @@
 import {
-  MESSAGE_SEND_SUCCESS,
-  MESSAGE_SEND_PENDING,
-  MESSAGE_SEND_ERROR
+  TICKET_DEPOSIT_SUCCESS,
+  TICKET_DEPOSIT_PENDING,
+  TICKET_DEPOSIT_ERROR
 } from '../action-types';
 const INITIAL_STATE = {
-  messageToken: null,
+  accountName: null,
   errorMessage: null,
-  // 테스트용
-  validationNumber: null,
   pending: false
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case MESSAGE_SEND_PENDING:
+    case TICKET_DEPOSIT_PENDING:
       return {
         ...state,
-        messageToken: null,
+        accountName: null,
         errorMessage: null,
-        // 테스트용
-        validationNumber: null,
         pending: true
       };
-    case MESSAGE_SEND_SUCCESS:
+    case TICKET_DEPOSIT_SUCCESS:
       return {
         ...state,
-        messageToken: action.payload.messageToken,
-        // 테스트용
-        validationNumber: action.payload.authenticationNumber,
+        accountName: action.payload[0].accountName,
         errorMessage: null,
         pending: false
       };
-    case MESSAGE_SEND_ERROR:
+    case TICKET_DEPOSIT_ERROR:
       return {
         ...state,
-        messageToken: null,
+        accountName: null,
         errorMessage: action.payload,
-        validationNumber: null,
         pending: false
       };
     default:

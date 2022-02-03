@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "22:00"
+      # Use Seoul Standard Time (UTC +09:00)
+      timezone: "Asia/Seoul"
+    allow:
+      # Allow updates for Lodash
+      - dependency-name: "gosrock-storybook"
+    target-branch: "dev"

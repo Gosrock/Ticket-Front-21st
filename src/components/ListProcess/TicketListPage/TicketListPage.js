@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
-import axios from 'axios';
+import { ReactComponent as Logo } from './logo.svg';
 import {
   TicketContainer,
   TicketTop,
@@ -17,21 +17,26 @@ import {
 } from 'gosrock-storybook';
 import './TicketListPage.css';
 import history from '../../../history';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTickets } from '../../../state/actions-creators';
 
 function TicketListPage({ ...props }) {
-  const { authenticated, phoneNumber, userAccessToken } = useSelector(
-    state => state.auth
-  );
+  const { phoneNumber } = useSelector(state => state.auth);
+  const { tickets, pending } = useSelector(state => state.getTickets);
+
+  // 전화번호에 하이픈 넣기
   const bottomLabel = `${phoneNumber.replace(
     /^(\d{2,3})(\d{3,4})(\d{4})$/,
     `$1-$2-$3`
   )} 님!`;
 
-  const [tickets, setTickets] = useState();
+  const dispatch = useDispatch();
   const bodyBox = useRef();
   const modalRef = useRef();
 
+  /*
+    브라우저 사이즈 검사
+  */
   const handleResize = () => {
     console.log(bodyBox.current.parentNode.clientHeight);
     console.log(bodyBox.current.parentNode);
@@ -49,8 +54,8 @@ function TicketListPage({ ...props }) {
       `${container.clientWidth}px`
     );
   };
-
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
       // cleanup
@@ -58,32 +63,11 @@ function TicketListPage({ ...props }) {
     };
   }, []);
 
-  const getMyTickets = async () => {
-    try {
-      axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
-      const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-      setTickets(response.data.data);
-    } catch (e) {
-      console.log(e.response.data);
-    }
-  };
-
   useEffect(() => {
-    if (authenticated == true && phoneNumber !== null) {
-      getMyTickets();
+    if (phoneNumber) {
+      dispatch(getTickets({ phoneNumber }));
     }
   }, [phoneNumber]);
-
-  useEffect(() => {
-    handleResize();
-  }, []);
-
-  /* const ViewTicketHandler = () => {
-    if (authenticated) {
-      return history.push(`/tickets/${ticketId}`);
-    }
-    history.push('/list/landing');
-  }; */
 
   return (
     <TicketWrapContainer {...props}>
@@ -116,7 +100,12 @@ function TicketListPage({ ...props }) {
           <TicketBody>
             <div className="list-container" ref={bodyBox}>
               <div className="list-inner-container">
-                {tickets &&
+                {pending ? (
+                  <div className="pending-wrap">
+                    <Logo className="pending-logo" />
+                  </div>
+                ) : (
+                  tickets &&
                   tickets.map(v => {
                     let state;
                     switch (v.status) {
@@ -140,6 +129,8 @@ function TicketListPage({ ...props }) {
                           <StateIcon background="red" label="미입금 처리" />
                         );
                         break;
+                      default:
+                        break;
                     }
                     return (
                       <TicketList
@@ -153,7 +144,8 @@ function TicketListPage({ ...props }) {
                         }}
                       />
                     );
-                  })}
+                  })
+                )}
               </div>
             </div>
             <div className="modal hidden" ref={modalRef}>

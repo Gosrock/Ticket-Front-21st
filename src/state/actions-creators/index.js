@@ -2,5 +2,13 @@ import { messageSend } from './messageSend';
 import { messageValidation } from './messageValidation';
 import { routeChange } from './routeChange';
 import { getTickets } from './getTickets';
-
-export { messageSend, messageValidation, routeChange, getTickets };
+import { ticketAmount } from './ticketAmount';
+import { ticketDeposit } from './ticketDeposit';
+export {
+  messageSend,
+  messageValidation,
+  routeChange,
+  ticketAmount,
+  ticketDeposit,
+  getTickets
+};

@@ -6,6 +6,8 @@ import {
 const INITIAL_STATE = {
   messageToken: null,
   errorMessage: null,
+  // 테스트용
+  validationNumber: null,
   pending: false
 };
 
@@ -17,12 +19,16 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         messageToken: null,
         errorMessage: null,
+        // 테스트용
+        validationNumber: null,
         pending: true
       };
     case MESSAGE_SEND_SUCCESS:
       return {
         ...state,
         messageToken: action.payload.messageToken,
+        // 테스트용
+        validationNumber: action.payload.authenticationNumber,
         errorMessage: null,
         pending: false
       };
@@ -31,6 +37,7 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         messageToken: null,
         errorMessage: action.payload,
+        validationNumber: null,
         pending: false
       };
     default:

@@ -1,13 +1,15 @@
 import React from 'react';
 import {
   GoFrontButton,
-  ProgressLayout,
   TicketContainer,
   TicketBodyHeader,
   TicketBody,
   TicketBottom,
   TicketWrapContainer,
-  ProcessTitle
+  ProcessTitle,
+  InfoLayout,
+  TicketTop,
+  GoBackButton
 } from 'gosrock-storybook';
 import history from '../../../history';
 
@@ -16,27 +18,49 @@ function TicketingLandingPage({ ...props }) {
   const validationClickButtonHandler = () => {
     history.push('/auth/message');
   };
+  const goListLandingClickButtonHandler = () => {
+    history.push('/list/landing');
+  };
+  const goLandingPageHandler = () => {
+    history.push('/');
+  };
   return (
     <TicketWrapContainer {...props}>
-      <TicketContainer>
-        <ProgressLayout>
+      <TicketContainer
+        TopElement={
+          <TicketTop>
+            <GoBackButton onClick={goLandingPageHandler} />
+          </TicketTop>
+        }
+      >
+        <InfoLayout>
           <TicketBodyHeader />
-          <TicketBody>
+          <TicketBody style={{ paddingTop: '10%' }}>
             <ProcessTitle
               topLabel="티켓 예매가"
               bottomLabel="처음이신가요?"
               textAlign="right"
               textSize="big"
             />
+            <div style={{ paddingTop: '6%' }}>
+              <GoFrontButton
+                label="휴대폰 인증하러 가기"
+                onClick={validationClickButtonHandler}
+              />
+              <div
+                style={{
+                  height: '1px',
+                  margin: '4%',
+                  backgroundColor: '#363636'
+                }}
+              ></div>
+              <GoFrontButton
+                label="아니요, 예매한 티켓을 확인하고 싶어요"
+                onClick={goListLandingClickButtonHandler}
+              />
+            </div>
           </TicketBody>
-
-          <TicketBottom>
-            <GoFrontButton
-              label="휴대폰 인증하러 가기"
-              onClick={validationClickButtonHandler}
-            />
-          </TicketBottom>
-        </ProgressLayout>
+        </InfoLayout>
       </TicketContainer>
     </TicketWrapContainer>
   );

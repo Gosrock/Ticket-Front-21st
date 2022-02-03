@@ -42,7 +42,7 @@ function TicketingLandingPage({ ...props }) {
               textAlign="right"
               textSize="big"
             />
-            <div style={{ paddingTop: '6%' }}>
+            <div style={{ paddingTop: '8%' }}>
               <GoFrontButton
                 label="휴대폰 인증하러 가기"
                 onClick={validationClickButtonHandler}
@@ -55,7 +55,7 @@ function TicketingLandingPage({ ...props }) {
                 }}
               ></div>
               <GoFrontButton
-                label="아니요, 예매한 티켓을 확인하고 싶어요"
+                label="예매한 티켓을 확인하고 싶어요"
                 onClick={goListLandingClickButtonHandler}
               />
             </div>

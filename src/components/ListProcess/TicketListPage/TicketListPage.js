@@ -156,7 +156,12 @@ function TicketListPage({ ...props }) {
                 }}
               ></div>
               <div className="modal-content">
-                <Modal />
+                <Modal
+                  page="list"
+                  onClickClose={() => {
+                    modalRef.current.classList.add('hidden');
+                  }}
+                />
               </div>
             </div>
           </TicketBody>

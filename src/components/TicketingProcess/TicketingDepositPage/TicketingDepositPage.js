@@ -142,7 +142,9 @@ const toHexValue = value => {
 };
 
 const openInNewTab = url => {
-  const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-  if (newWindow) newWindow.opener = null;
-  return window.close();
+  const newWindow = window.open(url);
+
+  setTimeout(() => {
+    return newWindow.close();
+  }, 300);
 };

@@ -18,6 +18,7 @@ import './TicketingDepositPage.css';
 import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
 import { ticketDeposit } from '../../../state/actions-creators';
+const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketingDepositPage({ ...props }) {
   const ticketCount = useSelector(state => state.ticketAmount.ticketCount);
@@ -73,6 +74,11 @@ function TicketingDepositPage({ ...props }) {
     dispatch(ticketDeposit({ ticketCount, accountName }));
   };
 
+  const kakaoClickButtonHandler = () => {
+    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(ticketCount)}`;
+    openInNewTab(url);
+  };
+
   useEffect(() => {
     handleResize();
   }, []);
@@ -108,7 +114,10 @@ function TicketingDepositPage({ ...props }) {
                 }}
               ></div>
               <div className="modal-content">
-                <Modal onClickPurchased={purchaseButtonHandler} />
+                <Modal
+                  onClickKakao={kakaoClickButtonHandler}
+                  onClickPurchased={purchaseButtonHandler}
+                />
               </div>
             </div>
           </TicketBody>
@@ -125,3 +134,12 @@ function TicketingDepositPage({ ...props }) {
 }
 
 export default TicketingDepositPage;
+
+const toHexValue = value => {
+  return (parseInt(value) * 524288).toString(16);
+};
+
+const openInNewTab = url => {
+  const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+  if (newWindow) newWindow.opener = null;
+};

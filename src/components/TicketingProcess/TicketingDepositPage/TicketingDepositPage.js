@@ -15,9 +15,9 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
-import { ticketAccountName } from '../../../state/actions-creators';
+import { ticketDeposit } from '../../../state/actions-creators';
 
-function TicketingAccountNamePage({ ...props }) {
+function TicketingDepositPage({ ...props }) {
   const ticketCount = useSelector(state => state.ticketAmount.ticketCount);
   console.log(ticketCount);
 
@@ -36,7 +36,7 @@ function TicketingAccountNamePage({ ...props }) {
   const frontButtonHandler = () => {
     if (accountName.length < 2)
       alert('입금자명을 두글자 이상으로 입력해주세요.');
-    else dispatch(ticketAccountName({ ticketCount, accountName }));
+    else dispatch(ticketDeposit({ ticketCount, accountName }));
   };
 
   return (
@@ -55,7 +55,7 @@ function TicketingAccountNamePage({ ...props }) {
           </TicketBodyHeader>
           <TicketBody>
             <InputForm
-              // value={accountName}
+              value={accountName}
               onChange={accountNameInputHandler}
               page="name"
               ticketCount={parseInt(ticketCount)}
@@ -73,4 +73,4 @@ function TicketingAccountNamePage({ ...props }) {
   );
 }
 
-export default TicketingAccountNamePage;
+export default TicketingDepositPage;

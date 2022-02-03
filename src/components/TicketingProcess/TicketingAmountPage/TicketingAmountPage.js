@@ -29,11 +29,12 @@ function TicketingAmountPage({ ...props }) {
   };
 
   const amountInputHandler = e => {
-    setTicketCount(e.target.value);
+    setTicketCount(e.target.value.replace(/\D/, ''));
   };
 
   const frontButtonHandler = () => {
-    if (!ticketCount) alert('티켓 수량을 입력해주세요.');
+    if (ticketCount < 1) alert('티켓 수량을 입력해주세요.');
+    else if (ticketCount > 9) alert('한번에 최대 9장까지 구매 가능합니다.');
     else dispatch(ticketAmount({ ticketCount }));
   };
 

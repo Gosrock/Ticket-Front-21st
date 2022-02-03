@@ -3,18 +3,18 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
 import TicketingAmountPage from './TicketingAmountPage/TicketingAmountPage';
-import TicketingAccountNamePage from './TicketingAccountNamePage/TicketingAccountNamePage';
+import TicketingDepositPage from './TicketingDepositPage/TicketingDepositPage';
 import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
 
 function MessageValidationProcess({ location }) {
   const APHTicketingLandingPage = authPassHOC(
     TicketingLandingPage,
     '/ticketing/amount',
-    '/ticketing/accountName'
+    '/ticketing/deposit'
   );
 
   const RATicketingAmountPage = requireAuth(TicketingAmountPage);
-  const RATicketingAccountNamePage = requireAuth(TicketingAccountNamePage);
+  const RATicketingDepositPage = requireAuth(TicketingDepositPage);
   return (
     <Routes location={location}>
       <Route
@@ -31,11 +31,9 @@ function MessageValidationProcess({ location }) {
       />
       <Route
         exact
-        path="accountName"
+        path="deposit"
         //애니메이션을 위해 absolute로 설정해야함!
-        element={
-          <RATicketingAccountNamePage style={{ position: 'absolute' }} />
-        }
+        element={<RATicketingDepositPage style={{ position: 'absolute' }} />}
       />
       {/* <Route
         exact

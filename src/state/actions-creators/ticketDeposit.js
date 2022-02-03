@@ -1,16 +1,16 @@
 import {
-  ACCOUNT_NAME_SUCCESS,
-  ACCOUNT_NAME_PENDING,
-  ACCOUNT_NAME_ERROR
+  TICKET_DEPOSIT_SUCCESS,
+  TICKET_DEPOSIT_PENDING,
+  TICKET_DEPOSIT_ERROR
 } from '../action-types';
 import axios from 'axios';
 import history from '../../history';
 
-export const ticketAccountName =
+export const ticketDeposit =
   ({ ticketCount, accountName }) =>
   async dispatch => {
     try {
-      dispatch({ type: ACCOUNT_NAME_PENDING });
+      dispatch({ type: TICKET_DEPOSIT_PENDING });
       console.log(ticketCount);
       console.log(accountName);
       const response = await axios.post('/tickets', {
@@ -19,12 +19,12 @@ export const ticketAccountName =
       });
       //  console.log('ticketAmount action', response.data.data);
 
-      dispatch({ type: ACCOUNT_NAME_SUCCESS, payload: response.data.data });
+      dispatch({ type: TICKET_DEPOSIT_SUCCESS, payload: response.data.data });
 
       // 자동으로 다음 단계로 넘어가게 끔
-      history.push('/ticketing/auth/message');
+      history.push('/list/mytickets');
     } catch (e) {
       //400 ~
-      dispatch({ type: ACCOUNT_NAME_ERROR, payload: '메시지 전송 오류' });
+      dispatch({ type: TICKET_DEPOSIT_ERROR, payload: '메시지 전송 오류' });
     }
   };

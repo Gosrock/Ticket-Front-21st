@@ -1,7 +1,7 @@
 import {
-  ACCOUNT_NAME_SUCCESS,
-  ACCOUNT_NAME_PENDING,
-  ACCOUNT_NAME_ERROR
+  TICKET_DEPOSIT_SUCCESS,
+  TICKET_DEPOSIT_PENDING,
+  TICKET_DEPOSIT_ERROR
 } from '../action-types';
 const INITIAL_STATE = {
   accountName: null,
@@ -12,21 +12,21 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case ACCOUNT_NAME_PENDING:
+    case TICKET_DEPOSIT_PENDING:
       return {
         ...state,
         accountName: null,
         errorMessage: null,
         pending: true
       };
-    case ACCOUNT_NAME_SUCCESS:
+    case TICKET_DEPOSIT_SUCCESS:
       return {
         ...state,
         accountName: action.payload[0].accountName,
         errorMessage: null,
         pending: false
       };
-    case ACCOUNT_NAME_ERROR:
+    case TICKET_DEPOSIT_ERROR:
       return {
         ...state,
         accountName: null,

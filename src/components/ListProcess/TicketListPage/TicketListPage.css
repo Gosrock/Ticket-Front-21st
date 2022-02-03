@@ -38,6 +38,27 @@
   transform: scale(1.02);
 }
 
+.pending-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--listHeight) - 32px);
+}
+
+.pending-logo {
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+  animation: rotate_image 3s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .modal {
   position: fixed;
   top: 0;

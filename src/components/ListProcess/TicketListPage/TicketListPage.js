@@ -69,8 +69,14 @@ function TicketListPage({ ...props }) {
   };
 
   useEffect(() => {
-    if (authenticated == true && phoneNumber !== null) {
-      getMyTickets();
+    async function fetchData() {
+      // You can await here
+      try {
+        const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
+        setTickets(response.data.data);
+      } catch (e) {
+        console.log(e.response.data);
+      }
     }
   }, [phoneNumber]);
 
@@ -139,6 +145,8 @@ function TicketListPage({ ...props }) {
                         state = (
                           <StateIcon background="red" label="미입금 처리" />
                         );
+                        break;
+                      default:
                         break;
                     }
                     return (

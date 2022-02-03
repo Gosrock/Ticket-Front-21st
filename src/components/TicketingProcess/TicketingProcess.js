@@ -6,10 +6,9 @@ import TicketingAmountPage from './TicketingAmountPage/TicketingAmountPage';
 import TicketingDepositPage from './TicketingDepositPage/TicketingDepositPage';
 import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
 
-function MessageValidationProcess({ location }) {
+function TicketingProcess({ location }) {
   const APHTicketingLandingPage = authPassHOC(
     TicketingLandingPage,
-    '/ticketing/amount',
     '/ticketing/deposit'
   );
 
@@ -49,4 +48,4 @@ function MessageValidationProcess({ location }) {
   );
 }
 
-export default MessageValidationProcess;
+export default TicketingProcess;

@@ -7,6 +7,7 @@ import './index.css';
 import history from './history';
 
 import LandingPage from './components/LandingPage/LandingPage';
+import TicketCodePage from './components/ListProcess/TicketCodePage/TicketCodePage';
 import {
   Routes,
   Route,

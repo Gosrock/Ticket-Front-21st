@@ -19,18 +19,14 @@ function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
   console.log(window.Kakao.isInitialized());
 
-  //const { ticketId } = useParams();
-  const [id, setID] = useState(null);
+  const { ticketId } = useParams();
   const [status, setStatus] = useState(null);
 
   const GetTicket = async () => {
     try {
-      const response = await axios.get(`/tickets/61e04612a23178aaf5c2631d`);
+      const response = await axios.get(`/tickets/${ticketId}`);
 
-      setID(response.data.data.ticketInfo._id);
       setStatus(response.data.data.ticketInfo.status);
-
-      //getStatus = response.data.data.ticketInfo.status;
     } catch (e) {
       console.log(e);
     }
@@ -53,8 +49,31 @@ function TicketCodePage({ ...props }) {
   };*/
 
   const shareEvent = () => {
-    window.Kakao.Link.sendScrap({
-      requestUrl: 'https://developers.kakao.com'
+    window.Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: 'Gosrock Ticket',
+        description: '예매티켓',
+        imageUrl: 'https://gosrock.link',
+        link: {
+          mobileWebUrl: `https://gosrock.link/tickets/${ticketId}`,
+          androidExecutionParams: 'test'
+        }
+      },
+      buttons: [
+        {
+          title: '자세히보기',
+          link: {
+            mobileWebUrl: `https://gosrock.link/tickets/${ticketId}`
+          }
+        }
+      ]
+    });
+  };
+
+  const chatEvent = () => {
+    window.Kakao.Channel.chat({
+      channelPublicId: '_QxeZBT'
     });
   };
 
@@ -83,19 +102,9 @@ function TicketCodePage({ ...props }) {
             <React.Fragment>
               {(() => {
                 if (status == 'confirm-deposit' || status == 'enter') {
-                  return (
-                    <Ticket
-                      payment={true}
-                      QRvalue={'61e04612a23178aaf5c2631d'}
-                    ></Ticket>
-                  );
+                  return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
                 } else {
-                  return (
-                    <Ticket
-                      payment={false}
-                      QRvalue={'61e04612a23178aaf5c2631d'}
-                    ></Ticket>
-                  );
+                  return <Ticket payment={false} QRvalue={ticketId}></Ticket>;
                 }
               })()}
             </React.Fragment>
@@ -114,6 +123,7 @@ function TicketCodePage({ ...props }) {
                 label={'고스락 채널 문의'}
                 backgroundColor={'yellow'}
                 logo={'kakaoTalk'}
+                onClick={chatEvent}
               ></UtilityButton>
             </div>
           </TicketBody>

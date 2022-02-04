@@ -7,7 +7,7 @@ import './index.css';
 import history from './history';
 
 import LandingPage from './components/LandingPage/LandingPage';
-import TicketCodePage from './components/ListProcess/TicketCodePage/TicketCodePage';
+
 import {
   Routes,
   Route,
@@ -40,7 +40,7 @@ setScreenSize();
 // 액션에서 처리하는게 맞는것 같음
 // hoc로 감싸기 위해서는 한번이렇게 hoc에서 리턴받아서 돔에 집어넣어야함
 //https://stackoverflow.com/questions/56707885/browserrouter-vs-router-with-history-push
-//https://github.com/remix-run/react-router/isㅕsues/8264#issuecomment-991271554
+//https://github.com/remix-run/react-router/issues/8264#issuecomment-991271554
 // BrowserRouter 에서 Router로 변경.
 
 ReactDOM.render(

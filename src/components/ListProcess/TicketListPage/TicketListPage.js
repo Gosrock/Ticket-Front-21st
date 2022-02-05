@@ -23,8 +23,10 @@ import { getTickets } from '../../../state/actions-creators';
 function TicketListPage({ ...props }) {
   const { phoneNumber } = useSelector(state => state.auth);
   const { tickets, pending } = useSelector(state => state.getTickets);
-  const [bottomLabel, setBottomLabel] = useState('null');
-
+  const bottomLabel = `${phoneNumber.replace(
+    /^(\d{2,3})(\d{3,4})(\d{4})$/,
+    `$1-$2-$3`
+  )} 님!`;
   const dispatch = useDispatch();
   const bodyBox = useRef();
   const modalRef = useRef();
@@ -60,9 +62,6 @@ function TicketListPage({ ...props }) {
 
   useEffect(() => {
     if (phoneNumber) {
-      setBottomLabel(
-        `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
-      );
       dispatch(getTickets({ phoneNumber }));
     } else {
       alert('본인 인증이 필요한 페이지입니다.');
@@ -102,8 +101,8 @@ function TicketListPage({ ...props }) {
             <div className="list-container" ref={bodyBox}>
               <div className="list-inner-container">
                 {pending ? (
-                  <div className="pending-wrap">
-                    <Logo className="pending-logo" />
+                  <div className="list-pending-wrap">
+                    <Logo className="list-pending-logo" />
                   </div>
                 ) : (
                   tickets &&

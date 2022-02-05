@@ -1,6 +1,7 @@
-import React, { Component, useState } from 'react';
-import useParams from 'react-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 import {
   TicketContainer,
@@ -17,22 +18,21 @@ import './TicketCodePage.css';
 
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
-  console.log(window.Kakao.isInitialized());
 
   const { ticketId } = useParams();
-  const [status, setStatus] = useState(null);
+  const [ticketStatus, setTicketStatus] = useState(null);
+  const { authenticated } = useSelector(state => state.auth);
 
   const GetTicket = async () => {
     try {
       const response = await axios.get(`/tickets/${ticketId}`);
-
-      setStatus(response.data.data.ticketInfo.status);
+      setTicketStatus(response.data.data.ticketInfo.status);
+      console.log(response.data.status);
     } catch (e) {
       console.log(e);
+      history.push('/');
     }
   };
-
-  GetTicket();
 
   /***wep share api***/
   /*const shareEvent = async() => {
@@ -77,16 +77,24 @@ function TicketCodePage({ ...props }) {
     });
   };
 
+  const back = () => {
+    history.push('list/mytickets');
+  };
+
+  GetTicket();
+
   return (
     <TicketWrapContainer>
       <TicketContainer
         TopElement={
           <TicketTop>
-            <GoBackButton
-              onClick={() => {
-                history.back();
-              }}
-            />
+            <React.Fragment>
+              {(() => {
+                if (authenticated) {
+                  return <GoBackButton onClick={back}></GoBackButton>;
+                }
+              })()}
+            </React.Fragment>
           </TicketTop>
         }
       >
@@ -101,7 +109,10 @@ function TicketCodePage({ ...props }) {
           >
             <React.Fragment>
               {(() => {
-                if (status == 'confirm-deposit' || status == 'enter') {
+                if (
+                  ticketStatus == 'confirm-deposit' ||
+                  ticketStatus == 'enter'
+                ) {
                   return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
                 } else {
                   return <Ticket payment={false} QRvalue={ticketId}></Ticket>;

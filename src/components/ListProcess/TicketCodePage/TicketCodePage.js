@@ -30,6 +30,7 @@ function TicketCodePage({ ...props }) {
       console.log(response.data.status);
     } catch (e) {
       console.log(e);
+      alert('존재하지 않는 티켓입니다');
       history.push('/');
     }
   };
@@ -81,7 +82,9 @@ function TicketCodePage({ ...props }) {
     history.push('list/mytickets');
   };
 
-  GetTicket();
+  useEffect(() => {
+    GetTicket();
+  }, []);
 
   return (
     <TicketWrapContainer>

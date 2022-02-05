@@ -15,17 +15,23 @@
   grid-column-end: 4;
 }
 
-.pending-wrap {
+.code-pending-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(var(--containerHeight) - 32px);
 }
 
-.pending-logo {
+.code-pending-logo {
   width: 40px;
   height: 40px;
   opacity: 0.6;
   animation: rotate_image 3s linear infinite;
   transform-origin: 50% 50%;
+}
+
+.invalid-id-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

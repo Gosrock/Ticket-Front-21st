@@ -7,7 +7,9 @@ import {
   TicketBody,
   TicketBottom,
   TicketWrapContainer,
-  ProcessTitle
+  ProcessTitle,
+  TicketTop,
+  GoBackButton
 } from 'gosrock-storybook';
 import history from '../../../history';
 
@@ -18,7 +20,17 @@ function ListLandingPage({ ...props }) {
   };
   return (
     <TicketWrapContainer {...props}>
-      <TicketContainer>
+      <TicketContainer
+        TopElement={
+          <TicketTop>
+            <GoBackButton
+              onClick={() => {
+                history.back();
+              }}
+            />
+          </TicketTop>
+        }
+      >
         <ProgressLayout>
           <TicketBodyHeader />
           <TicketBody>

@@ -97,8 +97,8 @@ function TicketListPage({ ...props }) {
             <div className="list-container" ref={bodyBox}>
               <div className="list-inner-container">
                 {pending ? (
-                  <div className="pending-wrap">
-                    <Logo className="pending-logo" />
+                  <div className="list-pending-wrap">
+                    <Logo className="list-pending-logo" />
                   </div>
                 ) : (
                   tickets &&

@@ -10,10 +10,14 @@ import {
   TicketWrapContainer,
   ProcessDescription,
   ProcessTitle,
-  InputForm
+  InputForm,
+  GoBackButton,
+  TicketTop
 } from 'gosrock-storybook';
 import { useDispatch, useSelector } from 'react-redux';
 import { messageValidation } from '../../../state/actions-creators';
+import history from '../../../history';
+
 function SendValidationNumberPage({ ...props }) {
   const [validationNumber, setValidationNumber] = useState('');
 
@@ -52,7 +56,17 @@ function SendValidationNumberPage({ ...props }) {
   console.log('인증번호 페이지');
   return (
     <TicketWrapContainer {...props}>
-      <TicketContainer>
+      <TicketContainer
+        TopElement={
+          <TicketTop>
+            <GoBackButton
+              onClick={() => {
+                history.push('/auth/message');
+              }}
+            ></GoBackButton>
+          </TicketTop>
+        }
+      >
         <ProgressLayout>
           <TicketBodyHeader style={{ flexDirection: 'column' }}>
             <ProcessTitle

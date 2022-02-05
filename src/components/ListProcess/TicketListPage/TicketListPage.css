@@ -38,14 +38,14 @@
   transform: scale(1.02);
 }
 
-.pending-wrap {
+.list-pending-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(var(--listHeight) - 32px);
 }
 
-.pending-logo {
+.list-pending-logo {
   width: 40px;
   height: 40px;
   opacity: 0.6;

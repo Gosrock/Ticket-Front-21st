@@ -21,7 +21,6 @@ import { ReactComponent as Logo } from '../TicketListPage/logo.svg';
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
   const { ticketId } = useParams();
-  const [ticketStatus, setTicketStatus] = useState(null);
   const { authenticated } = useSelector(state => state.auth);
   const { ticket, pending, invalidId } = useSelector(state => state.getTicket);
   const dispatch = useDispatch();
@@ -83,9 +82,12 @@ function TicketCodePage({ ...props }) {
   useEffect(() => {
     if (ticketId) {
       dispatch(getTicket({ ticketId }));
-      console.log(ticketId);
     }
   }, [ticketId]);
+
+  useEffect(() => {
+    console.log(ticket);
+  }, [ticket]);
 
   return (
     <TicketWrapContainer>
@@ -110,34 +112,36 @@ function TicketCodePage({ ...props }) {
       >
         <TicketLayout>
           {pending ? (
-            <div className="pending-wrap">
-              <Logo className="pending-logo" />
+            <div className="code-pending-wrap">
+              <Logo className="code-pending-logo" />
             </div>
           ) : invalidId ? (
-            <div className="invalid-id">
-              <p
-                style={{
-                  color: 'white',
-                  fontWeight: '700',
-                  fontSize: '28px',
-                  textAlign: 'center'
-                }}
-              >
-                유효하지 않은 주소입니다.
-              </p>
-              <GoFrontButton
-                style={{
-                  margin: 'auto',
-                  marginTop: '50px',
-                  padding: '10px 20px 10px 20px',
-                  backgroundColor: '#262626',
-                  borderRadius: '16px'
-                }}
-                label="메인 화면으로 가기"
-                onClick={() => {
-                  history.push('/');
-                }}
-              />
+            <div className="invalid-id-wrap">
+              <div className="invalid-id">
+                <p
+                  style={{
+                    color: 'white',
+                    fontWeight: '700',
+                    fontSize: '28px',
+                    textAlign: 'center'
+                  }}
+                >
+                  유효하지 않은 주소입니다.
+                </p>
+                <GoFrontButton
+                  style={{
+                    margin: 'auto',
+                    marginTop: '50px',
+                    padding: '10px 20px 10px 20px',
+                    backgroundColor: '#262626',
+                    borderRadius: '16px'
+                  }}
+                  label="메인 화면으로 가기"
+                  onClick={() => {
+                    history.push('/');
+                  }}
+                />
+              </div>
             </div>
           ) : (
             <TicketBody
@@ -151,8 +155,8 @@ function TicketCodePage({ ...props }) {
               <React.Fragment>
                 {(() => {
                   if (
-                    ticketStatus == 'confirm-deposit' ||
-                    ticketStatus == 'enter'
+                    ticket.status == 'confirm-deposit' ||
+                    ticket.status == 'enter'
                   ) {
                     return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
                   } else {

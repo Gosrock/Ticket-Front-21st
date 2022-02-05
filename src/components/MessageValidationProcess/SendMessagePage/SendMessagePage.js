@@ -10,10 +10,14 @@ import {
   TicketWrapContainer,
   ProcessDescription,
   ProcessTitle,
-  InputForm
+  InputForm,
+  TicketTop,
+  GoBackButton
 } from 'gosrock-storybook';
 import { useDispatch, useSelector } from 'react-redux';
 import { messageSend } from '../../../state/actions-creators';
+import history from '../../../history';
+
 function SendMessagePage({ ...props }) {
   const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -38,7 +42,17 @@ function SendMessagePage({ ...props }) {
 
   return (
     <TicketWrapContainer {...props}>
-      <TicketContainer>
+      <TicketContainer
+        TopElement={
+          <TicketTop>
+            <GoBackButton
+              onClick={() => {
+                history.push('/ticketing/landing');
+              }}
+            ></GoBackButton>
+          </TicketTop>
+        }
+      >
         <ProgressLayout>
           <TicketBodyHeader style={{ flexDirection: 'column' }}>
             <ProcessTitle

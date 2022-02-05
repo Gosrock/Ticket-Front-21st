@@ -1,16 +1,31 @@
 .ticketGrid {
-    width: 100%;
-    max-width: 334px;
-    display: grid;
-    grid-template-columns: 48.5% 3% 48.5%;
-    grid-template-rows: 10px 100%;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  max-width: 334px;
+  display: grid;
+  grid-template-columns: 48.5% 3% 48.5%;
+  grid-template-rows: 10px 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.blank{
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 4;
+.blank {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.pending-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--containerHeight) - 32px);
+}
+
+.pending-logo {
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+  animation: rotate_image 3s linear infinite;
+  transform-origin: 50% 50%;
 }

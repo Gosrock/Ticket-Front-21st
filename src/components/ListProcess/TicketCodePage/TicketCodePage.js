@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { getTicket } from '../../../state/actions-creators';
 import {
   TicketContainer,
   TicketTop,
   TicketWrapContainer,
   GoBackButton,
+  GoFrontButton,
   TicketLayout,
   Ticket,
   UtilityButton,
@@ -15,15 +16,17 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 import './TicketCodePage.css';
+import { ReactComponent as Logo } from '../TicketListPage/logo.svg';
 
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
-
   const { ticketId } = useParams();
   const [ticketStatus, setTicketStatus] = useState(null);
   const { authenticated } = useSelector(state => state.auth);
+  const { ticket, pending, invalidId } = useSelector(state => state.getTicket);
+  const dispatch = useDispatch();
 
-  const GetTicket = async () => {
+  /*   const GetTicket = async () => {
     try {
       const response = await axios.get(`/tickets/${ticketId}`);
       setTicketStatus(response.data.data.ticketInfo.status);
@@ -32,7 +35,7 @@ function TicketCodePage({ ...props }) {
       console.log(e);
       history.push('/');
     }
-  };
+  }; */
 
   /***wep share api***/
   /*const shareEvent = async() => {
@@ -77,11 +80,12 @@ function TicketCodePage({ ...props }) {
     });
   };
 
-  const back = () => {
-    history.push('../list/mytickets');
-  };
-
-  GetTicket();
+  useEffect(() => {
+    if (ticketId) {
+      dispatch(getTicket({ ticketId }));
+      console.log(ticketId);
+    }
+  }, [ticketId]);
 
   return (
     <TicketWrapContainer>
@@ -91,7 +95,13 @@ function TicketCodePage({ ...props }) {
             <React.Fragment>
               {(() => {
                 if (authenticated) {
-                  return <GoBackButton onClick={back}></GoBackButton>;
+                  return (
+                    <GoBackButton
+                      onClick={() => {
+                        history.push('../list/mytickets');
+                      }}
+                    ></GoBackButton>
+                  );
                 }
               })()}
             </React.Fragment>
@@ -99,45 +109,77 @@ function TicketCodePage({ ...props }) {
         }
       >
         <TicketLayout>
-          <TicketBody
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <React.Fragment>
-              {(() => {
-                if (
-                  ticketStatus == 'confirm-deposit' ||
-                  ticketStatus == 'enter'
-                ) {
-                  return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
-                } else {
-                  return <Ticket payment={false} QRvalue={ticketId}></Ticket>;
-                }
-              })()}
-            </React.Fragment>
-
-            <div className="ticketGrid">
-              <div className="blank"></div>
-
-              <UtilityButton
-                label={'예매한 티켓 공유'}
-                backgroundColor={'white'}
-                logo={'share'}
-                onClick={shareEvent}
-              ></UtilityButton>
-              <div></div>
-              <UtilityButton
-                label={'고스락 채널 문의'}
-                backgroundColor={'yellow'}
-                logo={'kakaoTalk'}
-                onClick={chatEvent}
-              ></UtilityButton>
+          {pending ? (
+            <div className="pending-wrap">
+              <Logo className="pending-logo" />
             </div>
-          </TicketBody>
+          ) : invalidId ? (
+            <div className="invalid-id">
+              <p
+                style={{
+                  color: 'white',
+                  fontWeight: '700',
+                  fontSize: '28px',
+                  textAlign: 'center'
+                }}
+              >
+                유효하지 않은 주소입니다.
+              </p>
+              <GoFrontButton
+                style={{
+                  margin: 'auto',
+                  marginTop: '50px',
+                  padding: '10px 20px 10px 20px',
+                  backgroundColor: '#262626',
+                  borderRadius: '16px'
+                }}
+                label="메인 화면으로 가기"
+                onClick={() => {
+                  history.push('/');
+                }}
+              />
+            </div>
+          ) : (
+            <TicketBody
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <React.Fragment>
+                {(() => {
+                  if (
+                    ticketStatus == 'confirm-deposit' ||
+                    ticketStatus == 'enter'
+                  ) {
+                    return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
+                  } else {
+                    return <Ticket payment={false} QRvalue={ticketId}></Ticket>;
+                  }
+                })()}
+              </React.Fragment>
+
+              <div className="ticketGrid">
+                <div className="blank"></div>
+
+                <UtilityButton
+                  label={'예매한 티켓 공유'}
+                  backgroundColor={'white'}
+                  logo={'share'}
+                  onClick={shareEvent}
+                ></UtilityButton>
+                <div></div>
+                <UtilityButton
+                  label={'고스락 채널 문의'}
+                  backgroundColor={'yellow'}
+                  logo={'kakaoTalk'}
+                  onClick={chatEvent}
+                ></UtilityButton>
+              </div>
+            </TicketBody>
+          )}
         </TicketLayout>
       </TicketContainer>
     </TicketWrapContainer>

@@ -5,6 +5,7 @@ import routePagination from './routePagination';
 import getTickets from './getTickets';
 import ticketAmount from './ticketAmount';
 import ticketDeposit from './ticketDeposit';
+import getTicket from './getTicket';
 
 window.Kakao.init('8bb6e42c94b8560c4e4cc4ad2d1447f6'); //카카오톡 공유
 
@@ -14,6 +15,7 @@ export default combineReducers({
   messageSend: messageSend,
   routePagination: routePagination,
   getTickets: getTickets,
+  getTicket: getTicket,
   ticketAmount: ticketAmount,
   ticketDeposit: ticketDeposit
 });

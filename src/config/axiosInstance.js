@@ -31,7 +31,7 @@ axios.interceptors.response.use(
         // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
 
         alert('인증 기한이 끝났습니다. 다시 인증 해주세요');
-        window.location.href('/');
+        window.location.href = '/';
       }
 
       // 로컬 스토리지에 어세스토큰 삭제

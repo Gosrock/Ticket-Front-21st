@@ -1,21 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import history from '../history';
+import { Navigate } from 'react-router-dom';
 
 const messageValidationProcessHOC =
   Component =>
   ({ ...props }) => {
     const { messageToken } = useSelector(state => state.messageSend);
 
-    useEffect(() => {
-      if (messageToken == null) {
-        console.log('엔터', messageToken);
-        /*새로 고침시 홈페이지로 이동*/
-        history.push('/');
-      }
-    }, [messageToken]);
-
-    return <Component {...props} />;
+    return messageToken === null ? (
+      <Navigate to="/" />
+    ) : (
+      <Component {...props} />
+    );
   };
 
 export default messageValidationProcessHOC;

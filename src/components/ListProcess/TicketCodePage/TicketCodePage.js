@@ -65,7 +65,7 @@ function TicketCodePage({ ...props }) {
       },
       buttons: [
         {
-          title: '자세히보기',
+          title: '티켓 보기',
           link: {
             mobileWebUrl: `https://gosrock.link/tickets/${ticketId}`
           }

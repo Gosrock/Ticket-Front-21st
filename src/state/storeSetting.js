@@ -17,7 +17,9 @@ const userAccessToken = localStorage.getItem('userAccessToken');
 const phoneNumber = localStorage.getItem('phoneNumber');
 
 // axios Bearer 토큰에 커먼 헤더로 껴놓기 위함
-axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
+if (userAccessToken !== null) {
+  axios.defaults.headers.common.Authorization = `Bearer ${userAccessToken}`;
+}
 
 // pathname  QR티켓으로 바로 들어오는 경우 tickets 로 대응하기 위함
 let firstPathName = history.location.pathname;
@@ -32,9 +34,9 @@ export const store = createStore(
   {
     // initial state for autheticated
     auth: {
-      authenticated: userAccessToken === 'null' ? false : true,
-      userAccessToken: userAccessToken === 'null' ? null : userAccessToken,
-      phoneNumber: phoneNumber === 'null' ? null : phoneNumber
+      authenticated: userAccessToken === null ? false : true,
+      userAccessToken: userAccessToken === null ? null : userAccessToken,
+      phoneNumber: phoneNumber === null ? null : phoneNumber
     },
     routePagination: {
       currentPage: firstPathName

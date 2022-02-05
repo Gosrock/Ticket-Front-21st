@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
@@ -7,18 +7,14 @@ const requireAuth =
   Component =>
   ({ ...props }) => {
     const { authenticated } = useSelector(state => state.auth);
-    let navigate = useNavigate();
 
-    // console.log('엔터', authenticated, !authenticated);
+    console.log('엔터', authenticated);
 
-    useEffect(() => {
-      if (authenticated == null) {
-        // console.log('엔터', authenticated);
-        navigate('/');
-      }
-    }, [navigate, authenticated]);
-
-    return <Component {...props} />;
+    return authenticated === true ? (
+      <Component {...props} />
+    ) : (
+      <Navigate to="/" />
+    );
   };
 
 export default requireAuth;

@@ -61,12 +61,10 @@ function TicketListPage({ ...props }) {
   }, []);
 
   useEffect(() => {
-    if (phoneNumber) {
-      dispatch(getTickets({ phoneNumber }));
-    } else {
-      alert('본인 인증이 필요한 페이지입니다.');
-      history.push('/list/landing');
-    }
+    setBottomLabel(
+      `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
+    );
+    dispatch(getTickets({ phoneNumber }));
   }, [phoneNumber]);
 
   return (

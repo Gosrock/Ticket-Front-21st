@@ -78,7 +78,7 @@ function SendValidationNumberPage({ ...props }) {
           <TicketBottom>
             <GoFrontButton
               onClick={frontButtonHandler}
-              label="인증 번호 받기"
+              label="티켓 발급하기"
             ></GoFrontButton>
           </TicketBottom>
         </ProgressLayout>

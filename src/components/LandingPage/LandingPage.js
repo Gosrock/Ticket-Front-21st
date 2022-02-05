@@ -27,9 +27,13 @@ function LandingPage() {
     history.push('/list/landing');
   };
   const authDeleteHandler = () => {
-    localStorage.setItem('userAccessToken', null);
-    localStorage.setItem('phoneNumber', null);
+    localStorage.removeItem('userAccessToken', null);
+    localStorage.removeItem('phoneNumber', null);
     window.location.reload();
+  };
+
+  const qrHandler = () => {
+    history.push('/tickets/:ticketId');
   };
 
   // const shouldBlur = (e) => {
@@ -68,6 +72,7 @@ function LandingPage() {
               onClick={authDeleteHandler}
               label={'인증 삭제 버튼, hard refresh'}
             ></GoFrontButton>
+            <GoFrontButton onClick={qrHandler} label={'qr'}></GoFrontButton>
           </TicketBody>
         </TicketLayout>
       </TicketContainer>

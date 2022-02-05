@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +17,8 @@ import {
 import history from '../../../history';
 import './TicketCodePage.css';
 import { ReactComponent as Logo } from '../TicketListPage/logo.svg';
+import { ReactComponent as InfoCircle } from './InfoCircle.svg';
+import ModalBox from './ModalBox/ModalBox';
 
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
@@ -24,17 +26,26 @@ function TicketCodePage({ ...props }) {
   const { authenticated } = useSelector(state => state.auth);
   const { ticket, pending, invalidId } = useSelector(state => state.getTicket);
   const dispatch = useDispatch();
-
-  /*   const GetTicket = async () => {
-    try {
-      const response = await axios.get(`/tickets/${ticketId}`);
-      setTicketStatus(response.data.data.ticketInfo.status);
-      console.log(response.data.status);
-    } catch (e) {
-      console.log(e);
-      history.push('/');
-    }
-  }; */
+  const modalRef = useRef();
+  const handleResize = () => {
+    const [container] = document.getElementsByClassName('Ticket-Container');
+    document.documentElement.style.setProperty(
+      '--containerHeight',
+      `${container.clientHeight}px`
+    );
+    document.documentElement.style.setProperty(
+      '--containerWidth',
+      `${container.clientWidth}px`
+    );
+  };
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      // cleanup
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   /***wep share api***/
   /*const shareEvent = async() => {
@@ -93,20 +104,25 @@ function TicketCodePage({ ...props }) {
     <TicketWrapContainer>
       <TicketContainer
         TopElement={
-          <TicketTop>
-            <React.Fragment>
-              {(() => {
-                if (authenticated) {
-                  return (
-                    <GoBackButton
-                      onClick={() => {
-                        history.push('../list/mytickets');
-                      }}
-                    ></GoBackButton>
-                  );
-                }
-              })()}
-            </React.Fragment>
+          <TicketTop
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            {authenticated ? (
+              <GoBackButton
+                onClick={() => {
+                  history.push('../list/mytickets');
+                }}
+                label="내 티켓 목록"
+              ></GoBackButton>
+            ) : (
+              <div></div>
+            )}
+            <InfoCircle
+              className="info-circle"
+              onClick={() => {
+                modalRef.current.classList.remove('hidden');
+              }}
+            />
           </TicketTop>
         }
       >
@@ -126,7 +142,7 @@ function TicketCodePage({ ...props }) {
                     textAlign: 'center'
                   }}
                 >
-                  유효하지 않은 주소입니다.
+                  유효하지 않은 티켓입니다.
                 </p>
                 <GoFrontButton
                   style={{
@@ -134,7 +150,8 @@ function TicketCodePage({ ...props }) {
                     marginTop: '50px',
                     padding: '10px 20px 10px 20px',
                     backgroundColor: '#262626',
-                    borderRadius: '16px'
+                    borderRadius: '16px',
+                    color: '#BF94E4'
                   }}
                   label="메인 화면으로 가기"
                   onClick={() => {
@@ -185,6 +202,21 @@ function TicketCodePage({ ...props }) {
             </TicketBody>
           )}
         </TicketLayout>
+        <div className="modal hidden" ref={modalRef}>
+          <div
+            className="modal-overlay"
+            onClick={() => {
+              modalRef.current.classList.add('hidden');
+            }}
+          ></div>
+          <div className="modal-content">
+            <ModalBox
+              onClickClose={() => {
+                modalRef.current.classList.add('hidden');
+              }}
+            />
+          </div>
+        </div>
       </TicketContainer>
     </TicketWrapContainer>
   );

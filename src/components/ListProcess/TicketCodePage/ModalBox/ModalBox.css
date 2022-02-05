@@ -1,5 +1,39 @@
-.input-form {
-  grid-column: span 3;
+.info-modal-box {
+  height: 500px;
+  width: 88%;
+  min-width: 314px;
+  max-width: 335px;
+  background-color: #262626;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: auto 72px;
+  margin: auto;
+}
+
+.modal-container {
+  margin: 24px 30px;
+}
+
+.modal--svg {
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+}
+
+.question {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  margin-top: 10px;
+}
+
+.answer {
+  color: #b6b7b8;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-top: 10px;
 }
 
 .modal {

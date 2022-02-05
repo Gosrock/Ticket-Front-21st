@@ -75,7 +75,9 @@ function TicketingDepositPage({ ...props }) {
   };
 
   const kakaoClickButtonHandler = () => {
-    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(ticketCount)}`;
+    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(
+      ticketCount * 3000
+    )}`;
     openInNewTab(url);
   };
 
@@ -140,6 +142,9 @@ const toHexValue = value => {
 };
 
 const openInNewTab = url => {
-  const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-  if (newWindow) newWindow.opener = null;
+  const newWindow = window.open(url);
+
+  setTimeout(() => {
+    return newWindow.close();
+  }, 3000);
 };

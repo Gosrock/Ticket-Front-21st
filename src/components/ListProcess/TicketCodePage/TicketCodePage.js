@@ -78,7 +78,7 @@ function TicketCodePage({ ...props }) {
   };
 
   const back = () => {
-    history.push('list/mytickets');
+    history.push('../list/mytickets');
   };
 
   GetTicket();

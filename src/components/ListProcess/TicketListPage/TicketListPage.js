@@ -23,10 +23,8 @@ import { getTickets } from '../../../state/actions-creators';
 function TicketListPage({ ...props }) {
   const { phoneNumber } = useSelector(state => state.auth);
   const { tickets, pending } = useSelector(state => state.getTickets);
-  const bottomLabel = `${phoneNumber.replace(
-    /^(\d{2,3})(\d{3,4})(\d{4})$/,
-    `$1-$2-$3`
-  )} 님!`;
+  const [bottomLabel, setBottomLabel] = useState('null');
+
   const dispatch = useDispatch();
   const bodyBox = useRef();
   const modalRef = useRef();

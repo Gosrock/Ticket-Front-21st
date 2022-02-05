@@ -27,8 +27,8 @@ function LandingPage() {
     history.push('/list/landing');
   };
   const authDeleteHandler = () => {
-    localStorage.setItem('userAccessToken', null);
-    localStorage.setItem('phoneNumber', null);
+    localStorage.removeItem('userAccessToken', null);
+    localStorage.removeItem('phoneNumber', null);
     window.location.reload();
   };
 

@@ -15,7 +15,7 @@ export const getTickets =
       const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
       console.log('getTickets action', response.data.data);
 
-      dispatch({ type: GET_TICKETS_SUCCESS, payload: response.data.data });
+      dispatch({ type: GET_TICKETS_SUCCESS, payload: response.data.data[0] });
     } catch (e) {
       //400 ~
       dispatch({ type: GET_TICKETS_ERROR, payload: '티켓 목록 가져오기 오류' });

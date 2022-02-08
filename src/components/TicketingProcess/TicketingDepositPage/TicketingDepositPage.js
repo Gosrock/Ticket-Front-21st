@@ -25,34 +25,7 @@ function TicketingDepositPage({ ...props }) {
   console.log(ticketCount);
 
   const [accountName, setAccountName] = useState('');
-  const bodyBox = useRef();
   const modalRef = useRef();
-
-  const handleResize = () => {
-    console.log(bodyBox.current.parentNode.clientHeight);
-    console.log(bodyBox.current.parentNode);
-    document.documentElement.style.setProperty(
-      '--listHeight',
-      `${bodyBox.current.parentNode.clientHeight}px`
-    );
-    const [container] = document.getElementsByClassName('Ticket-Container');
-    document.documentElement.style.setProperty(
-      '--containerHeight',
-      `${container.clientHeight}px`
-    );
-    document.documentElement.style.setProperty(
-      '--containerWidth',
-      `${container.clientWidth}px`
-    );
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      // cleanup
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const dispatch = useDispatch();
 
@@ -81,10 +54,6 @@ function TicketingDepositPage({ ...props }) {
     openInNewTab(url);
   };
 
-  useEffect(() => {
-    handleResize();
-  }, []);
-
   return (
     <TicketWrapContainer {...props}>
       <TicketContainer
@@ -100,7 +69,7 @@ function TicketingDepositPage({ ...props }) {
             <ProcessDescription topLabel="이름은 4자 이내로 입력해주세요." />
           </TicketBodyHeader>
           <TicketBody>
-            <div className="input-form" ref={bodyBox}>
+            <div className="input-form">
               <InputForm
                 value={accountName}
                 onChange={accountNameInputHandler}

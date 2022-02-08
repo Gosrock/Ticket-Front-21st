@@ -18,6 +18,7 @@ import history from '../../../history';
 import './TicketCodePage.css';
 import { ReactComponent as Logo } from '../TicketListPage/logo.svg';
 import { ReactComponent as InfoCircle } from './InfoCircle.svg';
+import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from './ModalBox/ModalBox';
 
 function TicketCodePage({ ...props }) {
@@ -27,25 +28,6 @@ function TicketCodePage({ ...props }) {
   const { ticket, pending, invalidId } = useSelector(state => state.getTicket);
   const dispatch = useDispatch();
   const modalRef = useRef();
-  const handleResize = () => {
-    const [container] = document.getElementsByClassName('Ticket-Container');
-    document.documentElement.style.setProperty(
-      '--containerHeight',
-      `${container.clientHeight}px`
-    );
-    document.documentElement.style.setProperty(
-      '--containerWidth',
-      `${container.clientWidth}px`
-    );
-  };
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      // cleanup
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   /***wep share api***/
   /*const shareEvent = async() => {
@@ -202,21 +184,13 @@ function TicketCodePage({ ...props }) {
             </TicketBody>
           )}
         </TicketLayout>
-        <div className="modal hidden" ref={modalRef}>
-          <div
-            className="modal-overlay"
-            onClick={() => {
+        <ModalComponent ref={modalRef}>
+          <ModalBox
+            onClickClose={() => {
               modalRef.current.classList.add('hidden');
             }}
-          ></div>
-          <div className="modal-content">
-            <ModalBox
-              onClickClose={() => {
-                modalRef.current.classList.add('hidden');
-              }}
-            />
-          </div>
-        </div>
+          />
+        </ModalComponent>
       </TicketContainer>
     </TicketWrapContainer>
   );

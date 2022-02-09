@@ -7,14 +7,16 @@ import axios from 'axios';
 import history from '../../history';
 
 export const ticketDeposit =
-  ({ ticketCount, accountName }) =>
+  ({ studentID, smallGroup, accountName }) =>
   async dispatch => {
     try {
       dispatch({ type: TICKET_DEPOSIT_PENDING });
-      console.log(ticketCount);
+      console.log(studentID);
+      console.log(smallGroup);
       console.log(accountName);
       const response = await axios.post('/tickets', {
-        ticketCount,
+        studentID,
+        smallGroup,
         accountName
       });
       //  console.log('ticketAmount action', response.data.data);

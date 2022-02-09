@@ -15,19 +15,19 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
-import { ticketAmount } from '../../../state/actions-creators';
-import './TicketingAmountPage.css';
+import { ticketStudentInfo } from '../../../state/actions-creators';
+import './TicketingStudentInfoPage.css';
 import { ReactComponent as Check } from '../../../assets/Check.svg';
 import { ReactComponent as GoFront } from '../../../assets/GoFrontArrow.svg';
 import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from '../../ListProcess/TicketListPage/ModalBox/ModalBox';
 
-function TicketingAmountPage({ ...props }) {
+function TicketingStudentInfoPage({ ...props }) {
   const phoneNumber = useSelector(store => store.auth.phoneNumber);
 
-  const [studentId, setstudentId] = useState('C2');
-  const [somoim, setSomoim] = useState(true);
-  const somoimRef = useRef();
+  const [studentID, setstudentID] = useState('C2');
+  const [smallGroup, setSmallGroup] = useState(false);
+  const smallGroupRef = useRef();
 
   const dispatch = useDispatch();
 
@@ -35,13 +35,23 @@ function TicketingAmountPage({ ...props }) {
     history.push('/');
   };
 
-  const amountInputHandler = e => {
-    setstudentId(e.target.value);
+  const studentIdInputHandler = e => {
+    setstudentID(e.target.value);
+  };
+
+  const yesButtonHandler = () => {
+    smallGroupRef.current.classList.add('hidden');
+    setSmallGroup(true);
+  };
+
+  const noButtonHandler = () => {
+    smallGroupRef.current.classList.add('hidden');
+    setSmallGroup(false);
   };
 
   const frontButtonHandler = () => {
-    if (studentId < 7) alert('학번을 정확히 입력해주세요.');
-    else dispatch(ticketAmount({ studentId }));
+    if (studentID < 7) alert('학번을 정확히 입력해주세요.');
+    else dispatch(ticketStudentInfo({ studentID, smallGroup }));
   };
 
   return (
@@ -69,22 +79,22 @@ function TicketingAmountPage({ ...props }) {
           </TicketBodyHeader>
           <TicketBody>
             <InputForm
-              value={studentId}
-              onChange={amountInputHandler}
+              value={studentID}
+              onChange={studentIdInputHandler}
               page="studentId"
             />
             <div
               className="somoim-form"
               onClick={() => {
-                somoimRef.current.classList.remove('hidden');
+                smallGroupRef.current.classList.remove('hidden');
               }}
             >
               <div className="somoim-form-content">
-                <Check fill={somoim ? '#BF94E4' : '#fff'} />
+                <Check fill={smallGroup ? '#BF94E4' : '#fff'} />
                 <span
                   style={{
                     marginLeft: '10px',
-                    color: `${somoim ? '#fff' : '#b6b7b8'}`
+                    color: `${smallGroup ? '#fff' : '#b6b7b8'}`
                   }}
                 >
                   공연 후 소모임 신청
@@ -94,12 +104,12 @@ function TicketingAmountPage({ ...props }) {
                 <span
                   style={{
                     marginRight: '10px',
-                    color: `${somoim ? '#b6b7b8' : '#fff'}`
+                    color: `${smallGroup ? '#b6b7b8' : '#fff'}`
                   }}
                 >
                   자세히 보기
                 </span>
-                <GoFront fill={somoim ? '#B6B7B8' : '#fff'} />
+                <GoFront fill={smallGroup ? '#B6B7B8' : '#fff'} />
               </div>
             </div>
           </TicketBody>
@@ -110,18 +120,14 @@ function TicketingAmountPage({ ...props }) {
             ></GoFrontButton>
           </TicketBottom>
           <ModalComponent
-            ref={somoimRef}
+            ref={smallGroupRef}
             onClose={() => {
-              somoimRef.current.classList.add('hidden');
+              smallGroupRef.current.classList.add('hidden');
             }}
           >
             <ModalBox
-              onClickYes={() => {
-                somoimRef.current.classList.add('hidden');
-              }}
-              onClickNo={() => {
-                somoimRef.current.classList.add('hidden');
-              }}
+              onClickYes={yesButtonHandler}
+              onClickNo={noButtonHandler}
             />
           </ModalComponent>
         </ProgressLayout>
@@ -130,4 +136,4 @@ function TicketingAmountPage({ ...props }) {
   );
 }
 
-export default TicketingAmountPage;
+export default TicketingStudentInfoPage;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import authPassHOC from '../../hoc/authPassHOC';
 import requireAuth from '../../hoc/requireAuth';
-import TicketingAmountPage from './TicketingAmountPage/TicketingAmountPage';
+import TicketingStudentInfoPage from './TicketingStudentInfoPage/TicketingStudentInfo';
 import TicketingDepositPage from './TicketingDepositPage/TicketingDepositPage';
 import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
 
@@ -12,7 +12,7 @@ function TicketingProcess({ location }) {
     '/ticketing/deposit'
   );
 
-  const RATicketingAmountPage = requireAuth(TicketingAmountPage);
+  const RATicketingStudentInfoPage = requireAuth(TicketingStudentInfoPage);
   const RATicketingDepositPage = requireAuth(TicketingDepositPage);
   return (
     <Routes location={location}>
@@ -26,7 +26,9 @@ function TicketingProcess({ location }) {
         exact
         path="amount"
         //애니메이션을 위해 absolute로 설정해야함!
-        element={<RATicketingAmountPage style={{ position: 'absolute' }} />}
+        element={
+          <RATicketingStudentInfoPage style={{ position: 'absolute' }} />
+        }
       />
       <Route
         exact

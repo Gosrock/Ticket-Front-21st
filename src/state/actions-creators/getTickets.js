@@ -18,6 +18,6 @@ export const getTickets =
       dispatch({ type: GET_TICKETS_SUCCESS, payload: response.data.data });
     } catch (e) {
       //400 ~
-      dispatch({ type: GET_TICKETS_ERROR, payload: '티켓 목록 가져오기 오류' });
+      dispatch({ type: GET_TICKETS_ERROR, payload: e.response.data.message });
     }
   };

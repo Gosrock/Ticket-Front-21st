@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
-import { ReactComponent as Logo } from './logo.svg';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import {
   TicketContainer,
   TicketTop,
@@ -9,6 +9,7 @@ import {
   TicketWrapContainer,
   InfoLayout,
   GoBackButton,
+  GoFrontButton,
   ProcessTitle,
   ProcessDescription,
   TicketList,
@@ -19,51 +20,68 @@ import './TicketListPage.css';
 import history from '../../../history';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTickets } from '../../../state/actions-creators';
+import Tile from './Tile';
+import ModalComponent from '../../ModalComponent.js/ModalComponent';
+import ModalBox from './ModalBox/ModalBox';
+
+const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketListPage({ ...props }) {
   const { phoneNumber } = useSelector(state => state.auth);
   const { tickets, pending } = useSelector(state => state.getTickets);
   const [bottomLabel, setBottomLabel] = useState('null');
+  const [state, setState] = useState();
 
   const dispatch = useDispatch();
-  const bodyBox = useRef();
   const modalRef = useRef();
-
-  /*
-    브라우저 사이즈 검사
-  */
-  const handleResize = () => {
-    console.log(bodyBox.current.parentNode.clientHeight);
-    console.log(bodyBox.current.parentNode);
-    document.documentElement.style.setProperty(
-      '--listHeight',
-      `${bodyBox.current.parentNode.clientHeight}px`
-    );
-    const [container] = document.getElementsByClassName('Ticket-Container');
-    document.documentElement.style.setProperty(
-      '--containerHeight',
-      `${container.clientHeight}px`
-    );
-    document.documentElement.style.setProperty(
-      '--containerWidth',
-      `${container.clientWidth}px`
-    );
-  };
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      // cleanup
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const somoimRef = useRef();
   useEffect(() => {
     setBottomLabel(
       `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
     );
     dispatch(getTickets({ phoneNumber }));
   }, [phoneNumber]);
+
+  useEffect(() => {
+    if (tickets.length > 0) {
+      switch (tickets[0].status) {
+        case 'confirm-deposit':
+          setState(<StateIcon background="green" label="입금 확인" />);
+          break;
+        case 'pending-deposit':
+          setState(
+            <StateIcon background="green" label="입금 확인중" word="five" />
+          );
+          break;
+        case 'enter':
+          setState(<StateIcon background="green" label="입장 완료" />);
+          break;
+        case 'none-deposit':
+          setState(
+            <StateIcon background="green" label="미입금 처리" word="five" />
+          );
+          break;
+        default:
+          break;
+      }
+    }
+    console.log(tickets);
+  }, [tickets]);
+
+  const kakaoClickButtonHandler = () => {
+    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(3000)}`;
+    openInNewTab(url);
+  };
+  const toHexValue = value => {
+    return (parseInt(value) * 524288).toString(16);
+  };
+  const openInNewTab = url => {
+    const newWindow = window.open(url);
+
+    setTimeout(() => {
+      return newWindow.close();
+    }, 3000);
+  };
 
   return (
     <TicketWrapContainer {...props}>
@@ -81,85 +99,155 @@ function TicketListPage({ ...props }) {
         <InfoLayout>
           <TicketBodyHeader>
             <ProcessTitle topLabel="안녕하세요," bottomLabel={bottomLabel} />
-            <ProcessDescription topLabel="예매한 티켓을 보여드릴게요." />
-            <p>
-              <span
-                className="show-account"
-                onClick={() => {
-                  modalRef.current.classList.remove('hidden');
-                }}
-              >
-                입금계좌 보기
-              </span>
-            </p>
+            <ProcessDescription
+              topLabel={
+                tickets.length > 0
+                  ? '예매 관련 정보를 보여드릴게요.'
+                  : `아직 예매를 하지 않으셨어요!`
+              }
+            />
+            {tickets.length > 0 ? (
+              <p>
+                <span
+                  className="show-account"
+                  onClick={() => {
+                    modalRef.current.classList.remove('hidden');
+                  }}
+                >
+                  입금계좌 보기
+                </span>
+              </p>
+            ) : null}
           </TicketBodyHeader>
           <TicketBody>
-            <div className="list-container" ref={bodyBox}>
-              <div className="list-inner-container">
-                {pending ? (
-                  <div className="list-pending-wrap">
-                    <Logo className="list-pending-logo" />
-                  </div>
-                ) : (
-                  tickets &&
-                  tickets.map(v => {
-                    let state;
-                    switch (v.status) {
-                      case 'confirm-deposit':
-                        state = (
-                          <StateIcon background="green" label="입금 확인" />
-                        );
-                        break;
-                      case 'pending-deposit':
-                        state = (
-                          <StateIcon background="blue" label="입금 확인중" />
-                        );
-                        break;
-                      case 'enter':
-                        state = (
-                          <StateIcon background="yellow" label="입장 완료" />
-                        );
-                        break;
-                      case 'none-deposit':
-                        state = (
-                          <StateIcon background="red" label="미입금 처리" />
-                        );
-                        break;
-                      default:
-                        break;
-                    }
-                    return (
-                      <TicketList
-                        key={v._id}
-                        performdate="22.03.10"
-                        bookdate={moment(v.createdAt).format('YY.MM.DD')}
-                        StateIcon={state}
-                        onClick={() => {
-                          console.log('click');
-                          history.push(`/tickets/${v._id}`);
+            <div className="list-container">
+              {pending ? (
+                <div className="list-pending-wrap">
+                  <Logo className="list-pending-logo" />
+                </div>
+              ) : tickets.length > 0 ? (
+                <div className="mypage-grid">
+                  <Tile color={'#363636'}>
+                    <p
+                      className="mypage-grid-title"
+                      style={{
+                        fontWeight: '700',
+                        color: '#ffffff'
+                      }}
+                    >
+                      {tickets[0].studentID}
+                    </p>
+                    <p
+                      className="mypage-grid-sub"
+                      style={{
+                        fontWeight: '500',
+                        color: '#b6b7b8',
+                        marginTop: '5px'
+                      }}
+                    >
+                      {tickets[0].accountName}
+                    </p>
+                  </Tile>
+                  <Tile
+                    onClick={() => {
+                      somoimRef.current.classList.remove('hidden');
+                    }}
+                    color={'#262626'}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      textAlign: 'right',
+                      color: 'white',
+                      cursor: 'default'
+                    }}
+                  >
+                    <p
+                      className="mypage-grid-sub"
+                      style={{
+                        fontWeight: '700',
+                        textAlign: 'left',
+                        color: '#bf94e4'
+                      }}
+                    >
+                      {tickets[0].smallGroup ? '신청 완료' : '신청하러 가기'}
+                    </p>
+                    <p>
+                      <span style={{ fontSize: '18px', fontWeight: '500' }}>
+                        공연 후
+                      </span>
+                      <br />
+                      <span
+                        className="mypage-grid-title"
+                        style={{
+                          fontWeight: '700',
+                          marginTop: '3px',
+                          display: 'block'
                         }}
-                      />
-                    );
-                  })
-                )}
-              </div>
-            </div>
-            <div className="modal hidden" ref={modalRef}>
-              <div
-                className="modal-overlay"
-                onClick={() => {
-                  modalRef.current.classList.add('hidden');
-                }}
-              ></div>
-              <div className="modal-content">
-                <Modal
-                  page="list"
-                  onClickClose={() => {
-                    modalRef.current.classList.add('hidden');
+                      >
+                        소모임
+                      </span>
+                    </p>
+                  </Tile>
+                  <TicketList
+                    style={{ gridColumn: 'span 2' }}
+                    key={tickets[0]._id}
+                    performdate="22.03.10"
+                    bookdate={moment(tickets[0].createdAt).format('YY.MM.DD')}
+                    StateIcon={state}
+                    onClick={() => {
+                      console.log('click');
+                      history.push(`/tickets/${tickets[0]._id}`);
+                    }}
+                  />
+                </div>
+              ) : (
+                <GoFrontButton
+                  style={{
+                    margin: 'auto',
+                    marginTop: '50px',
+                    padding: '10px 20px 10px 20px',
+                    backgroundColor: '#262626',
+                    borderRadius: '16px',
+                    color: '#BF94E4'
+                  }}
+                  label="예매하러 가기"
+                  onClick={() => {
+                    history.push('/ticketing/landing');
                   }}
                 />
-              </div>
+              )}
             </div>
+            <ModalComponent
+              ref={modalRef}
+              onClose={() => {
+                modalRef.current.classList.add('hidden');
+              }}
+            >
+              <Modal
+                page="list"
+                onClickClose={() => {
+                  modalRef.current.classList.add('hidden');
+                }}
+                onClickKakao={kakaoClickButtonHandler}
+              />
+            </ModalComponent>
+            <ModalComponent
+              ref={somoimRef}
+              onClose={() => {
+                somoimRef.current.classList.add('hidden');
+              }}
+            >
+              <ModalBox
+                somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
+                onClickYes={() => {
+                  somoimRef.current.classList.add('hidden');
+                }}
+                onClickNo={() => {
+                  somoimRef.current.classList.add('hidden');
+                }}
+              />
+            </ModalComponent>
           </TicketBody>
         </InfoLayout>
       </TicketContainer>

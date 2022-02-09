@@ -30,6 +30,10 @@ function SendMessagePage({ ...props }) {
 
   const frontButtonHandler = () => {
     console.log(phoneNumber);
+    if (phoneNumber === null || phoneNumber.length !== 11) {
+      alert('휴대폰 번호 11자리를 제대로 입력 해주세요');
+      return;
+    }
     dispatch(messageSend({ phoneNumber }));
   };
 

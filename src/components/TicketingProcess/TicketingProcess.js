@@ -9,7 +9,7 @@ import TicketingLandingPage from './TicketingLandingPage/TicketingLandingPage';
 function TicketingProcess({ location }) {
   const APHTicketingLandingPage = authPassHOC(
     TicketingLandingPage,
-    '/ticketing/deposit'
+    '/ticketing/amount'
   );
 
   const RATicketingStudentInfoPage = requireAuth(TicketingStudentInfoPage);

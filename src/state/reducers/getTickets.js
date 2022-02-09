@@ -1,7 +1,10 @@
 import {
   GET_TICKETS_SUCCESS,
   GET_TICKETS_PENDING,
-  GET_TICKETS_ERROR
+  GET_TICKETS_ERROR,
+  PATCH_SOMOIM_SUCCESS,
+  PATCH_SOMOIM_PENDING,
+  PATCH_SOMOIM_ERROR
 } from '../action-types';
 
 const INITIAL_STATE = {
@@ -26,6 +29,26 @@ export default function (state = INITIAL_STATE, action) {
         pending: false
       };
     case GET_TICKETS_ERROR:
+      return {
+        ...state,
+        tickets: [],
+        errorMessage: action.payload,
+        pending: false
+      };
+    case PATCH_SOMOIM_PENDING:
+      // console.log(action.type, action.payload);
+      return {
+        ...state,
+        tickets: [],
+        pending: true
+      };
+    case PATCH_SOMOIM_SUCCESS:
+      return {
+        ...state,
+        tickets: action.payload,
+        pending: false
+      };
+    case PATCH_SOMOIM_ERROR:
       return {
         ...state,
         tickets: [],

@@ -24,8 +24,12 @@ import ModalBox from '../../ListProcess/TicketListPage/ModalBox/ModalBox';
 
 function TicketingStudentInfoPage({ ...props }) {
   const phoneNumber = useSelector(store => store.auth.phoneNumber);
-
-  const [studentID, setstudentID] = useState('C2');
+  const studentIDFromStore = useSelector(
+    state => state.ticketStudentInfo.studentID
+  );
+  const [studentID, setstudentID] = useState(
+    studentIDFromStore ? studentIDFromStore : 'C2'
+  );
   const [smallGroup, setSmallGroup] = useState(
     useSelector(state => state.ticketStudentInfo.smallGroup)
   ); //뒤로가기해서 왔을때 유지
@@ -52,7 +56,7 @@ function TicketingStudentInfoPage({ ...props }) {
   };
 
   const frontButtonHandler = () => {
-    if (studentID < 7) alert('학번을 정확히 입력해주세요.');
+    if (studentID.length < 7) alert('학번을 정확히 입력해주세요.');
     else dispatch(ticketStudentInfo({ studentID, smallGroup }));
   };
 

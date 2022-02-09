@@ -5,7 +5,7 @@ import {
 } from '../action-types';
 
 const INITIAL_STATE = {
-  tickets: {},
+  tickets: [],
   pending: false
 };
 
@@ -16,7 +16,7 @@ export default function (state = INITIAL_STATE, action) {
       // console.log(action.type, action.payload);
       return {
         ...state,
-        tickets: {},
+        tickets: [],
         pending: true
       };
     case GET_TICKETS_SUCCESS:
@@ -28,7 +28,7 @@ export default function (state = INITIAL_STATE, action) {
     case GET_TICKETS_ERROR:
       return {
         ...state,
-        tickets: {},
+        tickets: [],
         errorMessage: action.payload,
         pending: false
       };

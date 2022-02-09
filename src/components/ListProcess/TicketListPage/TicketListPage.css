@@ -47,6 +47,17 @@
   padding: 12%;
 }
 
+.mypage-square:nth-child(2):hover {
+  transform: scale(1.02);
+}
+
+.mypage-grid-sub {
+  font-size: 5vw;
+}
+.mypage-grid-title {
+  font-size: 6.86vw;
+}
+
 @media screen and (min-width: 450px) {
   .mypage-square {
     height: 188px;
@@ -59,10 +70,12 @@
     height: 142.88px;
     padding: 22.56px 12%;
   }
-}
-
-.mypage-square:nth-child(2):hover {
-  transform: scale(1.02);
+  .mypage-grid-sub {
+    font-size: 22.5px;
+  }
+  .mypage-grid-title {
+    font-size: 31px;
+  }
 }
 
 .show-account {

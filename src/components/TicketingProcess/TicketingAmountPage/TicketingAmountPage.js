@@ -106,7 +106,7 @@ function TicketingAmountPage({ ...props }) {
           <TicketBottom>
             <GoFrontButton
               onClick={frontButtonHandler}
-              label="입금하러 가기"
+              label="다음으로"
             ></GoFrontButton>
           </TicketBottom>
           <ModalComponent

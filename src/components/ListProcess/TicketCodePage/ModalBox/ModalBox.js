@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalBox.css';
 
-import { ReactComponent as Close } from './Close.svg';
+import { ReactComponent as Close } from '../../../../assets/Close.svg';
 const ModalBox = ({ onClickClose }) => {
   return (
     <div className="info-modal-box">

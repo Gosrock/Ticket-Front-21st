@@ -74,7 +74,7 @@ function TicketingDepositPage({ ...props }) {
                 value={accountName}
                 onChange={accountNameInputHandler}
                 page="name"
-                ticketCount={parseInt(ticketCount)}
+                ticketCount={1}
               />
             </div>
             <div className="modal hidden" ref={modalRef}>

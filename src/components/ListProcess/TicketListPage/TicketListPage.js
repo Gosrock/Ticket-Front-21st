@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
-import { ReactComponent as Logo } from './logo.svg';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import {
   TicketContainer,
   TicketTop,
@@ -143,7 +143,8 @@ function TicketListPage({ ...props }) {
                         flexDirection: 'column',
                         justifyContent: 'space-between',
                         textAlign: 'right',
-                        color: 'white'
+                        color: 'white',
+                        cursor: 'default'
                       }}
                     >
                       <p

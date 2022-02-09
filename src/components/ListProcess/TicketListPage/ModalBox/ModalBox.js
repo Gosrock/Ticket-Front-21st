@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalBox.css';
-import { ReactComponent as Close } from './Close.svg';
-import { ReactComponent as Check } from './Check.svg';
+import { ReactComponent as Close } from '../../../../assets/Close.svg';
+import { ReactComponent as Check } from '../../../../assets/Check.svg';
 
 const ModalBox = ({ onClickYes, onClickNo }) => {
   return (
@@ -57,7 +57,7 @@ const ModalBox = ({ onClickYes, onClickNo }) => {
           <button className="CloseButton" onClick={onClickYes}>
             <span>신청해요</span>
             <div className="modal--svg" style={{ marginLeft: '11px' }}>
-              <Check />
+              <Check fill="#fff" />
             </div>
           </button>
         </div>

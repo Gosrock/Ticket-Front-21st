@@ -16,8 +16,8 @@ import {
 } from 'gosrock-storybook';
 import history from '../../../history';
 import './TicketCodePage.css';
-import { ReactComponent as Logo } from '../TicketListPage/logo.svg';
-import { ReactComponent as InfoCircle } from './InfoCircle.svg';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
+import { ReactComponent as InfoCircle } from '../../../assets/InfoCircle.svg';
 import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from './ModalBox/ModalBox';
 

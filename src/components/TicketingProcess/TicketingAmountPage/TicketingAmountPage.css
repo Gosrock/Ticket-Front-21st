@@ -1,0 +1,21 @@
+.somoim-form {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  border-radius: 15px;
+  background-color: #262626;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 4%;
+  cursor: default;
+}
+.somoim-form:hover {
+  transform: scale(1.02);
+  transition: all 0.1s;
+}
+
+.somoim-form-content {
+  display: flex;
+  align-items: center;
+}

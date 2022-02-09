@@ -28,6 +28,7 @@ const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketListPage({ ...props }) {
   const { phoneNumber } = useSelector(state => state.auth);
+  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
   const { tickets, pending } = useSelector(state => state.getTickets);
   const [bottomLabel, setBottomLabel] = useState('null');
   const [state, setState] = useState();
@@ -242,10 +243,19 @@ function TicketListPage({ ...props }) {
                 somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
                 onClickYes={() => {
                   somoimRef.current.classList.add('hidden');
+                  dispatch({
+                    type: 'STUDENT_INFO_SUCCESS',
+                    payload: { smallGroup }
+                  });
                 }}
                 onClickNo={() => {
                   somoimRef.current.classList.add('hidden');
+                  dispatch({
+                    type: 'STUDENT_INFO_SUCCESS',
+                    payload: { smallGroup }
+                  });
                 }}
+                somoim={smallGroup}
               />
             </ModalComponent>
           </TicketBody>

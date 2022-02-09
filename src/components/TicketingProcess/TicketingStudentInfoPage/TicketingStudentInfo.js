@@ -26,7 +26,9 @@ function TicketingStudentInfoPage({ ...props }) {
   const phoneNumber = useSelector(store => store.auth.phoneNumber);
 
   const [studentID, setstudentID] = useState('C2');
-  const [smallGroup, setSmallGroup] = useState(false);
+  const [smallGroup, setSmallGroup] = useState(
+    useSelector(state => state.ticketStudentInfo.smallGroup)
+  ); //뒤로가기해서 왔을때 유지
   const smallGroupRef = useRef();
 
   const dispatch = useDispatch();
@@ -40,13 +42,13 @@ function TicketingStudentInfoPage({ ...props }) {
   };
 
   const yesButtonHandler = () => {
-    smallGroupRef.current.classList.add('hidden');
     setSmallGroup(true);
+    smallGroupRef.current.classList.add('hidden');
   };
 
   const noButtonHandler = () => {
-    smallGroupRef.current.classList.add('hidden');
     setSmallGroup(false);
+    smallGroupRef.current.classList.add('hidden');
   };
 
   const frontButtonHandler = () => {
@@ -128,6 +130,7 @@ function TicketingStudentInfoPage({ ...props }) {
             <ModalBox
               onClickYes={yesButtonHandler}
               onClickNo={noButtonHandler}
+              somoim={smallGroup}
             />
           </ModalComponent>
         </ProgressLayout>

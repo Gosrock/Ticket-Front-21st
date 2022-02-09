@@ -23,12 +23,13 @@ function SendValidationNumberPage({ ...props }) {
 
   const dispatch = useDispatch();
 
-  const {
-    messageToken,
-    errorMessage,
-    pending,
-    validationNumber: reducerValidationNumber
-  } = useSelector(state => state.messageSend);
+  const { messageToken, validationNumber: reducerValidationNumber } =
+    useSelector(state => state.messageSend);
+
+  const { errorMessage, pending } = useSelector(state => state.auth);
+  //processForValidationNextPage 는 메시지 인증하는 프로세스가 두가지의 단계 ,
+  //즉 티켓 예매하는 단계와 내 티켓 확인하는 단계 두가지가 있어서 다음 페이지를 어디로 이동시킬지 결정하기 위함입니다.
+  //단계도중 새로고침이 발생하면 홈페이지로 보냅니다.
 
   const { processForValidationNextPage } = useSelector(
     state => state.routePagination
@@ -40,6 +41,10 @@ function SendValidationNumberPage({ ...props }) {
 
   const frontButtonHandler = () => {
     console.log(validationNumber);
+    if (validationNumber === null || validationNumber.length !== 6) {
+      alert('인증번호 6자리를 제대로 입력 해주세요');
+      return;
+    }
     dispatch(
       messageValidation(
         {
@@ -52,8 +57,12 @@ function SendValidationNumberPage({ ...props }) {
     );
   };
 
-  useEffect(() => {}, [errorMessage, pending]);
-  console.log('인증번호 페이지');
+  useEffect(() => {
+    if (errorMessage !== null && pending === false) {
+      alert('인증번호가 잘못되었습니다.');
+    }
+  }, [errorMessage, pending]);
+
   return (
     <TicketWrapContainer {...props}>
       <TicketContainer
@@ -92,7 +101,11 @@ function SendValidationNumberPage({ ...props }) {
           <TicketBottom>
             <GoFrontButton
               onClick={frontButtonHandler}
-              label="티켓 발급하기"
+              label={
+                processForValidationNextPage === '/ticketing/amount'
+                  ? '예매하기'
+                  : '내 티켓 확인하기'
+              }
             ></GoFrontButton>
           </TicketBottom>
         </ProgressLayout>

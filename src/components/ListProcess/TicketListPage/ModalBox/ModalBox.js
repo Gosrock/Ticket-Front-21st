@@ -1,11 +1,12 @@
 import React from 'react';
 import './ModalBox.css';
-
 import { ReactComponent as Close } from '../../../../assets/Close.svg';
-const ModalBox = ({ onClickClose }) => {
+import { ReactComponent as Check } from '../../../../assets/Check.svg';
+
+const ModalBox = ({ onClickYes, onClickNo }) => {
   return (
-    <div className="info-modal-box">
-      <div className="modal-container">
+    <div className="somoim-modal-box">
+      <div className="modal-container modal-top">
         <div>
           <p className="question">😢 입금 확인 처리가 안돼요!</p>
           <p className="answer">
@@ -50,7 +51,16 @@ const ModalBox = ({ onClickClose }) => {
           </p>
         </div>
       </div>
+
       <div className="modal-bottom">
+        <div className="modal-container">
+          <button className="CloseButton" onClick={onClickYes}>
+            <span>신청해요</span>
+            <div className="modal--svg" style={{ marginLeft: '11px' }}>
+              <Check fill="#fff" />
+            </div>
+          </button>
+        </div>
         <div
           style={{
             height: '1px',
@@ -59,10 +69,10 @@ const ModalBox = ({ onClickClose }) => {
           }}
         ></div>
         <div className="modal-container">
-          <button className="CloseButton" onClick={onClickClose}>
-            <span>닫기</span>
+          <button className="CloseButton" onClick={onClickNo}>
+            <span>안할래요</span>
             <div className="modal--svg" style={{ marginLeft: '11px' }}>
-              <Close />
+              <Close fill={'#BF94E4'} />
             </div>
           </button>
         </div>

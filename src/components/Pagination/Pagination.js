@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -8,9 +8,20 @@ import TestPage from '../TestPage';
 import './Pagination.css';
 import ListProcess from '../ListProcess/ListProcess';
 import TicketCodePage from '../ListProcess/TicketCodePage/TicketCodePage';
+// 모달용 - 전체 컨테이너의 크기 받아서 넘겨줌
+import { handleResize } from '../../config/handleResize';
 
 function Pagination() {
   const location = useLocation();
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      // cleanup
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const { slideFromDirection } = useSelector(state => state.routePagination);
   return (

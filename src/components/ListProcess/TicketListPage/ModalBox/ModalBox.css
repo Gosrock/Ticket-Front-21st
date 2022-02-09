@@ -1,4 +1,4 @@
-.info-modal-box {
+.somoim-modal-box {
   height: 500px;
   width: 88%;
   min-width: 314px;
@@ -6,7 +6,7 @@
   background-color: #262626;
   border-radius: 15px;
   display: grid;
-  grid-template-rows: auto 72px;
+  grid-template-rows: 364px 136px;
   margin: auto;
 }
 
@@ -30,4 +30,16 @@
   font-weight: 400;
   line-height: 22px;
   margin-top: 10px;
+}
+
+.modal-top {
+  height: 340px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-bottom: 0px;
+}
+
+.modal-top::-webkit-scrollbar {
+  display: none;
 }

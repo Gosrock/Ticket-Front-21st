@@ -94,7 +94,7 @@ function TicketCodePage({ ...props }) {
                 onClick={() => {
                   history.push('../list/mytickets');
                 }}
-                label="내 티켓 목록"
+                label="마이 페이지"
               ></GoBackButton>
             ) : (
               <div></div>

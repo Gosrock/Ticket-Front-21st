@@ -9,6 +9,7 @@ import {
   TicketWrapContainer,
   InfoLayout,
   GoBackButton,
+  GoFrontButton,
   ProcessTitle,
   ProcessDescription,
   TicketList,
@@ -42,22 +43,29 @@ function TicketListPage({ ...props }) {
   }, [phoneNumber]);
 
   useEffect(() => {
-    switch (tickets.status) {
-      case 'confirm-deposit':
-        setState(<StateIcon background="green" label="입금 확인" />);
-        break;
-      case 'pending-deposit':
-        setState(<StateIcon background="green" label="입금 확인중" />);
-        break;
-      case 'enter':
-        setState(<StateIcon background="green" label="입장 완료" />);
-        break;
-      case 'none-deposit':
-        setState(<StateIcon background="green" label="미입금 처리" />);
-        break;
-      default:
-        break;
+    if (tickets.length > 0) {
+      switch (tickets[0].status) {
+        case 'confirm-deposit':
+          setState(<StateIcon background="green" label="입금 확인" />);
+          break;
+        case 'pending-deposit':
+          setState(
+            <StateIcon background="green" label="입금 확인중" word="five" />
+          );
+          break;
+        case 'enter':
+          setState(<StateIcon background="green" label="입장 완료" />);
+          break;
+        case 'none-deposit':
+          setState(
+            <StateIcon background="green" label="미입금 처리" word="five" />
+          );
+          break;
+        default:
+          break;
+      }
     }
+    console.log(tickets);
   }, [tickets]);
 
   const kakaoClickButtonHandler = () => {
@@ -91,17 +99,25 @@ function TicketListPage({ ...props }) {
         <InfoLayout>
           <TicketBodyHeader>
             <ProcessTitle topLabel="안녕하세요," bottomLabel={bottomLabel} />
-            <ProcessDescription topLabel="예매 관련 정보를 보여드릴게요." />
-            <p>
-              <span
-                className="show-account"
-                onClick={() => {
-                  modalRef.current.classList.remove('hidden');
-                }}
-              >
-                입금계좌 보기
-              </span>
-            </p>
+            <ProcessDescription
+              topLabel={
+                tickets.length > 0
+                  ? '예매 관련 정보를 보여드릴게요.'
+                  : `아직 예매를 하지 않으셨어요!`
+              }
+            />
+            {tickets.length > 0 ? (
+              <p>
+                <span
+                  className="show-account"
+                  onClick={() => {
+                    modalRef.current.classList.remove('hidden');
+                  }}
+                >
+                  입금계좌 보기
+                </span>
+              </p>
+            ) : null}
           </TicketBodyHeader>
           <TicketBody>
             <div className="list-container">
@@ -109,84 +125,97 @@ function TicketListPage({ ...props }) {
                 <div className="list-pending-wrap">
                   <Logo className="list-pending-logo" />
                 </div>
-              ) : (
-                tickets && (
-                  <div className="mypage-grid">
-                    <Tile color={'#363636'}>
-                      <p
-                        style={{
-                          fontSize: '24px',
-                          fontWeight: '700',
-                          color: '#ffffff'
-                        }}
-                      >
-                        C211000
-                      </p>
-                      <p
-                        style={{
-                          fontSize: '18px',
-                          fontWeight: '500',
-                          color: '#b6b7b8',
-                          marginTop: '5px'
-                        }}
-                      >
-                        한규진
-                      </p>
-                    </Tile>
-                    <Tile
-                      onClick={() => {
-                        somoimRef.current.classList.remove('hidden');
-                      }}
-                      color={'#262626'}
+              ) : tickets.length > 0 ? (
+                <div className="mypage-grid">
+                  <Tile color={'#363636'}>
+                    <p
+                      className="mypage-grid-title"
                       style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        textAlign: 'right',
-                        color: 'white',
-                        cursor: 'default'
+                        fontWeight: '700',
+                        color: '#ffffff'
                       }}
                     >
-                      <p
+                      {tickets[0].studentID}
+                    </p>
+                    <p
+                      className="mypage-grid-sub"
+                      style={{
+                        fontWeight: '500',
+                        color: '#b6b7b8',
+                        marginTop: '5px'
+                      }}
+                    >
+                      {tickets[0].accountName}
+                    </p>
+                  </Tile>
+                  <Tile
+                    onClick={() => {
+                      somoimRef.current.classList.remove('hidden');
+                    }}
+                    color={'#262626'}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      textAlign: 'right',
+                      color: 'white',
+                      cursor: 'default'
+                    }}
+                  >
+                    <p
+                      className="mypage-grid-sub"
+                      style={{
+                        fontWeight: '700',
+                        textAlign: 'left',
+                        color: '#bf94e4'
+                      }}
+                    >
+                      {tickets[0].smallGroup ? '신청 완료' : '신청하러 가기'}
+                    </p>
+                    <p>
+                      <span style={{ fontSize: '18px', fontWeight: '500' }}>
+                        공연 후
+                      </span>
+                      <br />
+                      <span
+                        className="mypage-grid-title"
                         style={{
-                          fontSize: '18px',
                           fontWeight: '700',
-                          textAlign: 'left',
-                          color: '#bf94e4'
+                          marginTop: '3px',
+                          display: 'block'
                         }}
                       >
-                        신청하기
-                      </p>
-                      <p>
-                        <span style={{ fontSize: '18px', fontWeight: '500' }}>
-                          공연 후
-                        </span>
-                        <br />
-                        <span
-                          style={{
-                            fontSize: '24px',
-                            fontWeight: '700',
-                            marginTop: '3px',
-                            display: 'block'
-                          }}
-                        >
-                          소모임
-                        </span>
-                      </p>
-                    </Tile>
-                    <TicketList
-                      style={{ gridColumn: 'span 2' }}
-                      key={tickets._id}
-                      performdate="22.03.10"
-                      bookdate={moment(tickets.createdAt).format('YY.MM.DD')}
-                      StateIcon={state}
-                      onClick={() => {
-                        console.log('click');
-                        history.push(`/tickets/${tickets._id}`);
-                      }}
-                    />
-                  </div>
-                )
+                        소모임
+                      </span>
+                    </p>
+                  </Tile>
+                  <TicketList
+                    style={{ gridColumn: 'span 2' }}
+                    key={tickets[0]._id}
+                    performdate="22.03.10"
+                    bookdate={moment(tickets[0].createdAt).format('YY.MM.DD')}
+                    StateIcon={state}
+                    onClick={() => {
+                      console.log('click');
+                      history.push(`/tickets/${tickets[0]._id}`);
+                    }}
+                  />
+                </div>
+              ) : (
+                <GoFrontButton
+                  style={{
+                    margin: 'auto',
+                    marginTop: '50px',
+                    padding: '10px 20px 10px 20px',
+                    backgroundColor: '#262626',
+                    borderRadius: '16px',
+                    color: '#BF94E4'
+                  }}
+                  label="예매하러 가기"
+                  onClick={() => {
+                    history.push('/ticketing/landing');
+                  }}
+                />
               )}
             </div>
             <ModalComponent
@@ -210,6 +239,7 @@ function TicketListPage({ ...props }) {
               }}
             >
               <ModalBox
+                somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
                 onClickYes={() => {
                   somoimRef.current.classList.add('hidden');
                 }}

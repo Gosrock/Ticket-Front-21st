@@ -28,12 +28,6 @@
   }
 }
 
-.modal-content {
-  margin: 24px 30px;
-  position: relative;
-  top: 0px;
-}
-
 .hidden {
   display: none;
 }

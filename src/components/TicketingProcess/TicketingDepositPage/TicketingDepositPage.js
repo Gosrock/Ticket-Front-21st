@@ -21,8 +21,9 @@ import { ticketDeposit } from '../../../state/actions-creators';
 const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketingDepositPage({ ...props }) {
-  const ticketCount = useSelector(state => state.ticketAmount.ticketCount);
-  console.log(ticketCount);
+  const studentID = useSelector(state => state.ticketStudentInfo.studentID);
+  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
+  console.log(studentID, smallGroup);
 
   const [accountName, setAccountName] = useState('');
   const modalRef = useRef();
@@ -44,13 +45,11 @@ function TicketingDepositPage({ ...props }) {
   };
 
   const purchaseButtonHandler = () => {
-    dispatch(ticketDeposit({ ticketCount, accountName }));
+    dispatch(ticketDeposit({ studentID, smallGroup, accountName }));
   };
 
   const kakaoClickButtonHandler = () => {
-    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(
-      ticketCount * 3000
-    )}`;
+    const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(3000)}`;
     openInNewTab(url);
   };
 

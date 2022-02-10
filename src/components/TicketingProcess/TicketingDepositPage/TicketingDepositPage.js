@@ -45,6 +45,7 @@ function TicketingDepositPage({ ...props }) {
   };
 
   const purchaseButtonHandler = () => {
+    console.log('purchase');
     dispatch(ticketDeposit({ studentID, smallGroup, accountName }));
   };
 

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 const pageOrder = [
-  '/', // 메인 페이지
+  // '/', // 메인 페이지
   '/ticketing/landing', // 티켓예매 처음일때 ( 인증안되었을 때 들어가는 페이지)
   '/list/landing', // 리스트 랜딩용 페이지
   '/auth/message', // 인증용 메세지 보내는 페이지
@@ -20,9 +20,11 @@ const pageOrder = [
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case ROUTE_CHANGE:
+      let pathname = action.payload;
+
+      if (pathname === state.currentPage) return state;
       // 액션에서 넘어온 pathName에 tickets형식인경우 파라미터를 없앰
       // 밑에 action.payload 를 전부 pathName으로 바꿧음 2월 2일 이찬진
-      let pathname = action.payload;
       if (pathname.includes('/tickets/')) {
         pathname = '/tickets/:ticketId';
         // console.log(pathname);

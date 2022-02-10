@@ -29,8 +29,8 @@ import './Toast/Toast.css';
 const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketListPage({ ...props }) {
-  const { phoneNumber } = useSelector(state => state.auth);
-  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
+  const phoneNumber = useSelector(state => state.auth.phoneNumber);
+  // const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
   const { tickets, pending } = useSelector(state => state.getTickets);
   const [bottomLabel, setBottomLabel] = useState('null');
   const [state, setState] = useState();
@@ -40,11 +40,12 @@ function TicketListPage({ ...props }) {
   const somoimRef = useRef();
 
   useEffect(() => {
+    console.log('action effect');
     setBottomLabel(
       `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
     );
     dispatch(getTickets({ phoneNumber }));
-  }, [phoneNumber]);
+  }, [phoneNumber, dispatch]);
 
   useEffect(() => {
     if (tickets.length > 0) {

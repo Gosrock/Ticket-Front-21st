@@ -38,7 +38,7 @@ export const messageValidation =
       // 스토어에 인증이 가능한 사용자인지 확인하기 위함
       store.dispatch(ticketingAvail());
 
-      history.push('/ticketing/amount');
+      history.push(nextUrl);
     } catch (e) {
       //400 ~
       console.log(e.response.data);

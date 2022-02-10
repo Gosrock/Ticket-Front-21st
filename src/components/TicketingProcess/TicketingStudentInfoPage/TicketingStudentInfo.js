@@ -24,8 +24,12 @@ import ModalBox from '../../ListProcess/TicketListPage/ModalBox/ModalBox';
 
 function TicketingStudentInfoPage({ ...props }) {
   const phoneNumber = useSelector(store => store.auth.phoneNumber);
-
-  const [studentID, setstudentID] = useState('C2');
+  const studentIDFromStore = useSelector(
+    state => state.ticketStudentInfo.studentID
+  );
+  const [studentID, setstudentID] = useState(
+    studentIDFromStore ? studentIDFromStore : 'C2'
+  );
   const [smallGroup, setSmallGroup] = useState(
     useSelector(state => state.ticketStudentInfo.smallGroup)
   ); //뒤로가기해서 왔을때 유지
@@ -52,7 +56,12 @@ function TicketingStudentInfoPage({ ...props }) {
   };
 
   const frontButtonHandler = () => {
-    if (studentID < 7) alert('학번을 정확히 입력해주세요.');
+    const validateID = new RegExp('/^C235[0-5][0-9][0-9]|C211[0-2][0-9][0-9]/');
+    if (studentID.length < 7) alert('학번을 정확히 입력해주세요.');
+    else if (!validateID.test(studentID))
+      alert(
+        '컴퓨터공학과, 산업공학과, 자율전공 22학번 외에는 예매하실 수 없습니다.\n고스락 카카오톡 채널로 언제든지 문의주세요!'
+      );
     else dispatch(ticketStudentInfo({ studentID, smallGroup }));
   };
 

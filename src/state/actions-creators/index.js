@@ -5,6 +5,7 @@ import { getTickets } from './getTickets';
 import { ticketStudentInfo } from './ticketStudentInfo';
 import { ticketDeposit } from './ticketDeposit';
 import { getTicket } from './getTicket';
+import { patchSomoim } from './patchSomoim';
 export {
   messageSend,
   messageValidation,
@@ -12,5 +13,6 @@ export {
   ticketStudentInfo,
   ticketDeposit,
   getTickets,
-  getTicket
+  getTicket,
+  patchSomoim
 };

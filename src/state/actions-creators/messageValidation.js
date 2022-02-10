@@ -5,6 +5,8 @@ import {
 } from '../action-types';
 import axios from 'axios';
 import history from '../../history';
+import { store } from '../storeSetting';
+import { ticketingAvail } from '../actions-creators';
 
 export const messageValidation =
   ({ messageToken, authenticationNumber }, nextUrl) =>
@@ -32,6 +34,10 @@ export const messageValidation =
       axios.defaults.headers.common.Authorization = `Bearer ${response.data.data.userAccessToken}`;
 
       // 자동으로 다음 단계로 넘어가게 끔
+
+      // 스토어에 인증이 가능한 사용자인지 확인하기 위함
+      store.dispatch(ticketingAvail());
+
       history.push('/ticketing/amount');
     } catch (e) {
       //400 ~

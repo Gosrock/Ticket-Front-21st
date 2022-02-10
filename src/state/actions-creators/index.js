@@ -6,13 +6,15 @@ import { ticketStudentInfo } from './ticketStudentInfo';
 import { ticketDeposit } from './ticketDeposit';
 import { getTicket } from './getTicket';
 import { patchSomoim } from './patchSomoim';
+import { ticketingAvail } from './ticketingAvail';
 export {
   messageSend,
   messageValidation,
   routeChange,
   ticketStudentInfo,
-  ticketDeposit,
+  ticketingAvail,
   getTickets,
   getTicket,
-  patchSomoim
+  patchSomoim,
+  ticketDeposit
 };

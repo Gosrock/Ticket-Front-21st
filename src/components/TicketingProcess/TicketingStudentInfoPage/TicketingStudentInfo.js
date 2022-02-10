@@ -79,8 +79,9 @@ function TicketingStudentInfoPage({ ...props }) {
             <ProcessTitle
               topLabel="안녕하세요,"
               bottomLabel={
+                phoneNumber &&
                 phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`) +
-                ' 님!'
+                  ' 님!'
               }
             />
             <ProcessDescription

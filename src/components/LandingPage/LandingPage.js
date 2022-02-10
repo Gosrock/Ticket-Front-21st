@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 
 function LandingPage() {
   const { authenticated } = useSelector(state => state.auth);
+  const { ticketingAvailable } = useSelector(state => state.ticketingAvail);
 
   const ticketingButtonHandler = () => {
     if (authenticated) {

@@ -8,7 +8,8 @@ const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
-
+//카카오톡 공유
+window.Kakao.init('8bb6e42c94b8560c4e4cc4ad2d1447f6');
 // other store enhancers if any
 const enhancer = composeEnhancers(applyMiddleware(reduxThunk));
 

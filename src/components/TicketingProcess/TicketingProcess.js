@@ -12,8 +12,14 @@ function TicketingProcess({ location }) {
     '/ticketing/amount'
   );
 
-  const RATicketingStudentInfoPage = requireAuth(TicketingStudentInfoPage);
-  const RATicketingDepositPage = requireAuth(TicketingDepositPage);
+  const RATicketingStudentInfoPage = requireAuth(
+    TicketingStudentInfoPage,
+    'TICKETING_AMOUNT'
+  );
+  const RATicketingDepositPage = requireAuth(
+    TicketingDepositPage,
+    'TICKETING_DEPOSIT'
+  );
   return (
     <Routes location={location}>
       <Route

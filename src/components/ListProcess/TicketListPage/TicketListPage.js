@@ -19,15 +19,18 @@ import {
 import './TicketListPage.css';
 import history from '../../../history';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTickets } from '../../../state/actions-creators';
+import { getTickets, patchSomoim } from '../../../state/actions-creators';
 import Tile from './Tile';
 import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from './ModalBox/ModalBox';
+import toast from './Toast/Toast';
+import './Toast/Toast.css';
 
 const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketListPage({ ...props }) {
   const { phoneNumber } = useSelector(state => state.auth);
+  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
   const { tickets, pending } = useSelector(state => state.getTickets);
   const [bottomLabel, setBottomLabel] = useState('null');
   const [state, setState] = useState();
@@ -35,6 +38,7 @@ function TicketListPage({ ...props }) {
   const dispatch = useDispatch();
   const modalRef = useRef();
   const somoimRef = useRef();
+
   useEffect(() => {
     setBottomLabel(
       `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
@@ -173,7 +177,10 @@ function TicketListPage({ ...props }) {
                       {tickets[0].smallGroup ? '신청 완료' : '신청하러 가기'}
                     </p>
                     <p>
-                      <span style={{ fontSize: '18px', fontWeight: '500' }}>
+                      <span
+                        className="mypage-grid-sub"
+                        style={{ fontWeight: '500' }}
+                      >
                         공연 후
                       </span>
                       <br />
@@ -241,13 +248,18 @@ function TicketListPage({ ...props }) {
               <ModalBox
                 somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
                 onClickYes={() => {
+                  dispatch(patchSomoim(true));
                   somoimRef.current.classList.add('hidden');
+                  toast('공연 전 소모임이 신청되었어요!');
                 }}
                 onClickNo={() => {
+                  dispatch(patchSomoim(false));
                   somoimRef.current.classList.add('hidden');
+                  toast('공연 전 소모임 신청이 취소되었어요.');
                 }}
               />
             </ModalComponent>
+            <div id="toast2"></div>
           </TicketBody>
         </InfoLayout>
       </TicketContainer>

@@ -3,7 +3,7 @@ import auth from './auth';
 import messageSend from './messageSend';
 import routePagination from './routePagination';
 import getTickets from './getTickets';
-import ticketAmount from './ticketAmount';
+import ticketStudentInfo from './ticketStudentInfo';
 import ticketDeposit from './ticketDeposit';
 import getTicket from './getTicket';
 
@@ -16,6 +16,6 @@ export default combineReducers({
   routePagination: routePagination,
   getTickets: getTickets,
   getTicket: getTicket,
-  ticketAmount: ticketAmount,
+  ticketStudentInfo: ticketStudentInfo,
   ticketDeposit: ticketDeposit
 });

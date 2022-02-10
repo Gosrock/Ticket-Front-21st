@@ -56,13 +56,13 @@ function TicketingStudentInfoPage({ ...props }) {
   };
 
   const frontButtonHandler = () => {
-    const validateID = new RegExp('/^C235[0-5][0-9][0-9]|C211[0-2][0-9][0-9]/');
-    if (studentID.length < 7) alert('학번을 정확히 입력해주세요.');
+    const validateID = new RegExp('^C235[0-5][0-9][0-9]|C211[0-2][0-9][0-9]');
+    if (studentID.length < 7) return alert('학번을 정확히 입력해주세요.');
     else if (!validateID.test(studentID))
-      alert(
+      return alert(
         '컴퓨터공학과, 산업공학과, 자율전공 22학번 외에는 예매하실 수 없습니다.\n고스락 카카오톡 채널로 언제든지 문의주세요!'
       );
-    else dispatch(ticketStudentInfo({ studentID, smallGroup }));
+    dispatch(ticketStudentInfo({ studentID, smallGroup }));
   };
 
   return (

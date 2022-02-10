@@ -60,7 +60,7 @@ function TicketingStudentInfoPage({ ...props }) {
     if (studentID.length < 7) alert('학번을 정확히 입력해주세요.');
     else if (!validateID.test(studentID))
       alert(
-        '컴퓨터공학과, 산업공학과, 자율전공 22학번 외에는 예매하실 수 없습니다.\n고스락 카카오톡 채널로 언제든지 문의주세요!'
+        '컴퓨터공학과, 산업공학과, 자율전공 22학번 외에는 예매하실 수 없습니다ㅠㅠ\n고스락 카카오톡 채널로 언제든지 문의주세요!'
       );
     else dispatch(ticketStudentInfo({ studentID, smallGroup }));
   };

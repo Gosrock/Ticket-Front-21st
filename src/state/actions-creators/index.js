@@ -4,9 +4,10 @@ import { routeChange } from './routeChange';
 import { getTickets } from './getTickets';
 import { ticketStudentInfo } from './ticketStudentInfo';
 import { ticketDeposit } from './ticketDeposit';
-import { getTicket } from './getTicket';
 import { patchSomoim } from './patchSomoim';
 import { ticketingAvail } from './ticketingAvail';
+import { getTicket } from './getTicket';
+
 export {
   messageSend,
   messageValidation,
@@ -14,7 +15,7 @@ export {
   ticketStudentInfo,
   ticketingAvail,
   getTickets,
-  getTicket,
   patchSomoim,
-  ticketDeposit
+  ticketDeposit,
+  getTicket
 };

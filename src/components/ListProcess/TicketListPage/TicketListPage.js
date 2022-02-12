@@ -52,6 +52,7 @@ function TicketListPage({ ...props }) {
   useEffect(() => {
     const validateID = new RegExp('^C2');
     if (tickets.length) {
+      console.log(validateID.test(tickets[0].studentID));
       setIsnewbie(validateID.test(tickets[0].studentID));
     }
   }, [tickets]);
@@ -216,41 +217,6 @@ function TicketListPage({ ...props }) {
 
                     isnewbie ? (
                       <Tile
-                        color={'#262626'}
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          textAlign: 'right',
-                          color: 'white',
-                          cursor: 'default'
-                        }}
-                      >
-                        <p
-                          className="mypage-grid-sub"
-                          style={{
-                            fontWeight: '700',
-                            textAlign: 'left',
-                            color: '#bf94e4'
-                          }}
-                        >
-                          {switchTicketStatusToText(tickets[0].status)}
-                        </p>
-                        <p>
-                          <span
-                            className="mypage-grid-title"
-                            style={{
-                              fontWeight: '700',
-                              marginTop: '3px',
-                              display: 'block'
-                            }}
-                          >
-                            입금정보
-                          </span>
-                        </p>
-                      </Tile>
-                    ) : (
-                      <Tile
                         onClick={() => {
                           somoimRef.current.classList.remove('hidden');
                         }}
@@ -293,6 +259,41 @@ function TicketListPage({ ...props }) {
                             }}
                           >
                             소모임
+                          </span>
+                        </p>
+                      </Tile>
+                    ) : (
+                      <Tile
+                        color={'#262626'}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          textAlign: 'right',
+                          color: 'white',
+                          cursor: 'default'
+                        }}
+                      >
+                        <p
+                          className="mypage-grid-sub"
+                          style={{
+                            fontWeight: '700',
+                            textAlign: 'left',
+                            color: '#bf94e4'
+                          }}
+                        >
+                          {switchTicketStatusToText(tickets[0].status)}
+                        </p>
+                        <p>
+                          <span
+                            className="mypage-grid-title"
+                            style={{
+                              fontWeight: '700',
+                              marginTop: '3px',
+                              display: 'block'
+                            }}
+                          >
+                            입금정보
                           </span>
                         </p>
                       </Tile>

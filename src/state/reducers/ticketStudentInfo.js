@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   studentID: null,
-  smallGroup: false
+  newbie: false
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -9,7 +9,7 @@ export default function (state = INITIAL_STATE, action) {
     return {
       ...state,
       studentID: action.payload.studentID,
-      smallGroup: action.payload.smallGroup
+      newbie: action.payload.newbie
     };
   }
   return state;

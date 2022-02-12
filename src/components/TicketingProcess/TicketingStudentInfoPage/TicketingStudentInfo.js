@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   GoFrontButton,
   ProgressLayout,
@@ -17,10 +17,6 @@ import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
 import { ticketStudentInfo } from '../../../state/actions-creators';
 import './TicketingStudentInfoPage.css';
-import { ReactComponent as Check } from '../../../assets/Check.svg';
-import { ReactComponent as GoFront } from '../../../assets/GoFrontArrow.svg';
-import ModalComponent from '../../ModalComponent.js/ModalComponent';
-import ModalBox from '../../ListProcess/TicketListPage/ModalBox/ModalBox';
 
 function TicketingStudentInfoPage({ ...props }) {
   const phoneNumber = useSelector(store => store.auth.phoneNumber);
@@ -28,12 +24,12 @@ function TicketingStudentInfoPage({ ...props }) {
     state => state.ticketStudentInfo.studentID
   );
   const [studentID, setstudentID] = useState(
-    studentIDFromStore ? studentIDFromStore : 'C2'
+    studentIDFromStore ? studentIDFromStore : ''
   );
-  const [smallGroup, setSmallGroup] = useState(
-    useSelector(state => state.ticketStudentInfo.smallGroup)
-  ); //뒤로가기해서 왔을때 유지
-  const smallGroupRef = useRef();
+  // const [smallGroup, setSmallGroup] = useState(
+  //   useSelector(state => state.ticketStudentInfo.smallGroup)
+  // ); //뒤로가기해서 왔을때 유지
+  // const smallGroupRef = useRef();
 
   const dispatch = useDispatch();
 
@@ -42,27 +38,26 @@ function TicketingStudentInfoPage({ ...props }) {
   };
 
   const studentIdInputHandler = e => {
-    setstudentID(e.target.value);
+    setstudentID(e.target.value.toUpperCase());
   };
 
-  const yesButtonHandler = () => {
-    setSmallGroup(true);
-    smallGroupRef.current.classList.add('hidden');
-  };
+  // const yesButtonHandler = () => {
+  //   setSmallGroup(true);
+  //   smallGroupRef.current.classList.add('hidden');
+  // };
 
-  const noButtonHandler = () => {
-    setSmallGroup(false);
-    smallGroupRef.current.classList.add('hidden');
-  };
+  // const noButtonHandler = () => {
+  //   setSmallGroup(false);
+  //   smallGroupRef.current.classList.add('hidden');
+  // };
 
   const frontButtonHandler = () => {
-    const validateID = new RegExp('^C235[0-5][0-9][0-9]|C211[0-2][0-9][0-9]');
     if (studentID.length < 7) return alert('학번을 정확히 입력해주세요.');
-    else if (!validateID.test(studentID))
-      return alert(
-        '컴퓨터공학과, 산업공학과, 자율전공 22학번 외에는 예매하실 수 없습니다.\n고스락 카카오톡 채널로 언제든지 문의주세요!'
-      );
-    dispatch(ticketStudentInfo({ studentID, smallGroup }));
+    // 학번 검증 부분
+    const validateID = new RegExp('^[A-C][0-9]*$');
+    if (!validateID.test(studentID))
+      return alert('학번을 정확히 입력해주세요.');
+    dispatch(ticketStudentInfo({ studentID }));
   };
 
   return (
@@ -84,10 +79,7 @@ function TicketingStudentInfoPage({ ...props }) {
                   ' 님!'
               }
             />
-            <ProcessDescription
-              topLabel="학번과 함께 소모임 신청 여부를"
-              bottomLabel="입력해주세요."
-            />
+            <ProcessDescription topLabel="학번을 입력해주세요" />
           </TicketBodyHeader>
           <TicketBody>
             <InputForm
@@ -95,7 +87,7 @@ function TicketingStudentInfoPage({ ...props }) {
               onChange={studentIdInputHandler}
               page="studentId"
             />
-            <div
+            {/* <div
               className="somoim-form"
               onClick={() => {
                 smallGroupRef.current.classList.remove('hidden');
@@ -123,7 +115,7 @@ function TicketingStudentInfoPage({ ...props }) {
                 </span>
                 <GoFront fill={smallGroup ? '#B6B7B8' : '#fff'} />
               </div>
-            </div>
+            </div> */}
           </TicketBody>
           <TicketBottom>
             <GoFrontButton
@@ -131,7 +123,7 @@ function TicketingStudentInfoPage({ ...props }) {
               label="다음으로"
             ></GoFrontButton>
           </TicketBottom>
-          <ModalComponent
+          {/* <ModalComponent
             ref={smallGroupRef}
             onClose={() => {
               smallGroupRef.current.classList.add('hidden');
@@ -142,7 +134,7 @@ function TicketingStudentInfoPage({ ...props }) {
               onClickNo={noButtonHandler}
               somoim={smallGroup}
             />
-          </ModalComponent>
+          </ModalComponent> */}
         </ProgressLayout>
       </TicketContainer>
     </TicketWrapContainer>

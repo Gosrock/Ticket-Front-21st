@@ -1,13 +1,17 @@
 import history from '../../history';
 
 export const ticketStudentInfo =
-  ({ studentID, smallGroup }) =>
+  ({ studentID }) =>
   dispatch => {
-    console.log(studentID, smallGroup);
+    //학번 신입생인지 아닌지 판단
+
+    const validateID = new RegExp('^C2');
+    const newbie = validateID.test(studentID);
+    console.log(studentID, newbie);
 
     const studentInfoObj = {
       studentID: studentID,
-      smallGroup: smallGroup
+      newbie: newbie
     };
     dispatch({ type: 'STUDENT_INFO_SUCCESS', payload: studentInfoObj });
 

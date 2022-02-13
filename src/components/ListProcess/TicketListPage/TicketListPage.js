@@ -136,7 +136,7 @@ function TicketListPage({ ...props }) {
                   : `아직 예매를 하지 않으셨어요!`
               }
             />
-            {tickets.length > 0 ? (
+            {tickets.length > 0 && isnewbie === false ? (
               <p>
                 <span
                   className="show-account"
@@ -167,19 +167,19 @@ function TicketListPage({ ...props }) {
                   >
                     <div>
                       <p
+                        className="mypage-grid-sub"
                         style={{
                           color: '#BF94E4',
-                          fontSize: '20px',
-                          lineHeight: '30px',
-                          fontWeight: '500'
+                          fontWeight: '700'
                         }}
                       >
                         예매일
                       </p>
                       <p
+                        className="mypage-grid-date"
                         style={{
                           color: '#B6B7B8',
-                          fontSize: '14px'
+                          marginTop: '5px'
                         }}
                       >
                         {moment(tickets[0].createdAt).format('YY.MM.DD')}
@@ -247,7 +247,7 @@ function TicketListPage({ ...props }) {
                             className="mypage-grid-sub"
                             style={{ fontWeight: '500' }}
                           >
-                            공연 후
+                            공연 전
                           </span>
                           <br />
                           <span

@@ -96,10 +96,6 @@
   color: #ddbff8;
 }
 
-.TicketList-item:hover {
-  transform: scale(1.02);
-}
-
 .list-pending-wrap {
   display: flex;
   justify-content: center;

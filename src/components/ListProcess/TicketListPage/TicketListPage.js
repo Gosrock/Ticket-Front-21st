@@ -35,7 +35,7 @@ function TicketListPage({ ...props }) {
   const [bottomLabel, setBottomLabel] = useState('null');
   const [isnewbie, setIsnewbie] = useState(false);
 
-  const [state, setState] = useState();
+  //const [state, setState] = useState();
 
   const dispatch = useDispatch();
   const modalRef = useRef();
@@ -57,7 +57,7 @@ function TicketListPage({ ...props }) {
     }
   }, [tickets]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (tickets.length > 0) {
       switch (tickets[0].status) {
         case 'confirm-deposit':
@@ -81,7 +81,7 @@ function TicketListPage({ ...props }) {
       }
     }
     console.log(tickets);
-  }, [tickets]);
+  }, [tickets]); */
 
   const kakaoClickButtonHandler = () => {
     const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(3000)}`;
@@ -303,11 +303,7 @@ function TicketListPage({ ...props }) {
                   <TicketList
                     style={{ gridColumn: 'span 2' }}
                     key={tickets[0]._id}
-                    performdate="22.03.10"
-                    bookdate={moment(tickets[0].createdAt).format('YY.MM.DD')}
-                    StateIcon={state}
-                    onClick={() => {
-                      console.log('click');
+                    onClickQR={() => {
                       history.push(`/tickets/${tickets[0]._id}`);
                     }}
                   />

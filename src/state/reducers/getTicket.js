@@ -35,6 +35,11 @@ export default function (state = INITIAL_STATE, action) {
         pending: false,
         invalidId: true
       };
+    case 'TICKET_ENTER_SUCCESS':
+      return {
+        ...state,
+        ticket: action.payload
+      };
     default:
       return state;
   }

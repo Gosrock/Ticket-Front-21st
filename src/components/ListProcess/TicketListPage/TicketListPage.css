@@ -57,6 +57,9 @@
 .mypage-grid-title {
   font-size: 6.86vw;
 }
+.mypage-grid-date {
+  font-size: 3.5vw;
+}
 
 @media screen and (min-width: 450px) {
   .mypage-square {
@@ -76,6 +79,9 @@
   .mypage-grid-title {
     font-size: 31px;
   }
+  .mypage-grid-date {
+    font-size: 15.75px;
+  }
 }
 
 .show-account {
@@ -88,10 +94,6 @@
 
 .show-account:active {
   color: #ddbff8;
-}
-
-.TicketList-item:hover {
-  transform: scale(1.02);
 }
 
 .list-pending-wrap {

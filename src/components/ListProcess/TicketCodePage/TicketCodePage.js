@@ -21,6 +21,7 @@ import { ReactComponent as InfoCircle } from '../../../assets/InfoCircle.svg';
 import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from './ModalBox/ModalBox';
 import io from 'socket.io-client';
+import toast from '../TicketListPage/Toast/Toast';
 
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
@@ -44,6 +45,7 @@ function TicketCodePage({ ...props }) {
       socket.on('enter', data => {
         if (data.enterState) {
           dispatch({ type: 'TICKET_ENTER_SUCCESS', payload: data.ticketInfo });
+          toast('입장 완료', 5000);
         }
       });
     }
@@ -216,6 +218,7 @@ function TicketCodePage({ ...props }) {
             }}
           />
         </ModalComponent>
+        <div id="toast2"></div>
       </TicketContainer>
     </TicketWrapContainer>
   );

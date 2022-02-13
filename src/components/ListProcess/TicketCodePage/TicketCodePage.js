@@ -20,14 +20,36 @@ import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { ReactComponent as InfoCircle } from '../../../assets/InfoCircle.svg';
 import ModalComponent from '../../ModalComponent.js/ModalComponent';
 import ModalBox from './ModalBox/ModalBox';
+import io from 'socket.io-client';
+import toast from '../TicketListPage/Toast/Toast';
 
 function TicketCodePage({ ...props }) {
   window.Kakao.isInitialized();
   const { ticketId } = useParams();
   const { authenticated } = useSelector(state => state.auth);
   const { ticket, pending, invalidId } = useSelector(state => state.getTicket);
+  const [socket, setSocket] = useState();
   const dispatch = useDispatch();
   const modalRef = useRef();
+
+  useEffect(() => {
+    if (!socket) {
+      setSocket(
+        io('https://api.gosrock.link/socket/tickets', {
+          auth: {
+            ticketId: ticketId
+          }
+        })
+      );
+    } else {
+      socket.on('enter', data => {
+        if (data.enterState) {
+          dispatch({ type: 'TICKET_ENTER_SUCCESS', payload: data.ticketInfo });
+          toast('입장 완료', 5000);
+        }
+      });
+    }
+  }, [socket]);
 
   /***wep share api***/
   /*const shareEvent = async() => {
@@ -79,7 +101,7 @@ function TicketCodePage({ ...props }) {
   }, [ticketId]);
 
   useEffect(() => {
-    console.log(ticket);
+    console.log(ticket, '티켓정보 바뀜!');
   }, [ticket]);
 
   return (
@@ -153,11 +175,16 @@ function TicketCodePage({ ...props }) {
             >
               <React.Fragment>
                 {(() => {
-                  if (
-                    ticket.status == 'confirm-deposit' ||
-                    ticket.status == 'enter'
-                  ) {
+                  if (ticket.status == 'confirm-deposit') {
                     return <Ticket payment={true} QRvalue={ticketId}></Ticket>;
+                  } else if (ticket.status == 'enter') {
+                    return (
+                      <Ticket
+                        payment={true}
+                        QRvalue={ticketId}
+                        enter={true}
+                      ></Ticket>
+                    );
                   } else {
                     return <Ticket payment={false} QRvalue={ticketId}></Ticket>;
                   }
@@ -191,6 +218,7 @@ function TicketCodePage({ ...props }) {
             }}
           />
         </ModalComponent>
+        <div id="toast2"></div>
       </TicketContainer>
     </TicketWrapContainer>
   );

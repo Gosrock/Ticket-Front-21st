@@ -60,7 +60,7 @@ function TicketListPage({ ...props }) {
         case 'enter':
           setState(<StateIcon background="green" label="입장 완료" />);
           break;
-        case 'none-deposit':
+        case 'non-deposit':
           setState(
             <StateIcon background="green" label="미입금 처리" word="five" />
           );

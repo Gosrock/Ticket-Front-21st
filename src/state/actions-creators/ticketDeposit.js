@@ -24,9 +24,9 @@ export const ticketDeposit =
       //  console.log('ticketAmount action', response.data.data);
 
       dispatch({ type: TICKET_DEPOSIT_SUCCESS, payload: response.data.data });
-      history.push('/list/mytickets');
 
       // 다음티켓예매 상태진행을 불가로 만들기 위함 (1인 1매)
+      history.push('/list/mytickets');
       store.dispatch(ticketingAvail());
       // 자동으로 다음 단계로 넘어가게 끔
     } catch (e) {

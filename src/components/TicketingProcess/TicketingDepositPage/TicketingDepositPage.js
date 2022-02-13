@@ -18,16 +18,22 @@ import './TicketingDepositPage.css';
 import history from '../../../history';
 import { useSelector, useDispatch } from 'react-redux';
 import { ticketDeposit } from '../../../state/actions-creators';
+import TicketingOBDeposit from './TicketingOBDeposit';
+import TicketingNewbieDeposit from './TicketingNewbieDeposit';
+
 const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketingDepositPage({ ...props }) {
   const studentID = useSelector(state => state.ticketStudentInfo.studentID);
-  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
-  console.log(studentID, smallGroup);
+  const newbie = useSelector(state => state.ticketStudentInfo.newbie);
+  // console.log(studentID, smallGroup);
 
   const [accountName, setAccountName] = useState('');
-  const modalRef = useRef();
+  const [smallGroup, setSmallGroup] = useState(false);
 
+  const modalRef = useRef();
+  // 새내기용 스몰 구룹
+  const smallGroupRef = useRef();
   const dispatch = useDispatch();
 
   const gobackButtonHandler = () => {
@@ -38,19 +44,32 @@ function TicketingDepositPage({ ...props }) {
     setAccountName(e.target.value);
   };
 
+  // OB 용
   const frontButtonHandler = () => {
     if (accountName.length < 2)
       alert('입금자명을 두글자 이상으로 입력해주세요.');
     else modalRef.current.classList.remove('hidden');
   };
-
+  // OB 용
   const purchaseButtonHandler = () => {
+    console.log('purchase');
     dispatch(ticketDeposit({ studentID, smallGroup, accountName }));
   };
-
+  // OB 용
   const kakaoClickButtonHandler = () => {
     const url = `https://qr.kakaopay.com/${KAKAO_ID}${toHexValue(3000)}`;
     openInNewTab(url);
+  };
+
+  // newbie 용
+  const yesButtonHandler = () => {
+    setSmallGroup(true);
+    smallGroupRef.current.classList.add('hidden');
+  };
+  // newbie 용
+  const noButtonHandler = () => {
+    setSmallGroup(false);
+    smallGroupRef.current.classList.add('hidden');
   };
 
   return (
@@ -63,40 +82,28 @@ function TicketingDepositPage({ ...props }) {
         }
       >
         <ProgressLayout>
-          <TicketBodyHeader>
-            <ProcessTitle topLabel="입금자명을" bottomLabel="입력해주세요." />
-            <ProcessDescription topLabel="이름은 4자 이내로 입력해주세요." />
-          </TicketBodyHeader>
-          <TicketBody>
-            <div className="input-form">
-              <InputForm
-                value={accountName}
-                onChange={accountNameInputHandler}
-                page="name"
-                ticketCount={1}
-              />
-            </div>
-            <div className="modal hidden" ref={modalRef}>
-              <div
-                className="modal-overlay"
-                onClick={() => {
-                  modalRef.current.classList.add('hidden');
-                }}
-              ></div>
-              <div className="modal-content">
-                <Modal
-                  onClickKakao={kakaoClickButtonHandler}
-                  onClickPurchased={purchaseButtonHandler}
-                />
-              </div>
-            </div>
-          </TicketBody>
-          <TicketBottom>
-            <GoFrontButton
-              onClick={frontButtonHandler}
-              label="티켓 발급하기"
-            ></GoFrontButton>
-          </TicketBottom>
+          {newbie === false ? (
+            <TicketingOBDeposit
+              modalRef={modalRef}
+              accountName={accountName}
+              frontButtonHandler={frontButtonHandler}
+              accountNameInputHandler={accountNameInputHandler}
+              purchaseButtonHandler={purchaseButtonHandler}
+              kakaoClickButtonHandler={kakaoClickButtonHandler}
+            />
+          ) : (
+            <TicketingNewbieDeposit
+              smallGroup={smallGroup}
+              smallGroupRef={smallGroupRef}
+              modalRef={modalRef}
+              accountName={accountName}
+              frontButtonHandler={frontButtonHandler}
+              purchaseButtonHandler={purchaseButtonHandler}
+              accountNameInputHandler={accountNameInputHandler}
+              yesButtonHandler={yesButtonHandler}
+              noButtonHandler={noButtonHandler}
+            ></TicketingNewbieDeposit>
+          )}
         </ProgressLayout>
       </TicketContainer>
     </TicketWrapContainer>

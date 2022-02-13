@@ -29,10 +29,12 @@ import './Toast/Toast.css';
 const KAKAO_ID = 'Ej7zzaMiL';
 
 function TicketListPage({ ...props }) {
-  const { phoneNumber } = useSelector(state => state.auth);
-  const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
+  const phoneNumber = useSelector(state => state.auth.phoneNumber);
+  // const smallGroup = useSelector(state => state.ticketStudentInfo.smallGroup);
   const { tickets, pending } = useSelector(state => state.getTickets);
   const [bottomLabel, setBottomLabel] = useState('null');
+  const [isnewbie, setIsnewbie] = useState(false);
+
   const [state, setState] = useState();
 
   const dispatch = useDispatch();
@@ -40,11 +42,20 @@ function TicketListPage({ ...props }) {
   const somoimRef = useRef();
 
   useEffect(() => {
+    console.log('action effect');
     setBottomLabel(
       `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
     );
     dispatch(getTickets({ phoneNumber }));
-  }, [phoneNumber]);
+  }, [phoneNumber, dispatch]);
+
+  useEffect(() => {
+    const validateID = new RegExp('^C2');
+    if (tickets.length) {
+      console.log(validateID.test(tickets[0].studentID));
+      setIsnewbie(validateID.test(tickets[0].studentID));
+    }
+  }, [tickets]);
 
   useEffect(() => {
     if (tickets.length > 0) {
@@ -85,6 +96,21 @@ function TicketListPage({ ...props }) {
     setTimeout(() => {
       return newWindow.close();
     }, 3000);
+  };
+
+  const switchTicketStatusToText = text => {
+    switch (text) {
+      case 'confirm-deposit':
+        return '입금 확인';
+      case 'pending-deposit':
+        return '입금 확인중';
+      case 'enter':
+        return '입장 완료';
+      case 'non-deposit':
+        return '미입금 처리';
+      default:
+        break;
+    }
   };
 
   return (
@@ -131,71 +157,149 @@ function TicketListPage({ ...props }) {
                 </div>
               ) : tickets.length > 0 ? (
                 <div className="mypage-grid">
-                  <Tile color={'#363636'}>
-                    <p
-                      className="mypage-grid-title"
-                      style={{
-                        fontWeight: '700',
-                        color: '#ffffff'
-                      }}
-                    >
-                      {tickets[0].studentID}
-                    </p>
-                    <p
-                      className="mypage-grid-sub"
-                      style={{
-                        fontWeight: '500',
-                        color: '#b6b7b8',
-                        marginTop: '5px'
-                      }}
-                    >
-                      {tickets[0].accountName}
-                    </p>
-                  </Tile>
                   <Tile
-                    onClick={() => {
-                      somoimRef.current.classList.remove('hidden');
-                    }}
-                    color={'#262626'}
+                    color={'#363636'}
                     style={{
                       display: 'flex',
                       flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      textAlign: 'right',
-                      color: 'white',
-                      cursor: 'default'
+                      justifyContent: 'space-between'
                     }}
                   >
-                    <p
-                      className="mypage-grid-sub"
-                      style={{
-                        fontWeight: '700',
-                        textAlign: 'left',
-                        color: '#bf94e4'
-                      }}
-                    >
-                      {tickets[0].smallGroup ? '신청 완료' : '신청하러 가기'}
-                    </p>
-                    <p>
-                      <span
-                        className="mypage-grid-sub"
-                        style={{ fontWeight: '500' }}
+                    <div>
+                      <p
+                        style={{
+                          color: '#BF94E4',
+                          fontSize: '20px',
+                          lineHeight: '30px',
+                          fontWeight: '500'
+                        }}
                       >
-                        공연 후
-                      </span>
-                      <br />
-                      <span
+                        예매일
+                      </p>
+                      <p
+                        style={{
+                          color: '#B6B7B8',
+                          fontSize: '14px'
+                        }}
+                      >
+                        {moment(tickets[0].createdAt).format('YY.MM.DD')}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p
+                        className="mypage-grid-sub"
+                        style={{
+                          fontWeight: '500',
+                          color: '#b6b7b8',
+                          marginTop: '5px',
+                          textAlign: 'right'
+                        }}
+                      >
+                        {tickets[0].accountName}
+                      </p>
+                      <p
                         className="mypage-grid-title"
                         style={{
                           fontWeight: '700',
-                          marginTop: '3px',
-                          display: 'block'
+                          lineHeight: '33px',
+                          textAlign: 'right',
+
+                          color: '#ffffff'
                         }}
                       >
-                        소모임
-                      </span>
-                    </p>
+                        {tickets[0].studentID}
+                      </p>
+                    </div>
                   </Tile>
+                  {
+                    /* 티켓의 정보의 학번이 신입생이면 신입생(기존) OB 면 입금정보*/
+
+                    isnewbie ? (
+                      <Tile
+                        onClick={() => {
+                          somoimRef.current.classList.remove('hidden');
+                        }}
+                        color={'#262626'}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          textAlign: 'right',
+                          color: 'white',
+                          cursor: 'default'
+                        }}
+                      >
+                        <p
+                          className="mypage-grid-sub"
+                          style={{
+                            fontWeight: '700',
+                            textAlign: 'left',
+                            color: '#bf94e4'
+                          }}
+                        >
+                          {tickets[0].smallGroup
+                            ? '신청 완료'
+                            : '신청하러 가기'}
+                        </p>
+                        <p>
+                          <span
+                            className="mypage-grid-sub"
+                            style={{ fontWeight: '500' }}
+                          >
+                            공연 후
+                          </span>
+                          <br />
+                          <span
+                            className="mypage-grid-title"
+                            style={{
+                              fontWeight: '700',
+                              marginTop: '3px',
+                              display: 'block'
+                            }}
+                          >
+                            소모임
+                          </span>
+                        </p>
+                      </Tile>
+                    ) : (
+                      <Tile
+                        color={'#262626'}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          textAlign: 'right',
+                          color: 'white',
+                          cursor: 'default'
+                        }}
+                      >
+                        <p
+                          className="mypage-grid-sub"
+                          style={{
+                            fontWeight: '700',
+                            textAlign: 'left',
+                            color: '#bf94e4'
+                          }}
+                        >
+                          {switchTicketStatusToText(tickets[0].status)}
+                        </p>
+                        <p>
+                          <span
+                            className="mypage-grid-title"
+                            style={{
+                              fontWeight: '700',
+                              marginTop: '3px',
+                              display: 'block'
+                            }}
+                          >
+                            입금정보
+                          </span>
+                        </p>
+                      </Tile>
+                    )
+                  }
+
                   <TicketList
                     style={{ gridColumn: 'span 2' }}
                     key={tickets[0]._id}

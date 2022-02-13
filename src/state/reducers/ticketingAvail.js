@@ -15,7 +15,7 @@ export default function (state = INITIAL_STATE, action) {
     case GET_TICKETINGAVAIL_PENDING:
       return {
         ...state,
-        ticketingAvailable: null,
+        ticketingAvailable: true,
         errorMessage: null,
         pending: true
       };
@@ -29,7 +29,7 @@ export default function (state = INITIAL_STATE, action) {
     case GET_TICKETINGAVAIL_ERROR:
       return {
         ...state,
-        ticketingAvailable: null,
+        ticketingAvailable: false,
         errorMessage: action.payload,
         pending: false
       };

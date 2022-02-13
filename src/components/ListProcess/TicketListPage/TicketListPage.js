@@ -355,7 +355,7 @@ function TicketListPage({ ...props }) {
                 onClickNo={() => {
                   dispatch(patchSomoim(false));
                   somoimRef.current.classList.add('hidden');
-                  toast('공연 전 소모임 신청이 취소되었어요.');
+                  toast('공연 전 소모임 신청을 취소했어요.');
                 }}
               />
             </ModalComponent>

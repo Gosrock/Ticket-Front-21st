@@ -17,14 +17,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { messageValidation } from '../../../state/actions-creators';
 import history from '../../../history';
+import { messageSend } from '../../../state/actions-creators';
 
 function SendValidationNumberPage({ ...props }) {
   const [validationNumber, setValidationNumber] = useState('');
 
   const dispatch = useDispatch();
 
-  const { messageToken, validationNumber: reducerValidationNumber } =
-    useSelector(state => state.messageSend);
+  const {
+    messageToken,
+    validationNumber: reducerValidationNumber,
+    phoneNumber
+  } = useSelector(state => state.messageSend);
 
   const { errorMessage, pending } = useSelector(state => state.auth);
   //processForValidationNextPage 는 메시지 인증하는 프로세스가 두가지의 단계 ,
@@ -55,6 +59,10 @@ function SendValidationNumberPage({ ...props }) {
         processForValidationNextPage ? processForValidationNextPage : '/'
       )
     );
+  };
+
+  const resendButtonHandler = () => {
+    dispatch(messageSend({ phoneNumber }));
   };
 
   useEffect(() => {
@@ -89,6 +97,7 @@ function SendValidationNumberPage({ ...props }) {
           </TicketBodyHeader>
           <TicketBody>
             <InputForm
+              resend={resendButtonHandler}
               value={validationNumber}
               onChange={validationNumberInputHandler}
               page="validate"

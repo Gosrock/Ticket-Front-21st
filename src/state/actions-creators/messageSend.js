@@ -17,7 +17,10 @@ export const messageSend =
       });
       console.log('messageSend action', response.data.data);
 
-      dispatch({ type: MESSAGE_SEND_SUCCESS, payload: response.data.data });
+      dispatch({
+        type: MESSAGE_SEND_SUCCESS,
+        payload: { data: response.data.data, phoneNumber }
+      });
 
       // 자동으로 다음 단계로 넘어가게 끔
       history.push('/auth/validation');

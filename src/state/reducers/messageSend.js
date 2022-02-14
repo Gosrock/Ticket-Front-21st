@@ -6,6 +6,7 @@ import {
 const INITIAL_STATE = {
   messageToken: null,
   errorMessage: null,
+  phoneNumber: '',
   // 테스트용
   validationNumber: null,
   pending: false
@@ -19,6 +20,7 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         messageToken: null,
         errorMessage: null,
+
         // 테스트용
         validationNumber: null,
         pending: true
@@ -26,9 +28,10 @@ export default function (state = INITIAL_STATE, action) {
     case MESSAGE_SEND_SUCCESS:
       return {
         ...state,
-        messageToken: action.payload.messageToken,
+        messageToken: action.payload.data.messageToken,
         // 테스트용
-        validationNumber: action.payload.authenticationNumber,
+        validationNumber: action.payload.data.authenticationNumber,
+        phoneNumber: action.payload.phoneNumber,
         errorMessage: null,
         pending: false
       };

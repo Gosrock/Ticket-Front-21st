@@ -26,7 +26,7 @@ import ModalBox from './ModalBox/ModalBox';
 import toast from './Toast/Toast';
 import './Toast/Toast.css';
 
-const KAKAO_ID = 'Ej7zzaMiL';
+const KAKAO_ID = 'FZu93vV2t';
 
 function TicketListPage({ ...props }) {
   const phoneNumber = useSelector(state => state.auth.phoneNumber);
@@ -332,6 +332,8 @@ function TicketListPage({ ...props }) {
               }}
             >
               <Modal
+                accountName="국민 (이한비)"
+                accountNumber="448601-01-602183"
                 page="list"
                 onClickClose={() => {
                   modalRef.current.classList.add('hidden');

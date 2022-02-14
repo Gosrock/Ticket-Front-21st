@@ -13,7 +13,7 @@ import { ticketDeposit } from '../../../state/actions-creators';
 import TicketingOBDeposit from './TicketingOBDeposit';
 import TicketingNewbieDeposit from './TicketingNewbieDeposit';
 
-const KAKAO_ID = 'Ej7zzaMiL';
+const KAKAO_ID = 'FZu93vV2t';
 
 function TicketingDepositPage({ ...props }) {
   const studentID = useSelector(state => state.ticketStudentInfo.studentID);

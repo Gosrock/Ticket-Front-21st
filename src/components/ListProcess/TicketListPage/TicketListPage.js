@@ -347,15 +347,15 @@ function TicketListPage({ ...props }) {
             >
               <ModalBox
                 somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
-                onClickYes={() => {
-                  dispatch(patchSomoim(true));
-                  somoimRef.current.classList.add('hidden');
-                  toast('공연 전 소모임이 신청되었어요!');
+                onClickToggle={() => {
+                  if (!tickets[0].smallGroup) dispatch(patchSomoim(true));
+                  else dispatch(patchSomoim(false));
                 }}
-                onClickNo={() => {
-                  dispatch(patchSomoim(false));
+                onClickClose={() => {
                   somoimRef.current.classList.add('hidden');
-                  toast('공연 전 소모임 신청을 취소했어요.');
+                  if (tickets[0].smallGroup)
+                    toast('공연 전 소모임이 신청되었어요!');
+                  else toast('공연 전 소모임 신청을 취소했어요.');
                 }}
               />
             </ModalComponent>

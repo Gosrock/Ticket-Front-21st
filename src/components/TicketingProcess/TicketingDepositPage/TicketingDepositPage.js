@@ -1,18 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {
-  GoFrontButton,
   ProgressLayout,
   TicketContainer,
-  TicketBodyHeader,
-  TicketBody,
-  TicketBottom,
   TicketWrapContainer,
-  ProcessTitle,
-  ProcessDescription,
-  InputForm,
   TicketTop,
-  GoBackButton,
-  Modal
+  GoBackButton
 } from 'gosrock-storybook';
 import './TicketingDepositPage.css';
 import history from '../../../history';
@@ -32,7 +24,7 @@ function TicketingDepositPage({ ...props }) {
   const [smallGroup, setSmallGroup] = useState(false);
 
   const modalRef = useRef();
-  // 새내기용 스몰 구룹
+  // 새내기용 스몰 구룹ㅅ
   const smallGroupRef = useRef();
   const dispatch = useDispatch();
 
@@ -62,13 +54,12 @@ function TicketingDepositPage({ ...props }) {
   };
 
   // newbie 용
-  const yesButtonHandler = () => {
-    setSmallGroup(true);
-    smallGroupRef.current.classList.add('hidden');
+  const toggleButtonHandler = () => {
+    if (!smallGroup) setSmallGroup(true);
+    else setSmallGroup(false);
   };
   // newbie 용
-  const noButtonHandler = () => {
-    setSmallGroup(false);
+  const closeButtonHandler = () => {
     smallGroupRef.current.classList.add('hidden');
   };
 
@@ -100,8 +91,8 @@ function TicketingDepositPage({ ...props }) {
               frontButtonHandler={frontButtonHandler}
               purchaseButtonHandler={purchaseButtonHandler}
               accountNameInputHandler={accountNameInputHandler}
-              yesButtonHandler={yesButtonHandler}
-              noButtonHandler={noButtonHandler}
+              toggleButtonHandler={toggleButtonHandler}
+              closeButtonHandler={closeButtonHandler}
             ></TicketingNewbieDeposit>
           )}
         </ProgressLayout>

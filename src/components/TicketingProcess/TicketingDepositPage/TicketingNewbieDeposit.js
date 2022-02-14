@@ -22,8 +22,8 @@ function TicketingOBDeposit({
   modalRef,
   purchaseButtonHandler,
   frontButtonHandler,
-  yesButtonHandler,
-  noButtonHandler
+  toggleButtonHandler,
+  closeButtonHandler
 }) {
   return (
     <>
@@ -95,8 +95,8 @@ function TicketingOBDeposit({
           }}
         >
           <ModalBox
-            onClickYes={yesButtonHandler}
-            onClickNo={noButtonHandler}
+            onClickToggle={toggleButtonHandler}
+            onClickClose={closeButtonHandler}
             somoim={smallGroup}
           />
         </ModalComponent>

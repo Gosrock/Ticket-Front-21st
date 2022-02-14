@@ -1,9 +1,11 @@
 import React from 'react';
 import './ModalBox.css';
-import { ReactComponent as Close } from '../../../../assets/Close.svg';
+// { ReactComponent as Close } from '../../../../assets/Close.svg';
 import { ReactComponent as Check } from '../../../../assets/Check.svg';
+import { ReactComponent as Circle } from '../../../../assets/circle.svg';
+import { ReactComponent as Close } from '../../../../assets/arrow-right-circle.svg';
 
-const ModalBox = ({ onClickYes, onClickNo, somoim }) => {
+const ModalBox = ({ onClickToggle, onClickClose, somoim }) => {
   return (
     <div className="somoim-modal-box">
       <div className="modal-container modal-top">
@@ -48,10 +50,12 @@ const ModalBox = ({ onClickYes, onClickNo, somoim }) => {
 
       <div className="modal-bottom">
         <div className="modal-container">
-          <button className="CloseButton" onClick={onClickYes}>
-            <span>신청해요</span>
+          <button className="CloseButton" onClick={onClickToggle}>
+            <span style={{ color: somoim ? 'white' : '#b6b7b8' }}>
+              신청하기
+            </span>
             <div className="modal--svg" style={{ marginLeft: '11px' }}>
-              <Check fill={somoim ? '#bf94e4' : '#b6b7b8'} />
+              {somoim ? <Check fill="#bf94e4" /> : <Circle fill="#b6b7b8" />}
             </div>
           </button>
         </div>
@@ -63,10 +67,10 @@ const ModalBox = ({ onClickYes, onClickNo, somoim }) => {
           }}
         ></div>
         <div className="modal-container">
-          <button className="CloseButton" onClick={onClickNo}>
-            <span>안할래요</span>
+          <button className="CloseButton" onClick={onClickClose}>
+            <span>확인</span>
             <div className="modal--svg" style={{ marginLeft: '11px' }}>
-              <Close fill={'#BF94E4'} />
+              <Close fill={'white'} />
             </div>
           </button>
         </div>

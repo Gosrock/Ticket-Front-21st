@@ -26,7 +26,7 @@ import ModalBox from './ModalBox/ModalBox';
 import toast from './Toast/Toast';
 import './Toast/Toast.css';
 
-const KAKAO_ID = 'Ej7zzaMiL';
+const KAKAO_ID = 'FZu93vV2t';
 
 function TicketListPage({ ...props }) {
   const phoneNumber = useSelector(state => state.auth.phoneNumber);
@@ -332,6 +332,8 @@ function TicketListPage({ ...props }) {
               }}
             >
               <Modal
+                accountName="국민 (이한비)"
+                accountNumber="448601-01-602183"
                 page="list"
                 onClickClose={() => {
                   modalRef.current.classList.add('hidden');
@@ -347,15 +349,15 @@ function TicketListPage({ ...props }) {
             >
               <ModalBox
                 somoim={tickets.length > 0 ? tickets[0].smallGroup : null}
-                onClickYes={() => {
-                  dispatch(patchSomoim(true));
-                  somoimRef.current.classList.add('hidden');
-                  toast('공연 전 소모임이 신청되었어요!');
+                onClickToggle={() => {
+                  if (!tickets[0].smallGroup) dispatch(patchSomoim(true));
+                  else dispatch(patchSomoim(false));
                 }}
-                onClickNo={() => {
-                  dispatch(patchSomoim(false));
+                onClickClose={() => {
                   somoimRef.current.classList.add('hidden');
-                  toast('공연 전 소모임 신청을 취소했어요.');
+                  if (tickets[0].smallGroup)
+                    toast('공연 전 소모임이 신청되었어요!');
+                  else toast('공연 전 소모임 신청을 취소했어요.');
                 }}
               />
             </ModalComponent>

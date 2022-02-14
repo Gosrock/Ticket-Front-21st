@@ -42,6 +42,8 @@ function TicketingOBDeposit({
           ></div>
           <div className="modal-content">
             <Modal
+              accountName="국민 (이한비)"
+              accountNumber="448601-01-602183"
               onClickKakao={kakaoClickButtonHandler}
               onClickPurchased={purchaseButtonHandler}
             />

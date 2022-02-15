@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!--카카오톡 공유-->
+    <!--카카오톡 공유-->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
@@ -17,11 +19,13 @@
     <meta content="#121212" name="apple-mobile-web-app-status-bar-style" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
 
+    <meta property="og:title" content="고스락 티켓" />
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+      property="og:description"
+      content="3월 10일 오후 7시, 합정 라디오 가가 라이브홀에서 만나요!"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta property="og:image" content="%PUBLIC_URL%/og.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/appleicon.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -36,7 +40,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>고스락 티켓</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -51,6 +55,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    
   </body>
 </html>

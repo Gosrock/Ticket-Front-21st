@@ -9,14 +9,15 @@ function HomePage({ ticketing, list }) {
     mainAnimation();
   }, []);
 
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1000px)' });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 900px)' });
+  const isBigScreen740 = useMediaQuery({ query: '(min-width: 740px)' });
 
   return (
     <main className>
       <header class="header">
         <div class="container">
           <div class="inner-container header-content">
-            <div class="header-title"></div>
+            <div class="header-title">gosrock.</div>
             <div className="header-link">
               <div onClick={list}>예매 내역</div>
               <div
@@ -47,27 +48,56 @@ function HomePage({ ticketing, list }) {
             <br /> 초대합니다
           </h1>
         </div>
-        <div className="sticky-elem performance-info a">
-          <p>
-            <span className="br">‘고스락'은 순우리말입니다.</span> ‘정상',
-            ‘최고', ‘꼭대기'라는 뜻으로,
-            <br />
-            최고의 공연을 위한 우리의 열정을 상징합니다.
-          </p>
-        </div>
-        <div className="sticky-elem performance-info b">
-          <p>
-            일년에 두번 열리는 고스락의 클럽 정기공연은 2009년 8월
-            <br /> 제1회를 시작으로 10년간 끊임없이 이어져 왔습니다.
-          </p>
-        </div>
-        <div className="sticky-elem performance-info c">
-          <p>
-            2019년 제 20회 공연 이후로 코로나로 인해 잠시 멈췄던 공연을
-            <br />
-            올해 3월 10일, 다시 시작합니다!
-          </p>
-        </div>
+        {isBigScreen740 ? (
+          <>
+            <div className="sticky-elem performance-info a">
+              <p>
+                <span className="br">‘고스락'은 순우리말입니다.</span> ‘정상',
+                ‘최고', ‘꼭대기'라는 뜻으로,
+                <br />
+                최고의 공연을 위한 우리의 열정을 상징합니다.
+              </p>
+            </div>
+            <div className="sticky-elem performance-info b">
+              <p>
+                일년에 두번 열리는 고스락의 클럽 정기공연은 2009년 8월
+                <br /> 제1회를 시작으로 10년간 끊임없이 이어져 왔습니다.
+              </p>
+            </div>
+            <div className="sticky-elem performance-info c">
+              <p>
+                2019년 제 20회 공연 이후로 코로나로 인해 잠시 멈췄던 공연을
+                <br />
+                올해 3월 10일, 다시 시작합니다!
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="sticky-elem performance-info a">
+              <p>
+                ‘고스락'은 순우리말입니다. ‘정상', ‘최고',
+                <br />
+                ‘꼭대기'라는 뜻으로, 최고의 공연을 위한 <br />
+                우리의 열정을 상징합니다.
+              </p>
+            </div>
+            <div className="sticky-elem performance-info b">
+              <p>
+                일년에 두번 열리는 고스락의 클럽 정기공연은 <br />
+                2009년 8월 제1회를 시작으로 10년간
+                <br /> 끊임없이 이어져 왔습니다.
+              </p>
+            </div>
+            <div className="sticky-elem performance-info c">
+              <p>
+                2019년 제 20회 공연 이후로 코로나로 인해 <br /> 잠시 멈췄던
+                공연을, 올해 3월 10일 <br />
+                다시 시작합니다!
+              </p>
+            </div>
+          </>
+        )}
       </section>
 
       <section className="scroll-section" id="scroll-section-1">
@@ -105,7 +135,7 @@ function HomePage({ ticketing, list }) {
           <div className="inner-container">
             <div className="line"></div>
             <h2 style={{ marginBottom: '100px' }}>
-              오후
+              오후&nbsp;
               <span style={{ fontWeight: '700', color: '#bf94e4' }}>여섯</span>
               시, <br />
               합정 라디오 가가
@@ -142,12 +172,12 @@ function HomePage({ ticketing, list }) {
             새내기는 <br /> 공짜!
           </h1>
           {isBigScreen ? (
-            <p style={{ width: '100%' }}>
+            <p style={{ width: '100%', color: '#b6b7b8' }}>
               3월 공연은 새내기 여러분들을 위한 공연이에요! <br /> 공짜니까
               부담없이 와주세요!!
             </p>
           ) : (
-            <p>
+            <p style={{ color: '#b6b7b8' }}>
               3월 공연은 새내기 여러분들을 위한 공연
               <br />
               이에요! 공짜니까 부담없이 와주세요!!
@@ -177,29 +207,29 @@ function HomePage({ ticketing, list }) {
             (소모임)
           </h1>
           {isBigScreen ? (
-            <p>
+            <p style={{ color: '#b6b7b8' }}>
               공연을 보러 오고 싶은데
               <br /> 혼자라서 고민중이신가요? <br />
               <br />
-              새로운
+              새로운&nbsp;
               <span style={{ color: '#bf94e4' }}>친구</span>
-              들,
+              들,&nbsp;
               <span style={{ color: '#bf94e4' }}>선배</span>
-              선배들과 만나고
+              들과 만나고
               <br />
               싶다면 우리 미리 한번 만날까요?
             </p>
           ) : (
-            <p>
-              공연을 보러 오고 싶은데 혼자라서
+            <p style={{ color: '#b6b7b8' }}>
+              공연을 보러 오고 싶지만 혼자여서
               <br />
               고민중이신가요? <br />
               <br />
-              새로운
+              새로운&nbsp;
               <span style={{ color: '#bf94e4' }}>친구</span>
-              들,
+              들,&nbsp;
               <span style={{ color: '#bf94e4' }}>선배</span>
-              선배들과 만나고
+              들과 만나고
               <br />
               싶다면 우리 미리 한번 만날까요?
             </p>
@@ -283,17 +313,14 @@ function HomePage({ ticketing, list }) {
                 <div className="book-button">
                   <GoFrontButton
                     label="티켓 예매"
-                    arrowCircleBackground={false}
+                    arrowCircleBackground={true}
                     onClick={ticketing}
                   />
                 </div>
-                <div
-                  className="book-button"
-                  style={{ backgroundColor: '#181818' }}
-                >
+                <div className="book-button">
                   <GoFrontButton
                     label="예매 내역"
-                    arrowCircleBackground={false}
+                    arrowCircleBackground={true}
                     onClick={list}
                   />
                 </div>

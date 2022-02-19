@@ -50,6 +50,7 @@ a:visited {
 /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */
 /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */
 #scroll-section-0 {
+  width: 100%;
   background-image: url(../../../public/images/title-small.png);
   background-repeat: no-repeat;
   background-position-x: center;
@@ -151,6 +152,8 @@ a:visited {
 /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */
 /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */
 #scroll-section-1 {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -208,6 +211,8 @@ a:visited {
 }
 
 #scroll-section-2 {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -264,6 +269,8 @@ a:visited {
 }
 
 #scroll-section-3 {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   flex: wrap;
@@ -327,6 +334,8 @@ a:visited {
 
 /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */
 #scroll-section-4 {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;

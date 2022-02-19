@@ -26,12 +26,12 @@ function HomePage({ ticketing, list }) {
   }, []);
 
   const isBigScreen = useMediaQuery({ query: '(min-width: 900px)' });
-  const isBigScreen740 = useMediaQuery({ query: '(min-width: 600px)' });
+  const isBigScreen600 = useMediaQuery({ query: '(min-width: 600px)' });
 
   return (
     <main className>
       <header class="header">
-        <div class="container">
+        <div class="header-container">
           <div class="inner-container header-content">
             <div class="header-title">gosrock.</div>
             <div className="header-link">
@@ -64,7 +64,7 @@ function HomePage({ ticketing, list }) {
             <br /> 초대합니다.
           </h1>
         </div>
-        {isBigScreen740 ? (
+        {isBigScreen600 ? (
           <>
             <div className="sticky-elem performance-info a">
               <p>
@@ -256,22 +256,35 @@ function HomePage({ ticketing, list }) {
 
       <section className="scroll-section" id="scroll-section-4">
         <div className="with-banner">
-          <h3>지금</h3>
+          <h3>지금&nbsp;</h3>
           <h2>
             &nbsp;
-            <AnimatedNumbers
-              includeComma
-              animateToNumber={ticketCount}
-              fontStyle={{ fontSize: 96 }}
-              configs={[
-                { mass: 1, tension: 130, friction: 40 },
-                { mass: 2, tension: 140, friction: 40 },
-                { mass: 3, tension: 130, friction: 40 }
-              ]}
-            ></AnimatedNumbers>
+            {isBigScreen600 ? (
+              <AnimatedNumbers
+                includeComma
+                animateToNumber={ticketCount}
+                fontStyle={{ fontSize: 96, fontWeight: '700' }}
+                configs={[
+                  { mass: 1, tension: 130, friction: 40 },
+                  { mass: 2, tension: 140, friction: 40 },
+                  { mass: 3, tension: 130, friction: 40 }
+                ]}
+              ></AnimatedNumbers>
+            ) : (
+              <AnimatedNumbers
+                includeComma
+                animateToNumber={ticketCount}
+                fontStyle={{ fontSize: 64, fontWeight: '700' }}
+                configs={[
+                  { mass: 1, tension: 130, friction: 40 },
+                  { mass: 2, tension: 140, friction: 40 },
+                  { mass: 3, tension: 130, friction: 40 }
+                ]}
+              ></AnimatedNumbers>
+            )}
             &nbsp;
           </h2>
-          <h3>명이 함께 하고 있어요.</h3>
+          <h3>&nbsp;명이 함께 하고 있어요.</h3>
         </div>
 
         <div className="guide">

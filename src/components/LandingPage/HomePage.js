@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 
 function HomePage({ ticketing, list }) {
   useEffect(() => {
+    console.log('re');
     mainAnimation();
   }, []);
 
@@ -144,6 +145,7 @@ function HomePage({ ticketing, list }) {
               <a
                 href="https://m.place.naver.com/place/36995079/home?entry=ple"
                 target="_blank"
+                rel="noreferrer"
               >
                 <img className="map" src="./images/map.png" />
               </a>

@@ -239,7 +239,7 @@ const mainAnimation = () => {
   });
 
   window.addEventListener('load', setLayout);
-  window.addEventListener('resize', setLayout);
+  //   window.addEventListener('resize', setLayout);
 };
 
 export default mainAnimation;

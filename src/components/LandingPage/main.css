@@ -10,6 +10,7 @@ a:visited {
 }
 .inner-container {
   position: relative;
+
   margin: 0 20px;
 }
 @media (max-width: 600px) {
@@ -55,7 +56,7 @@ a:visited {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
   z-index: -10;
   background-image: url(../../../public/images/title-small.png);
@@ -91,7 +92,8 @@ a:visited {
   #scroll-section-0:before {
     display: block;
     position: fixed;
-    width: 100%;
+    width: 100vw;
+
     height: calc(var(--vh, 1vh) * 100);
     z-index: -10;
     background-image: url(../../../public/images/title-big-new.png);
@@ -107,7 +109,7 @@ a:visited {
     flex-direction: column;
   }
   #scroll-section-0 {
-    width: 100%;
+    width: 100vw;
     /* background-image: url(../../../public/images/title-small.png);
       background-repeat: no-repeat;
       background-position-x: center;
@@ -182,7 +184,7 @@ a:visited {
 /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */
 /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */
 #scroll-section-1 {
-  width: 100%;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;
@@ -259,8 +261,7 @@ a:visited {
   height: 430px;
 }
 #scroll-section-2 {
-  width: 100%;
-
+  width: 100vw;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -289,7 +290,6 @@ a:visited {
   }
   #scroll-section-2 {
     flex-direction: row-reverse;
-    padding-left: 3%;
   }
   #scroll-section-2 h1 {
     font-size: 36px;
@@ -310,7 +310,6 @@ a:visited {
   }
   #scroll-section-2 {
     flex-direction: row-reverse;
-    padding-left: 3%;
   }
   #scroll-section-2 h1 {
     font-size: 56px;
@@ -333,7 +332,8 @@ a:visited {
   height: 430px;
 }
 #scroll-section-3 {
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -366,7 +366,6 @@ a:visited {
   #scroll-section-3 {
     flex-direction: row;
     margin-top: -20%;
-    padding-right: 3%;
   }
   #scroll-section-3 h1 {
     font-size: 36px;
@@ -390,7 +389,6 @@ a:visited {
   #scroll-section-3 {
     flex-direction: row;
     margin-top: -20%;
-    padding-right: 3%;
   }
   #scroll-section-3 h1 {
     font-size: 56px;
@@ -410,7 +408,7 @@ a:visited {
 
 /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */
 #scroll-section-4 {
-  width: 100%;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;

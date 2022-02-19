@@ -3,9 +3,25 @@ import './main.css';
 import mainAnimation from './main';
 import { GoFrontButton } from 'gosrock-storybook';
 import { useMediaQuery } from 'react-responsive';
+import AnimatedNumbers from 'react-animated-numbers';
+import axios from 'axios';
 
 function HomePage({ ticketing, list }) {
+  const [ticketCount, setTicketCount] = useState(0);
   useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      try {
+        const response = await axios.get('/tickets/count');
+
+        setTicketCount(response.data.data.ticketCount);
+      } catch (e) {
+        //400 ~
+        console.log('서버통신오류');
+      }
+    }
+    fetchData();
+    console.log('re');
     mainAnimation();
   }, []);
 
@@ -144,6 +160,7 @@ function HomePage({ ticketing, list }) {
               <a
                 href="https://m.place.naver.com/place/36995079/home?entry=ple"
                 target="_blank"
+                rel="noreferrer"
               >
                 <img className="map" src="./images/map.png" />
               </a>
@@ -240,7 +257,20 @@ function HomePage({ ticketing, list }) {
       <section className="scroll-section" id="scroll-section-4">
         <div className="with-banner">
           <h3>지금</h3>
-          <h2>&nbsp;72&nbsp;</h2>
+          <h2>
+            &nbsp;
+            <AnimatedNumbers
+              includeComma
+              animateToNumber={ticketCount}
+              fontStyle={{ fontSize: 96 }}
+              configs={[
+                { mass: 1, tension: 130, friction: 40 },
+                { mass: 2, tension: 140, friction: 40 },
+                { mass: 3, tension: 130, friction: 40 }
+              ]}
+            ></AnimatedNumbers>
+            &nbsp;
+          </h2>
           <h3>명이 함께 하고 있어요.</h3>
         </div>
 

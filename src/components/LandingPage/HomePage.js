@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './main.css';
 import mainAnimation from './main';
 import { GoFrontButton } from 'gosrock-storybook';
+import { useMediaQuery } from 'react-responsive';
 
 function HomePage({ ticketing, list }) {
   useEffect(() => {
     mainAnimation();
   }, []);
+
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1000px)' });
 
   return (
     <main className>
@@ -119,32 +122,88 @@ function HomePage({ ticketing, list }) {
         </div>
       </section>
 
-      <section className="scroll-section" id="scroll-section-2">
+      <section
+        className="scroll-section smartphone-container"
+        id="scroll-section-2"
+      >
         <div className="m-image-0">
-          <img src="./images/mobile-0.png" />
+          <img
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%'
+            }}
+            src="./images/mobile-0.png"
+            alt="22학번 새내기는 공짜"
+          />
         </div>
-        <div className=" m-message-0">
+        <div className="m-message-0">
           <h1>
-            <strong>22</strong>학번 새내기는 공짜
+            <span style={{ fontWeight: '700', color: '#bf94e4' }}>22</span>학번
+            새내기는 <br /> 공짜!
           </h1>
-          <p>
-            3월 공연은 새내기 여러분들을 위한 공연이에요! 공짜니까 부담없이
-            와주세요!!
-          </p>
+          {isBigScreen ? (
+            <p style={{ width: '100%' }}>
+              3월 공연은 새내기 여러분들을 위한 공연이에요! <br /> 공짜니까
+              부담없이 와주세요!!
+            </p>
+          ) : (
+            <p>
+              3월 공연은 새내기 여러분들을 위한 공연
+              <br />
+              이에요! 공짜니까 부담없이 와주세요!!
+            </p>
+          )}
         </div>
       </section>
-      <section className="scroll-section" id="scroll-section-3">
+      <section
+        className="scroll-section smartphone-container"
+        id="scroll-section-3"
+      >
         <div className="m-image-1">
-          <img src="./images/mobile-1.png" />
+          <img
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%'
+            }}
+            src="./images/mobile-1.png"
+            alt="새내기 소모임 신청관련"
+          />
         </div>
         <div className=" m-message-1">
           <h1>
-            공연전 <strong>밥약</strong>(소모임)
+            공연전
+            <br />
+            <span style={{ fontWeight: '700', color: '#bf94e4' }}>밥약</span>
+            (소모임)
           </h1>
-          <p>
-            공연을 보러 오고 싶은데 혼자라서 고민중이신가요? <br /> 새로운
-            친구들, 선배들과 친해지고싶다면 우리 미리 한번 만날까요?
-          </p>
+          {isBigScreen ? (
+            <p>
+              공연을 보러 오고 싶은데
+              <br /> 혼자라서 고민중이신가요? <br />
+              <br />
+              새로운
+              <span style={{ color: '#bf94e4' }}>친구</span>
+              들,
+              <span style={{ color: '#bf94e4' }}>선배</span>
+              선배들과 만나고
+              <br />
+              싶다면 우리 미리 한번 만날까요?
+            </p>
+          ) : (
+            <p>
+              공연을 보러 오고 싶은데 혼자라서
+              <br />
+              고민중이신가요? <br />
+              <br />
+              새로운
+              <span style={{ color: '#bf94e4' }}>친구</span>
+              들,
+              <span style={{ color: '#bf94e4' }}>선배</span>
+              선배들과 만나고
+              <br />
+              싶다면 우리 미리 한번 만날까요?
+            </p>
+          )}
         </div>
       </section>
 

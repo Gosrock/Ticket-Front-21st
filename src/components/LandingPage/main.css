@@ -30,6 +30,16 @@ a:visited {
   backdrop-filter: saturate(100%) blur(20px);
   z-index: 5;
 }
+.header-container {
+  width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 1100px) {
+  .header-container {
+    width: 100%;
+    min-width: 300px;
+  }
+}
 .header-content {
   display: flex;
   flex-direction: row;
@@ -365,7 +375,7 @@ a:visited {
   }
   #scroll-section-3 {
     flex-direction: row;
-    margin-top: -20%;
+    margin-top: -180px;
   }
   #scroll-section-3 h1 {
     font-size: 36px;
@@ -388,7 +398,7 @@ a:visited {
   }
   #scroll-section-3 {
     flex-direction: row;
-    margin-top: -20%;
+    margin-top: -240px;
   }
   #scroll-section-3 h1 {
     font-size: 56px;
@@ -432,6 +442,7 @@ a:visited {
   color: white;
   font-size: 18px;
   font-weight: 500;
+  margin-top: 6px;
 }
 
 .with-banner h2 {

@@ -49,13 +49,30 @@ a:visited {
 
 /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */
 /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */
-#scroll-section-0 {
+#scroll-section-0:before {
+  content: '';
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 100%;
+  z-index: -10;
   background-image: url(../../../public/images/title-small.png);
   background-repeat: no-repeat;
   background-position-x: center;
-  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+}
+
+#scroll-section-0 {
+  width: 100%;
+  /* background-image: url(../../../public/images/title-small.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover; */
   padding-top: 50vh;
 }
 
@@ -71,14 +88,30 @@ a:visited {
 
 /*데스크톱*/
 @media screen and (min-width: 1000px) {
-  #scroll-section-0 {
-    background-image: url('/public/images/title-big-new.png');
-    background-position-y: 52px;
+  #scroll-section-0:before {
+    display: block;
+    position: fixed;
+    width: 100%;
+    z-index: -10;
+    background-image: url(../../../public/images/title-big-new.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
+    background-position-y: 52px;
     background-color: #121212;
     display: flex;
     flex-direction: column;
-    padding-top: 40vh;
+  }
+  #scroll-section-0 {
+    width: 100%;
+    /* background-image: url(../../../public/images/title-small.png);
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size: cover; */
+    padding-top: 50vh;
   }
   #scroll-section-0 h1 {
     font-size: 72px;

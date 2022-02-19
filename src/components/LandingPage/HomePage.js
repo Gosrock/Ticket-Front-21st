@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './main.css';
 import mainAnimation from './main';
+import { GoFrontButton } from 'gosrock-storybook';
 import { useMediaQuery } from 'react-responsive';
 
 function HomePage({ ticketing, list }) {
@@ -76,19 +77,24 @@ function HomePage({ ticketing, list }) {
 
         <div
           className="performance-when"
-          style={{ marginTop: '160px', marginBottom: '160px' }}
+          style={{ marginTop: '100px', marginBottom: '160px' }}
         >
-          <h2>
-            3월 10일
-            <span style={{ fontWeight: '700', color: '#bf94e4' }}>목요일</span>
-          </h2>
-          <img src="images/poster.png" className="poster" />
+          <div className="inner-container">
+            <div className="line"></div>
+            <h2>
+              3월 10일&nbsp;
+              <span style={{ fontWeight: '700', color: '#bf94e4' }}>
+                목요일
+              </span>
+            </h2>
+            <img src="images/poster.png" className="poster" />
+          </div>
         </div>
 
         <div
           className="performance-where"
           style={{
-            padding: '160px 0px 160px 0px',
+            padding: '100px 0px 160px 0px',
             width: '100%',
             backgroundColor: '#1a1a1a',
             display: 'flex',
@@ -96,17 +102,22 @@ function HomePage({ ticketing, list }) {
             alignItems: 'center'
           }}
         >
-          <h2 style={{ marginBottom: '100px' }}>
-            오후
-            <span style={{ fontWeight: '700', color: '#bf94e4' }}>
-              여섯
-            </span>시, <br />
-            합정 라디오 가가
-          </h2>
-          <div>
-            <a href="https://map.naver.com/v5/entry/place/36995079?c=14127984.8671832,4516369.2039635,13,0,0,0,dh&placePath=%2Fhome%3Fentry=plt">
-              <img className="map" src="./images/공연장 위치.png" />
-            </a>
+          <div className="inner-container">
+            <div className="line"></div>
+            <h2 style={{ marginBottom: '100px' }}>
+              오후
+              <span style={{ fontWeight: '700', color: '#bf94e4' }}>여섯</span>
+              시, <br />
+              합정 라디오 가가
+            </h2>
+            <div>
+              <a
+                href="https://m.place.naver.com/place/36995079/home?entry=ple"
+                target="_blank"
+              >
+                <img className="map" src="./images/map.png" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -195,72 +206,100 @@ function HomePage({ ticketing, list }) {
           )}
         </div>
       </section>
+
       <section className="scroll-section" id="scroll-section-4">
-        <div className="with">
-          <img src="./images/with_us.png" />
-          <div className="sticky-elem with-num">
-            <h2>지금 78명이 함께 하고 있어요!</h2>
+        <div className="with-banner">
+          <h3>지금</h3>
+          <h2>&nbsp;72&nbsp;</h2>
+          <h3>명이 함께 하고 있어요.</h3>
+        </div>
+
+        <div className="guide">
+          <div className="container">
+            <div className="inner-container">
+              <h2>
+                공연 유의사항 안내 <br />
+                <br />
+              </h2>
+              <h3>
+                COVID 19 관련 <br />
+                <br />
+              </h3>
+              <ul className="guide-a">
+                <li>
+                  COVID 19 로 인해 입장인원이 제한되어있어 티켓 예매가 조기에
+                  마감될 수 있습니다.
+                </li>
+                <li>공연장 내에서 취식은 불가합니다.</li>
+                <li>COVID 19 로 인해 전석 좌석제로 진행됩니다.</li>
+                <li>
+                  공연 이후 코로나 확진자 발생 시, 티켓 발급시 인증한 휴대전화
+                  번호로 즉시 알려드릴 예정입니다.
+                </li>
+              </ul>
+              <h3>
+                <br /> 예매 &amp; 입장 관련 <br />
+                <br />
+              </h3>
+              <ul className="guide-b">
+                <li>
+                  티켓 발급후 인증한 전화번호로 티켓 url을 보내드립니다. 송신자
+                  번호는 개인 전화번호이니 문의사항은 고스락 채널로 연락
+                  부탁드립니다.
+                </li>
+                <li>
+                  입금은 하루이내로 수동으로 확인되며, 마이페이지에서 입금
+                  여부를 확인할 수 있습니다.
+                </li>
+                <li>입장 시 QRcode를 통해 티켓의 유효 여부를 확인합니다.</li>
+                <li>
+                  그외 티켓에 대한 문의사항은 고스락 채널로 연락 부탁드립니다.
+                </li>
+              </ul>
+              <h3>
+                <br /> 신입생 관련 <br />
+                <br />
+              </h3>
+              <ul className="guide-c">
+                <li>신입생은 무료로 티켓을 발급 받으실 수 있습니다.</li>
+                <li>
+                  티켓 예매과정에 고스락 선배들과의 밥약(소모임)을 신청 할 수
+                  있습니다.
+                </li>
+                <li> 소모임 신청은 공연 3일전 마감됩니다. </li>
+                <li>
+                  티켓을 발급한 이후 마이페이지에서 소모임 신청에 대해 취소,
+                  신청을 다시 할 수 있습니다.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="guide">
-          <h2>
-            공연 유의사항 안내 <br />
-            <br />
-          </h2>
-          <p>
-            COVID 19 관련 <br />
-            <br />
-          </p>
-          <ul className="guide-a">
-            <li>
-              COVID 19 로 인해 입장인원이 제한되어있어 티켓 예매가 조기에 마감될
-              수 있습니다.
-            </li>
-            <li>공연장 내에서 취식은 불가합니다.</li>
-            <li>COVID 19 로 인해 전석 좌석제로 진행됩니다.</li>
-            <li>
-              공연 이후 코로나 확진자 발생 시, 티켓 발급시 인증한 휴대전화
-              번호로 즉시 알려드릴 예정입니다.
-            </li>
-          </ul>
-          <p>
-            <br /> 예매 &amp; 입장 관련 <br />
-            <br />
-          </p>
-          <ul className="guide-b">
-            <li>
-              티켓 발급후 인증한 전화번호로 티켓 url을 보내드립니다. 송신자
-              번호는 개인 전화번호이니 문의사항은 고스락 채널로 연락
-              부탁드립니다.
-            </li>
-            <li>
-              입금은 하루이내로 수동으로 확인되며, 마이페이지에서 입금 여부를
-              확인할 수 있습니다.
-            </li>
-            <li>입장 시 QRcode를 통해 티켓의 유효 여부를 확인합니다.</li>
-            <li>
-              그외 티켓에 대한 문의사항은 고스락 채널로 연락 부탁드립니다.
-            </li>
-          </ul>
-          <p>
-            <br /> 신입생 관련 <br />
-            <br />
-          </p>
-          <ul className="guide-c">
-            <li>신입생은 무료로 티켓을 발급 받으실 수 있습니다.</li>
-            <li>
-              티켓 예매과정에 고스락 선배들과의 밥약(소모임)을 신청 할 수
-              있습니다.
-            </li>
-            <li> 소모임 신청은 공연 3일전 마감됩니다. </li>
-            <li>
-              티켓을 발급한 이후 마이페이지에서 소모임 신청에 대해 취소, 신청을
-              다시 할 수 있습니다.
-            </li>
-          </ul>
-        </div>
-        <div className="book-image">
-          <img src="./images/예매하러가기.png" />
+
+        <div className="book-banner">
+          <div className="container">
+            <div className="inner-container">
+              <div className="book-button-group">
+                <div className="book-button">
+                  <GoFrontButton
+                    label="티켓 예매"
+                    arrowCircleBackground={false}
+                    onClick={ticketing}
+                  />
+                </div>
+                <div
+                  className="book-button"
+                  style={{ backgroundColor: '#181818' }}
+                >
+                  <GoFrontButton
+                    label="예매 내역"
+                    arrowCircleBackground={false}
+                    onClick={list}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <footer className="footer">

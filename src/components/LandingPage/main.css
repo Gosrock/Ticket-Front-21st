@@ -260,7 +260,6 @@ a:visited {
 
 #scroll-section-2 {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -276,7 +275,6 @@ a:visited {
   font-size: 36px;
   line-height: 48px;
   font-weight: 700;
-  /* max-width: 70%; */
 }
 #scroll-section-2 p {
   padding-top: 20px;
@@ -285,24 +283,20 @@ a:visited {
   font-weight: 300;
 }
 @media (min-width: 900px) {
+  .m-message-0 {
+    transform: translateY(-70%);
+  }
   #scroll-section-2 {
     flex-direction: row-reverse;
     padding-left: 3%;
   }
-  .m-message-0 {
-    transform: translateY(-70%);
-  }
   #scroll-section-2 h1 {
     font-size: 56px;
     line-height: 70px;
-    font-weight: 700;
-    /* max-width: 70%; */
   }
   #scroll-section-2 p {
-    padding-top: 20px;
     font-size: 19px;
     line-height: 24px;
-    font-weight: 300;
   }
   .m-image-0 {
     width: 353px;

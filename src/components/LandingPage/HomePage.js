@@ -215,9 +215,9 @@ function HomePage({ ticketing, list }) {
               <span style={{ color: '#bf94e4' }}>친구</span>
               들,&nbsp;
               <span style={{ color: '#bf94e4' }}>선배</span>
-              들과 만나고
+              들과 만나고 싶다면
               <br />
-              싶다면 우리 미리 한번 만날까요?
+              우리 미리 한번 만날까요?
             </p>
           ) : (
             <p style={{ color: '#b6b7b8' }}>

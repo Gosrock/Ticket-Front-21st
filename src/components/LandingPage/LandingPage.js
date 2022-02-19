@@ -10,6 +10,7 @@ import {
 } from 'gosrock-storybook';
 import history from '../../history';
 import { useSelector } from 'react-redux';
+import HomePage from './HomePage';
 
 function LandingPage() {
   const { authenticated } = useSelector(state => state.auth);
@@ -43,42 +44,7 @@ function LandingPage() {
 
   //   }
   // }
-  return (
-    <TicketWrapContainer>
-      <TicketContainer
-        TopElement={
-          <TicketTop>
-            <GoBackButton />
-          </TicketTop>
-        }
-      >
-        <TicketLayout>
-          <TicketBody
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <GoFrontButton
-              onClick={ticketingButtonHandler}
-              label={'티켓예매 테스트 버튼'}
-            ></GoFrontButton>
-            <GoFrontButton
-              onClick={listButtonHandler}
-              label={'내 예매 내역 테스트 버튼'}
-            ></GoFrontButton>
-            <GoFrontButton
-              onClick={authDeleteHandler}
-              label={'인증 삭제 버튼, hard refresh'}
-            ></GoFrontButton>
-            <GoFrontButton onClick={qrHandler} label={'qr'}></GoFrontButton>
-          </TicketBody>
-        </TicketLayout>
-      </TicketContainer>
-    </TicketWrapContainer>
-  );
+  return <HomePage />;
 }
 
 export default LandingPage;

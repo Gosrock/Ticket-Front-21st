@@ -44,7 +44,9 @@ function LandingPage() {
 
   //   }
   // }
-  return <HomePage />;
+  return (
+    <HomePage ticketing={ticketingButtonHandler} list={listButtonHandler} />
+  );
 }
 
 export default LandingPage;

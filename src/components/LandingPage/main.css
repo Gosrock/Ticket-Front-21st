@@ -1,0 +1,330 @@
+@charset 'utf-8';
+
+html {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+}
+body {
+  overflow-x: hidden;
+  color: white;
+  letter-spacing: -0.05em;
+  background-color: #121212;
+}
+p {
+  line-height: 1.6;
+}
+a {
+  /* color : rgb(71, 19, 71); */
+  text-decoration: none;
+}
+/* .global-nav{
+   position: absolute;
+   top:0;
+   left:0;
+   width: 100%;
+   height: 44px;
+   padding: 0 1rem;
+} */
+.local-nav {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  /* border-bottom: 1px solid rgb(71, 19, 71); */
+  padding: 0 1rem;
+  /* background-color: rgb(14, 16, 26); */
+  backdrop-filter: saturate(100%) blur(15px);
+  z-index: 5;
+}
+/* .global-nav-link, */
+.local-nav-link {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+  color: white;
+}
+/* 
+.global-nav-link{
+   justify-content: space-between;
+} */
+
+.local-nav-link .product-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-right: auto;
+}
+.local-nav-link a {
+  font-size: 0.8ren;
+  color: white;
+}
+.local-nav-link a:not(.product-name) {
+  margin-left: 2em;
+}
+.scroll-section {
+  border: 3px solid darkslateblue;
+  /* padding-top : 50vh; */
+}
+/* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */ /* section-0 */
+#scroll-section-0 {
+  background-image: url(./images/main-sumin.png);
+  background-repeat: no-repeat;
+  /* background-position-y: 52px; */
+  background-position-x: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 50vh;
+}
+.main-gosrock {
+  text-align: center;
+}
+#scroll-section-0 h1 {
+  position: relative;
+  top: 25vh;
+  z-index: 2;
+  font-size: 3rem;
+  text-align: right;
+  margin-right: 0.5em;
+  color: white;
+  /* transform: translateY(-0.5em); */
+  /* transition-duration: 2s; */
+  /* color:#c095e5; */
+}
+#scroll-section-0 strong {
+  color: white;
+}
+.performance-info {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  /* justify-content: center;
+	top: 35vh; */
+  margin: 5px 0;
+  height: 3em;
+  font-size: 4vw;
+  color: white;
+}
+.performance-info.a {
+  top: 50vh;
+}
+.performance-info.b {
+  top: 65vh;
+}
+.performance-info.c {
+  top: 80vh;
+}
+
+.performance-info p {
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+/* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */ /* section-1 */
+
+#scroll-section-1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #121212;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3 3rem;
+}
+
+#scroll-section-1 strong {
+  color: #bf94e4;
+}
+
+#scroll-section-1 h1 {
+  padding: 10 10rem;
+  z-index: 2;
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  margin-top: 5rem;
+}
+.poster {
+  margin-top: 5rem;
+  margin-bottom: 7rem;
+}
+.map {
+  margin-top: 5rem;
+  margin-bottom: 20rem;
+}
+
+/* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */ /* section-2 */
+#scroll-section-2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  color: white;
+}
+#scroll-section-2 h1 {
+  font-size: 2rem;
+  /* max-width: 70%; */
+}
+#scroll-section-2 p {
+  font-size: 1rem;
+  max-width: 58%;
+}
+
+/* section-3 */ /* section-3 */ /* section-3 */ /* section-3 */ /* section-3 */ /* section-3 */ /* section-3 */
+
+#scroll-section-3 {
+  display: flex;
+  flex-direction: row;
+  flex: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  color: white;
+  font-size: 3rem;
+}
+#scroll-section-3 h1 {
+  font-size: 2rem;
+  /* max-width: 70%; */
+}
+#scroll-section-3 p {
+  font-size: 1rem;
+  max-width: 58%;
+}
+.with {
+  margin-top: 15rem;
+}
+
+/* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */ /* section-4 */
+#scroll-section-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+  margin: auto;
+}
+.guide {
+  padding-left: 5%;
+  list-style: inside;
+  background-color: #121212;
+  color: #bf94e4;
+  position: relative;
+}
+
+.guide.h1 {
+  font-size: 1rem;
+}
+.guide li {
+  text-indent: -20px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: left;
+  max-width: 87%;
+}
+.guide ul {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+.book-image {
+  position: relative;
+  margin-top: 5rem;
+  bottom: 0;
+}
+
+.footer {
+  padding-top: 10%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 12rem;
+  color: #bf94e4;
+  background: #121212;
+  margin: 1 0rem;
+}
+.icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.sticky-elem {
+  display: none;
+  position: fixed;
+  left: 0;
+  width: 100%;
+}
+
+#show-scene-0 #scroll-section-0 .sticky-elem,
+#show-scene-1 #scroll-section-1 .sticky-elem,
+#show-scene-2 #scroll-section-2 .sticky-elem,
+#show-scene-3
+  #scroll-section-3
+  .sticky-elem
+  #show-scene-3
+  #scroll-section-4
+  .sticky-elem {
+  display: block;
+}
+
+/*---------------------------------------------         pc화면 적용         ----------------------------------------------------*/
+@media (min-width: 1024px) {
+  #scroll-section-0 {
+    background-image: url(./images/main-woo3.png);
+    background-repeat: no-repeat;
+    background-position-y: 52px;
+    background-position-x: center;
+    background-attachment: fixed;
+    background-size: contain;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #scroll-section-0 p {
+    font-size: 1.5rem;
+  }
+
+  .performance-info.a {
+    top: 25vh;
+  }
+  .performance-info.b {
+    top: 40vh;
+  }
+  .performance-info.c {
+    top: 55vh;
+  }
+
+  #scroll-section-0 strong {
+    color: #bf94e4;
+  }
+  #scroll-section-0 h1 {
+    font-size: 5vw;
+    position: relative;
+    top: -0.5vh;
+    z-index: 2;
+    text-align: left;
+    margin-left: 24rem;
+    color: white;
+  }
+  .m-message-0 {
+  }
+  #scroll-section-3 {
+    flex-direction: row-reverse;
+  }
+  .m-image-0 {
+    margin-bottom: -4%;
+  }
+  .m-image-1 {
+    margin-top: -4%;
+  }
+  .footer {
+    margin-top: 0;
+  }
+}

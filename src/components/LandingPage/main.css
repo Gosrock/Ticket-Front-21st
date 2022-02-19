@@ -257,9 +257,9 @@ a:visited {
   width: 212px;
   height: 430px;
 }
-
 #scroll-section-2 {
   width: 100%;
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -270,7 +270,6 @@ a:visited {
   padding-top: 130px;
   gap: 50px;
 }
-
 #scroll-section-2 h1 {
   font-size: 36px;
   line-height: 48px;
@@ -310,7 +309,6 @@ a:visited {
   width: 212px;
   height: 430px;
 }
-
 #scroll-section-3 {
   width: 100%;
 
@@ -326,7 +324,6 @@ a:visited {
 
   gap: 50px;
 }
-
 #scroll-section-3 h1 {
   font-size: 36px;
   line-height: 48px;
@@ -339,34 +336,24 @@ a:visited {
   line-height: 20px;
   font-weight: 300;
 }
-.with {
-  margin-top: 15rem;
-}
 
 @media (min-width: 900px) {
+  .m-message-1 {
+    transform: translateY(40%);
+  }
   #scroll-section-3 {
     flex-direction: row;
     margin-top: -20%;
     padding-right: 3%;
   }
-  .m-message-1 {
-    transform: translateY(40%);
-  }
   #scroll-section-3 h1 {
     font-size: 56px;
-
     line-height: 70px;
-    font-weight: 700;
     padding-bottom: 20px;
-
-    /* max-width: 70%; */
   }
   #scroll-section-3 p {
     padding-top: 10px;
-
     font-size: 19px;
-    font-weight: 300;
-
     line-height: 24px;
   }
   .m-image-1 {

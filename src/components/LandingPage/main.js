@@ -220,6 +220,10 @@ const mainAnimation = () => {
     }
     if (yOffset > prevScrollHeight + sceneInfo[currentScene].scrollHeight) {
       enterNewScene = true;
+      console.log(currentScene);
+      if (currentScene === 4) {
+        return;
+      }
       currentScene++;
     } else if (yOffset < prevScrollHeight) {
       enterNewScene = true;
@@ -235,9 +239,15 @@ const mainAnimation = () => {
 
   window.addEventListener('scroll', () => {
     yOffset = window.pageYOffset;
+    console.log(yOffset);
+
     scrollLoop();
   });
 
+  window.addEventListener('popstate', () => {
+    setLayout();
+    console.log('pushevent');
+  });
   window.addEventListener('load', setLayout);
   //   window.addEventListener('resize', setLayout);
 };

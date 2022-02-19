@@ -10,7 +10,7 @@ function HomePage({ ticketing, list }) {
   }, []);
 
   const isBigScreen = useMediaQuery({ query: '(min-width: 900px)' });
-  const isBigScreen740 = useMediaQuery({ query: '(min-width: 740px)' });
+  const isBigScreen740 = useMediaQuery({ query: '(min-width: 600px)' });
 
   return (
     <main className>
@@ -45,7 +45,7 @@ function HomePage({ ticketing, list }) {
             <span style={{ color: '#bf94e4', fontWeight: '700' }}>고스락</span>
             <br />
             3월 공연에 <br /> 여러분을
-            <br /> 초대합니다
+            <br /> 초대합니다.
           </h1>
         </div>
         {isBigScreen740 ? (

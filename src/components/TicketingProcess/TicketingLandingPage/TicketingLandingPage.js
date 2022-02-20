@@ -50,7 +50,7 @@ function TicketingLandingPage({ ...props }) {
               <div
                 style={{
                   height: '1px',
-                  margin: '4%',
+                  margin: '4% 0%',
                   backgroundColor: '#363636'
                 }}
               ></div>

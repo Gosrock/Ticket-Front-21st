@@ -5,6 +5,11 @@ import { GoFrontButton } from 'gosrock-storybook';
 import { useMediaQuery } from 'react-responsive';
 import AnimatedNumbers from 'react-animated-numbers';
 import axios from 'axios';
+import { ReactComponent as Hangul } from '../../assets/hangul.svg';
+import { ReactComponent as Github } from '../../assets/Github.svg';
+import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
+import { ReactComponent as Youtube } from '../../assets/Youtube.svg';
+import { ReactComponent as KakaoTalk } from '../../assets/KakaoTalk.svg';
 
 function HomePage({ ticketing, list }) {
   const [ticketCount, setTicketCount] = useState(0);
@@ -35,19 +40,10 @@ function HomePage({ ticketing, list }) {
           <div class="inner-container header-content">
             <div class="header-title">gosrock.</div>
             <div className="header-link">
-              <div onClick={list}>예매 내역</div>
-              <div
-                onClick={ticketing}
-                style={{
-                  fontSize: '14px',
-                  height: '24px',
-                  backgroundColor: '#bf94e4',
-                  padding: '5px 10px 5px 10px',
-                  boxSizing: 'border-box',
-                  lineHeight: '14px',
-                  borderRadius: '12px'
-                }}
-              >
+              <div onClick={list} className="header-link-mypage">
+                예매 내역
+              </div>
+              <div onClick={ticketing} className="header-link-ticketing">
                 예매하기
               </div>
             </div>
@@ -375,22 +371,25 @@ function HomePage({ ticketing, list }) {
       <footer className="footer">
         <a href="http://gosrock.link">
           <div className="logo">
-            <img src="./images/logo.png" />
+            <Hangul />
           </div>
         </a>
         <div className="icon">
           <a href="https://github.com/Gosrock">
-            <img src="./images/Github.png" />
+            <Github />
           </a>
           <a href="https://www.youtube.com/channel/UCBjYErlHCG0vfcdDmaeOIxQ">
-            <img src="./images/Youtube.png" />
+            <Youtube />
           </a>
           <a href="https://www.instagram.com/gosrock_archive/">
-            <img src="./images/Instagram.png" />
+            <Instagram />
+          </a>
+          <a href="https://pf.kakao.com/_QxeZBT">
+            <KakaoTalk fill="white" />
           </a>
         </div>
-        <p>
-          © gosrcok 2022, all rights reserved <br />
+        <p style={{ fontSize: '12px', color: '#363636' }}>
+          © gosrock 2022. All rights reserved <br />
         </p>
       </footer>
     </main>

@@ -5,6 +5,11 @@ import { GoFrontButton } from 'gosrock-storybook';
 import { useMediaQuery } from 'react-responsive';
 import AnimatedNumbers from 'react-animated-numbers';
 import axios from 'axios';
+import { ReactComponent as Hangul } from '../../assets/hangul.svg';
+import { ReactComponent as Github } from '../../assets/Github.svg';
+import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
+import { ReactComponent as Youtube } from '../../assets/Youtube.svg';
+import { ReactComponent as KakaoTalk } from '../../assets/KakaoTalk.svg';
 
 function HomePage({ ticketing, list }) {
   const [ticketCount, setTicketCount] = useState(0);
@@ -26,28 +31,19 @@ function HomePage({ ticketing, list }) {
   }, []);
 
   const isBigScreen = useMediaQuery({ query: '(min-width: 900px)' });
-  const isBigScreen740 = useMediaQuery({ query: '(min-width: 600px)' });
+  const isBigScreen600 = useMediaQuery({ query: '(min-width: 600px)' });
 
   return (
     <main className>
       <header class="header">
-        <div class="container">
+        <div class="header-container">
           <div class="inner-container header-content">
             <div class="header-title">gosrock.</div>
             <div className="header-link">
-              <div onClick={list}>예매 내역</div>
-              <div
-                onClick={ticketing}
-                style={{
-                  fontSize: '14px',
-                  height: '24px',
-                  backgroundColor: '#bf94e4',
-                  padding: '5px 10px 5px 10px',
-                  boxSizing: 'border-box',
-                  lineHeight: '14px',
-                  borderRadius: '12px'
-                }}
-              >
+              <div onClick={list} className="header-link-mypage">
+                예매 내역
+              </div>
+              <div onClick={ticketing} className="header-link-ticketing">
                 예매하기
               </div>
             </div>
@@ -64,7 +60,7 @@ function HomePage({ ticketing, list }) {
             <br /> 초대합니다.
           </h1>
         </div>
-        {isBigScreen740 ? (
+        {isBigScreen600 ? (
           <>
             <div className="sticky-elem performance-info a">
               <p>
@@ -256,22 +252,35 @@ function HomePage({ ticketing, list }) {
 
       <section className="scroll-section" id="scroll-section-4">
         <div className="with-banner">
-          <h3>지금</h3>
+          <h3>지금&nbsp;</h3>
           <h2>
             &nbsp;
-            <AnimatedNumbers
-              includeComma
-              animateToNumber={ticketCount}
-              fontStyle={{ fontSize: 96 }}
-              configs={[
-                { mass: 1, tension: 130, friction: 40 },
-                { mass: 2, tension: 140, friction: 40 },
-                { mass: 3, tension: 130, friction: 40 }
-              ]}
-            ></AnimatedNumbers>
+            {isBigScreen600 ? (
+              <AnimatedNumbers
+                includeComma
+                animateToNumber={ticketCount}
+                fontStyle={{ fontSize: 96, fontWeight: '700' }}
+                configs={[
+                  { mass: 1, tension: 130, friction: 40 },
+                  { mass: 2, tension: 140, friction: 40 },
+                  { mass: 3, tension: 130, friction: 40 }
+                ]}
+              ></AnimatedNumbers>
+            ) : (
+              <AnimatedNumbers
+                includeComma
+                animateToNumber={ticketCount}
+                fontStyle={{ fontSize: 64, fontWeight: '700' }}
+                configs={[
+                  { mass: 1, tension: 130, friction: 40 },
+                  { mass: 2, tension: 140, friction: 40 },
+                  { mass: 3, tension: 130, friction: 40 }
+                ]}
+              ></AnimatedNumbers>
+            )}
             &nbsp;
           </h2>
-          <h3>명이 함께 하고 있어요.</h3>
+          <h3>&nbsp;명이 함께 하고 있어요.</h3>
         </div>
 
         <div className="guide">
@@ -362,22 +371,25 @@ function HomePage({ ticketing, list }) {
       <footer className="footer">
         <a href="http://gosrock.link">
           <div className="logo">
-            <img src="./images/logo.png" />
+            <Hangul />
           </div>
         </a>
         <div className="icon">
           <a href="https://github.com/Gosrock">
-            <img src="./images/Github.png" />
+            <Github />
           </a>
           <a href="https://www.youtube.com/channel/UCBjYErlHCG0vfcdDmaeOIxQ">
-            <img src="./images/Youtube.png" />
+            <Youtube />
           </a>
           <a href="https://www.instagram.com/gosrock_archive/">
-            <img src="./images/Instagram.png" />
+            <Instagram />
+          </a>
+          <a href="https://pf.kakao.com/_QxeZBT">
+            <KakaoTalk fill="white" />
           </a>
         </div>
-        <p>
-          © gosrcok 2022, all rights reserved <br />
+        <p style={{ fontSize: '12px', color: '#363636' }}>
+          © gosrock 2022. All rights reserved <br />
         </p>
       </footer>
     </main>

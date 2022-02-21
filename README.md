@@ -40,12 +40,14 @@
         <td><B>기획 / 디자인 / 프론트 팀장<B></td>
         <td><B>프론트<B></td>
         <td><B>프론트<B></td>
+        <td><B>프론트<B></td>
     </tr>
     <tr align="center">
         <td><B>이찬진<B></td>
         <td><B>한규진<B></td>
         <td><B>김원진<B></td>
         <td><B>금예인<B></td>
+        <td><B>김주안<B></td>
     </tr>
     <tr align="center">
         <td>
@@ -67,6 +69,11 @@
             <img src="https://user-images.githubusercontent.com/55226431/154956011-14900fca-07c9-466d-b24d-f7d70bdee304.png" width="100">
             <br>
             <a href="https://github.com/yi219"><I>yi219</I></a>
+        </td>
+        <td>
+            <img src="https://user-images.githubusercontent.com/55226431/155003118-c50bc0b6-2adf-4140-ab1c-d96af49b7ead.png" width="100">
+            <br>
+            <a href="https://github.com/duan-3"><I>duan-3</I></a>
         </td>
     </tr>
 </table>

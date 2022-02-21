@@ -234,12 +234,12 @@ a:visited {
 }
 
 .banner {
-  /* background-image: url(./images/banner-1st.png); */
-  background-color: #464646;
+  /* background-image: url(/public/images/bg2.png); */
+  background-color: #1e1e1e;
   height: 160px;
   width: 100%;
   background-size: cover;
-  background-position-y: -1270px;
+  background-position-y: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -318,9 +318,8 @@ a:visited {
   padding-top: 20px;
   font-size: 17px;
   line-height: 20px;
-  font-weight: 300;
+  font-weight: 400;
 }
-
 @media (min-width: 600px) {
   .m-message-0 {
     transform: translateY(-70%);
@@ -394,7 +393,7 @@ a:visited {
   padding-top: 20px;
   font-size: 17px;
   line-height: 20px;
-  font-weight: 300;
+  font-weight: 400;
 }
 @media (min-width: 600px) {
   .m-message-1 {
@@ -457,7 +456,10 @@ a:visited {
 
 .with-banner {
   width: 100%;
-  background-color: #464646;
+  /* background-image: url(/public/images/bg2.png); */
+  background-position-y: center;
+  background-size: cover;
+  background-color: #1e1e1e;
   height: 160px;
   display: flex;
   align-items: center;
@@ -531,11 +533,15 @@ a:visited {
 }
 
 .book-button-group {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-button {
   margin: 10px;
+  padding: 10px 15px;
+  background-color: black;
 }
 
 @media screen and (min-width: 600px) {
@@ -556,15 +562,13 @@ a:visited {
   justify-content: space-around;
   height: 220px;
   background: #121212;
-  z-index: -2;
 }
 
 .logo {
   position: relative;
 }
-.logo:after {
+/* .logo:after {
   position: absolute;
-  z-index: -1;
   left: -12px;
   bottom: -5px;
   content: '';
@@ -572,7 +576,7 @@ a:visited {
   width: 80px;
   border-radius: 50%;
   background-color: black;
-}
+} */
 
 .icon {
   margin-top: 30px;

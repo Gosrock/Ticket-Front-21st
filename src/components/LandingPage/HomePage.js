@@ -129,7 +129,7 @@ function HomePage({ ticketing, list }) {
                 목요일
               </span>
             </h2>
-            <img src="images/poster.png" className="poster" />
+            <img src="images/newposter.jpeg" className="poster" />
           </div>
         </div>
 
@@ -352,14 +352,14 @@ function HomePage({ ticketing, list }) {
                 <div className="book-button">
                   <GoFrontButton
                     label="티켓 예매"
-                    arrowCircleBackground={true}
+                    arrowCircleBackground={false}
                     onClick={ticketing}
                   />
                 </div>
                 <div className="book-button">
                   <GoFrontButton
                     label="예매 내역"
-                    arrowCircleBackground={true}
+                    arrowCircleBackground={false}
                     onClick={list}
                   />
                 </div>
@@ -369,22 +369,25 @@ function HomePage({ ticketing, list }) {
         </div>
       </section>
       <footer className="footer">
-        <a href="http://gosrock.link">
+        <a href="http://gosrock.link" target="_blank">
           <div className="logo">
             <Hangul />
           </div>
         </a>
         <div className="icon">
-          <a href="https://github.com/Gosrock">
+          <a href="https://github.com/Gosrock" target="_blank">
             <Github />
           </a>
-          <a href="https://www.youtube.com/channel/UCBjYErlHCG0vfcdDmaeOIxQ">
+          <a
+            href="https://www.youtube.com/channel/UCBjYErlHCG0vfcdDmaeOIxQ"
+            target="_blank"
+          >
             <Youtube />
           </a>
-          <a href="https://www.instagram.com/gosrock_archive/">
+          <a href="https://www.instagram.com/gosrock_archive/" target="_blank">
             <Instagram />
           </a>
-          <a href="https://pf.kakao.com/_QxeZBT">
+          <a href="https://pf.kakao.com/_QxeZBT" target="_blank">
             <KakaoTalk fill="white" />
           </a>
         </div>

@@ -24,11 +24,7 @@ function SendValidationNumberPage({ ...props }) {
 
   const dispatch = useDispatch();
 
-  const {
-    messageToken,
-    validationNumber: reducerValidationNumber,
-    phoneNumber
-  } = useSelector(state => state.messageSend);
+  const { messageToken, phoneNumber } = useSelector(state => state.messageSend);
 
   const { errorMessage, pending } = useSelector(state => state.auth);
   //processForValidationNextPage 는 메시지 인증하는 프로세스가 두가지의 단계 ,
@@ -44,7 +40,7 @@ function SendValidationNumberPage({ ...props }) {
   };
 
   const frontButtonHandler = () => {
-    console.log(validationNumber);
+    //console.log(validationNumber);
     if (validationNumber === null || validationNumber.length !== 6) {
       alert('인증번호 6자리를 제대로 입력 해주세요');
       return;
@@ -102,9 +98,9 @@ function SendValidationNumberPage({ ...props }) {
               onChange={validationNumberInputHandler}
               page="validate"
             />
-            <div style={{ color: 'white' }}>
+            {/* <div style={{ color: 'white' }}>
               테스트용 {reducerValidationNumber}
-            </div>
+            </div> */}
           </TicketBody>
 
           <TicketBottom>

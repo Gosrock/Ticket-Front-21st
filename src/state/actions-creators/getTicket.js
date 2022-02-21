@@ -13,7 +13,7 @@ export const getTicket =
       dispatch({ type: GET_TICKET_PENDING });
 
       const response = await axios.get(`/tickets/${ticketId}`);
-      console.log('getTicket action', response.data.data.ticketInfo);
+      //console.log('getTicket action', response.data.data.ticketInfo);
       dispatch({
         type: GET_TICKET_SUCCESS,
         payload: response.data.data.ticketInfo

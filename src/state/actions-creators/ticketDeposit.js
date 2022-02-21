@@ -13,9 +13,9 @@ export const ticketDeposit =
   async dispatch => {
     try {
       dispatch({ type: TICKET_DEPOSIT_PENDING });
-      console.log(studentID);
-      console.log(smallGroup);
-      console.log(accountName);
+      //console.log(studentID);
+      //console.log(smallGroup);
+      //console.log(accountName);
       const response = await axios.post('/tickets', {
         studentID,
         smallGroup,

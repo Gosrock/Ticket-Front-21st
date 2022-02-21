@@ -1,12 +1,12 @@
 .somoim-modal-box {
-  height: 500px;
+  height: 520px;
   width: 88%;
   min-width: 314px;
   max-width: 335px;
   background-color: #262626;
   border-radius: 15px;
   display: grid;
-  grid-template-rows: 364px 136px;
+  grid-template-rows: 384px 136px;
   margin: auto;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .modal-top {
-  height: 340px;
+  height: 360px;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

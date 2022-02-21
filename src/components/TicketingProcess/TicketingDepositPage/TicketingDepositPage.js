@@ -44,7 +44,7 @@ function TicketingDepositPage({ ...props }) {
   };
   // OB 용
   const purchaseButtonHandler = () => {
-    console.log('purchase');
+    //console.log('purchase');
     dispatch(ticketDeposit({ studentID, smallGroup, accountName }));
   };
   // OB 용

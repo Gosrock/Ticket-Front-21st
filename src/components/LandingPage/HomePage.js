@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 import AnimatedNumbers from 'react-animated-numbers';
 import axios from 'axios';
 import { ReactComponent as Hangul } from '../../assets/hangul.svg';
+import { ReactComponent as GoFrontArrow } from '../../assets/GoFrontArrow.svg';
 import { ReactComponent as Github } from '../../assets/Github.svg';
 import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
 import { ReactComponent as Youtube } from '../../assets/Youtube.svg';
@@ -146,12 +147,25 @@ function HomePage({ ticketing, list }) {
         >
           <div className="inner-container">
             <div className="line"></div>
-            <h2 style={{ marginBottom: '100px' }}>
+            <h2 style={{ marginBottom: '30px' }}>
               오후&nbsp;
               <span style={{ fontWeight: '700', color: '#bf94e4' }}>여섯</span>
               시, <br />
               합정 라디오 가가
             </h2>
+            <button
+              className="map-button"
+              onClick={() => {
+                window.open(
+                  'https://m.place.naver.com/place/36995079/home?entry=ple'
+                );
+              }}
+            >
+              <p style={{ color: '#bf94e4' }}>자세히 보기</p>
+              <div className="modal--svg" style={{ marginLeft: '11px' }}>
+                <GoFrontArrow fill="#bf94e4" />
+              </div>
+            </button>
             <div>
               <a
                 href="https://m.place.naver.com/place/36995079/home?entry=ple"
@@ -354,6 +368,7 @@ function HomePage({ ticketing, list }) {
                     label="티켓 예매"
                     arrowCircleBackground={false}
                     onClick={ticketing}
+                    style={{ cursor: 'pointer' }}
                   />
                 </div>
                 <div className="book-button">
@@ -361,6 +376,9 @@ function HomePage({ ticketing, list }) {
                     label="예매 내역"
                     arrowCircleBackground={false}
                     onClick={list}
+                    arrowColor="gray"
+                    fontColor="gray"
+                    style={{ cursor: 'pointer' }}
                   />
                 </div>
               </div>

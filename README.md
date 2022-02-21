@@ -5,6 +5,12 @@
 
 
 <br><br>
+
+## 페이지 프리뷰
+![화면 기록 2022-02-21 오후 9 47 00](https://user-images.githubusercontent.com/55226431/154958493-f7a51d3e-5607-4b8a-a50e-c4e0f0feaea0.gif)
+
+<br>
+
 ## 디자인
 |스타일 가이드|<a href="https://www.figma.com/file/J6HVLxWGuCFgAQUCdWBUsT/%EA%B3%A0%EC%8A%A4%EB%9D%BD-%ED%8B%B0%EC%BC%93%EC%98%88%EB%A7%A4?node-id=1628%3A13741">디자인 (피그마)</a>|
 |:-:|:-:|

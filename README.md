@@ -6,7 +6,7 @@
 
 <br><br>
 
-## 페이지 프리뷰
+## 랜딩페이지 프리뷰
 ![화면 기록 2022-02-21 오후 9 47 00](https://user-images.githubusercontent.com/55226431/154958493-f7a51d3e-5607-4b8a-a50e-c4e0f0feaea0.gif)
 
 <br>

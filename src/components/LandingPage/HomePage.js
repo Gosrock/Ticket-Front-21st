@@ -35,11 +35,24 @@ function HomePage({ ticketing, list }) {
   const isBigScreen600 = useMediaQuery({ query: '(min-width: 600px)' });
 
   return (
-    <main className>
+    <main className="main">
       <header class="header">
         <div class="header-container">
           <div class="inner-container header-content">
-            <div class="header-title">gosrock.</div>
+            <div
+              class="header-title"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+              onMouseOver={e => {
+                e.target.innerHTML = 'toward the top';
+              }}
+              onMouseOut={e => {
+                e.target.innerHTML = 'gosrock.';
+              }}
+            >
+              gosrock.
+            </div>
             <div className="header-link">
               <div onClick={list} className="header-link-mypage">
                 예매 내역
@@ -387,11 +400,9 @@ function HomePage({ ticketing, list }) {
         </div>
       </section>
       <footer className="footer">
-        <a href="http://gosrock.link" target="_blank">
-          <div className="logo">
-            <Hangul />
-          </div>
-        </a>
+        <div className="logo">
+          <Hangul />
+        </div>
         <div className="icon">
           <a href="https://github.com/Gosrock" target="_blank">
             <Github />

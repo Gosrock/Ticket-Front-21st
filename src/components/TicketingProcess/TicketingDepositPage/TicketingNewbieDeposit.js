@@ -33,7 +33,7 @@ function TicketingOBDeposit({
           bottomLabel="공연 전에 미리 만나요."
         />
         <ProcessDescription
-          topLabel="공연 전 소모임을 희망하시는 분은"
+          topLabel="공연 전 밥약(소모임)을 희망하시는 분은"
           bottomLabel="이름과 함께 신청 버튼에 체크해주세요."
         />
       </TicketBodyHeader>
@@ -61,7 +61,7 @@ function TicketingOBDeposit({
                 color: `${smallGroup ? '#fff' : '#b6b7b8'}`
               }}
             >
-              공연 후 소모임 신청
+              공연 전 밥약 희망
             </span>
           </div>
           <div className="somoim-form-content">

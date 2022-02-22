@@ -13,7 +13,7 @@ export const getTickets =
       dispatch({ type: GET_TICKETS_PENDING });
 
       const response = await axios.get(`/tickets?phoneNumber=${phoneNumber}`);
-      console.log('getTickets action', response.data.data);
+      //console.log('getTickets action', response.data.data);
 
       dispatch({ type: GET_TICKETS_SUCCESS, payload: response.data.data });
     } catch (e) {

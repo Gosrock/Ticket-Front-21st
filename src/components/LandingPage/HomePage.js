@@ -27,7 +27,7 @@ function HomePage({ ticketing, list }) {
       }
     }
     fetchData();
-    console.log('re');
+    //console.log('re');
     mainAnimation();
   }, []);
 

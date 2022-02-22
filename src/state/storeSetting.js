@@ -24,10 +24,10 @@ if (userAccessToken !== null) {
 
 // pathname  QR티켓으로 바로 들어오는 경우 tickets 로 대응하기 위함
 let firstPathName = history.location.pathname;
-console.log(firstPathName.includes('/tickets/'));
+//console.log(firstPathName.includes('/tickets/'));
 if (firstPathName.includes('/tickets/')) {
   firstPathName = '/tickets/:ticketId';
-  console.log(firstPathName);
+  //console.log(firstPathName);
 }
 
 export const store = createStore(

@@ -15,7 +15,7 @@ export const messageSend =
       const response = await axios.post('/auth/message', {
         phoneNumber
       });
-      console.log('messageSend action', response.data.data);
+      //console.log('messageSend action', response.data.data);
 
       dispatch({
         type: MESSAGE_SEND_SUCCESS,

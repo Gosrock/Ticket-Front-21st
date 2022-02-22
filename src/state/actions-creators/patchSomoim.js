@@ -11,11 +11,11 @@ export const patchSomoim = smallGroup => async dispatch => {
     dispatch({ type: PATCH_SOMOIM_PENDING });
 
     const response = await axios.patch(`/tickets`, { smallGroup });
-    console.log('getTickets action', response.data.data);
+    //console.log('getTickets action', response.data.data);
 
     const temp = [];
     temp.push(response.data.data);
-    console.log(temp);
+    //console.log(temp);
     dispatch({ type: PATCH_SOMOIM_SUCCESS, payload: temp });
   } catch (e) {
     //400 ~

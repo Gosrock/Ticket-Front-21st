@@ -10,7 +10,7 @@ export const ticketingAvail = () => async dispatch => {
     dispatch({ type: GET_TICKETINGAVAIL_PENDING });
 
     const response = await axios.get('/tickets/avail');
-    console.log('ticketingAvail action');
+    //console.log('ticketingAvail action');
 
     dispatch({
       type: GET_TICKETINGAVAIL_SUCCESS,

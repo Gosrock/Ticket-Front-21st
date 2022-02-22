@@ -22,8 +22,8 @@
 
 @media screen and (min-width: 600px) {
   .modal-overlay {
-    width: calc(var(--containerWidth) - 3px);
-    height: calc(var(--containerHeight) - 3px);
+    width: calc(var(--containerWidth) - 0px);
+    height: calc(var(--containerHeight) - 0px);
     border-radius: 15px;
   }
 }

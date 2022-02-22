@@ -19,7 +19,7 @@ export const messageValidation =
         authenticationNumber: authenticationNumber
       });
 
-      console.log('messageValidation action', response.data.data);
+      //console.log('messageValidation action', response.data.data);
 
       dispatch({
         type: MESSAGE_VALIDATION_SUCCESS,
@@ -41,7 +41,7 @@ export const messageValidation =
       history.push(nextUrl);
     } catch (e) {
       //400 ~
-      console.log(e.response.data);
+      //console.log(e.response.data);
       dispatch({ type: MESSAGE_VALIDATION_ERROR, payload: '인증 오류' });
     }
   };

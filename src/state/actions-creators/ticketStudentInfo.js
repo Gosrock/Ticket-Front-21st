@@ -7,7 +7,7 @@ export const ticketStudentInfo =
 
     const validateID = new RegExp('^C2');
     const newbie = validateID.test(studentID);
-    console.log(studentID, newbie);
+    //console.log(studentID, newbie);
 
     const studentInfoObj = {
       studentID: studentID,

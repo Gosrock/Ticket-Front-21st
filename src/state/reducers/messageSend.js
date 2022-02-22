@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   errorMessage: null,
   phoneNumber: '',
   // 테스트용
-  validationNumber: null,
+  //validationNumber: null,
   pending: false
 };
 
@@ -22,7 +22,7 @@ export default function (state = INITIAL_STATE, action) {
         errorMessage: null,
 
         // 테스트용
-        validationNumber: null,
+        //validationNumber: null,
         pending: true
       };
     case MESSAGE_SEND_SUCCESS:
@@ -30,7 +30,7 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         messageToken: action.payload.data.messageToken,
         // 테스트용
-        validationNumber: action.payload.data.authenticationNumber,
+        //validationNumber: action.payload.data.authenticationNumber,
         phoneNumber: action.payload.phoneNumber,
         errorMessage: null,
         pending: false
@@ -40,7 +40,7 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         messageToken: null,
         errorMessage: action.payload,
-        validationNumber: null,
+        //validationNumber: null,
         pending: false
       };
     default:

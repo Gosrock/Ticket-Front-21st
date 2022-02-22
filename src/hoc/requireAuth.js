@@ -12,13 +12,13 @@ const requireAuth =
     );
     const studentID = useSelector(state => state.ticketStudentInfo.studentID);
     const location = useLocation();
-    console.log(
+    /* console.log(
       'HOC authenticated : ',
       authenticated,
       'HOC ticketingAvailable : ',
       ticketingAvailable,
       location
-    );
+    ); */
     if (Policy === 'TICKETING_AMOUNT') {
       // 티켓팅 프로세스에선 인증도 된상태여야 하며, 티켓팅이 발급되어야합니다.
 

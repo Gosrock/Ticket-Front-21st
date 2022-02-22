@@ -29,7 +29,7 @@ function SendMessagePage({ ...props }) {
   };
 
   const frontButtonHandler = () => {
-    console.log(phoneNumber);
+    //console.log(phoneNumber);
     if (phoneNumber === null || phoneNumber.length !== 11) {
       alert('휴대폰 번호 11자리를 제대로 입력 해주세요');
       return;
@@ -42,7 +42,7 @@ function SendMessagePage({ ...props }) {
       alert('핸드폰 번호를 제대로 입력해 주세요.');
     }
   }, [errorMessage, pending]);
-  console.log('a문자발송 페이지');
+  //console.log('a문자발송 페이지');
 
   return (
     <TicketWrapContainer {...props}>

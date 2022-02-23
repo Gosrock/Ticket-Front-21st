@@ -23,7 +23,9 @@ const requireAuth =
       // 티켓팅 프로세스에선 인증도 된상태여야 하며, 티켓팅이 발급되어야합니다.
 
       if (authenticated === true && ticketingAvailable === false) {
-        alert('이미 발급된 티켓이 있습니다.');
+        alert(
+          '이미 발급된 티켓이 있습니다. 예매 내역 버튼을 눌러 발급한 티켓을 확인해주세요.'
+        );
         return <Navigate to="/" />;
       }
       if (authenticated === false) {

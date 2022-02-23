@@ -143,7 +143,7 @@ function HomePage({ ticketing, list }) {
                 목요일
               </span>
             </h2>
-            <img src="images/newposter.jpeg" className="poster" />
+            <img src="images/poster.jpeg" className="poster" />
           </div>
         </div>
 
@@ -162,7 +162,7 @@ function HomePage({ ticketing, list }) {
             <div className="line"></div>
             <h2 style={{ marginBottom: '30px' }}>
               오후&nbsp;
-              <span style={{ fontWeight: '700', color: '#bf94e4' }}>여섯</span>
+              <span style={{ fontWeight: '700', color: '#bf94e4' }}>일곱</span>
               시, <br />
               합정 라디오 가가
             </h2>

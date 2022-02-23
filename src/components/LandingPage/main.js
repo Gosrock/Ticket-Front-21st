@@ -166,7 +166,7 @@ function scrollLoop(
   }
   if (yOffset > prevScrollHeight + sceneInfo[currentScene].scrollHeight) {
     enterNewScene = true;
-    console.log(currentScene);
+    //console.log(currentScene);
     if (currentScene === 4) {
       return;
     }

@@ -101,7 +101,7 @@ function TicketCodePage({ ...props }) {
   }, [ticketId]);
 
   useEffect(() => {
-    console.log(ticket, '티켓정보 바뀜!');
+    //console.log(ticket, '티켓정보 바뀜!');
   }, [ticket]);
 
   return (

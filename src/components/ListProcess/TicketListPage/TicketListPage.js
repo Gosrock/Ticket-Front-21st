@@ -42,7 +42,7 @@ function TicketListPage({ ...props }) {
   const somoimRef = useRef();
 
   useEffect(() => {
-    console.log('action effect');
+    //console.log('action effect');
     setBottomLabel(
       `${phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)} 님!`
     );
@@ -52,7 +52,7 @@ function TicketListPage({ ...props }) {
   useEffect(() => {
     const validateID = new RegExp('^C2');
     if (tickets.length) {
-      console.log(validateID.test(tickets[0].studentID));
+      //console.log(validateID.test(tickets[0].studentID));
       setIsnewbie(validateID.test(tickets[0].studentID));
     }
   }, [tickets]);

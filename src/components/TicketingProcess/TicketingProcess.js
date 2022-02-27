@@ -22,7 +22,8 @@ function TicketingProcess({ location }) {
   );
   return (
     <Routes location={location}>
-      <Route
+      {/* 티켓 매진 -> 예매 프로세스 마감 */}
+      {/* <Route
         exact
         path="landing"
         //애니메이션을 위해 absolute로 설정해야함!
@@ -41,7 +42,8 @@ function TicketingProcess({ location }) {
         path="deposit"
         //애니메이션을 위해 absolute로 설정해야함!
         element={<RATicketingDepositPage style={{ position: 'absolute' }} />}
-      />
+      /> */}
+
       {/* <Route
         exact
         path="validation"

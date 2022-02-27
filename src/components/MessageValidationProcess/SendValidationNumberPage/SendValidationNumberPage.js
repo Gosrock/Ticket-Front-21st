@@ -87,8 +87,8 @@ function SendValidationNumberPage({ ...props }) {
               bottomLabel="휴대폰 인증이 필요해요."
             />
             <ProcessDescription
-              topLabel="하이픈( - ) 없이"
-              bottomLabel="숫자로만 입력해주세요."
+              topLabel="문자로 발송된 인증번호"
+              bottomLabel="여섯자리를 입력해주세요."
             />
           </TicketBodyHeader>
           <TicketBody>

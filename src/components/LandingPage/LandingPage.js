@@ -17,10 +17,13 @@ function LandingPage() {
   const { ticketingAvailable } = useSelector(state => state.ticketingAvail);
 
   const ticketingButtonHandler = () => {
-    if (authenticated) {
+    /*     if (authenticated) {
       return history.push('/ticketing/amount');
     }
-    history.push('/ticketing/landing');
+    history.push('/ticketing/landing'); */
+    alert(
+      '저희가 준비한 티켓이 모두 매진되었습니다. \n기타 문의사항은 카카오톡 채널로 주시길 바랍니다. 감사합니다'
+    );
   };
   const listButtonHandler = () => {
     if (authenticated) {
